@@ -23,21 +23,47 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
     return university.type === "public" ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary";
   };
 
+  const getUniversityInitials = () => {
+    const words = university.name.split(' ');
+    if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
+    return words.slice(0, 2).map(word => word[0]).join('').toUpperCase();
+  };
+
+  const getUniversityColor = () => {
+    // Generate a consistent color based on university name
+    const colors = [
+      'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500', 
+      'bg-yellow-500', 'bg-indigo-500', 'bg-pink-500', 'bg-teal-500'
+    ];
+    const index = university.name.charCodeAt(0) % colors.length;
+    return colors[index];
+  };
+
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
-      {/* University logo placeholder */}
-      <div className="h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
+      {/* University logo */}
+      <div className="h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative">
         {university.logoUrl ? (
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-20 h-20 object-contain"
+            className="w-24 h-24 object-contain rounded-lg shadow-md bg-white p-2"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+              const fallback = target.nextElementSibling as HTMLElement;
+              if (fallback) fallback.style.display = 'flex';
+            }}
           />
-        ) : (
-          <div className="w-20 h-20 bg-primary rounded-full flex items-center justify-center">
-            <UniversityIcon className="text-2xl text-primary-foreground" />
-          </div>
-        )}
+        ) : null}
+        <div 
+          className={`w-24 h-24 ${getUniversityColor()} rounded-full flex items-center justify-center text-white shadow-lg`}
+          style={{ display: university.logoUrl ? 'none' : 'flex' }}
+        >
+          <span className="text-xl font-bold tracking-wide">
+            {getUniversityInitials()}
+          </span>
+        </div>
       </div>
       
       <CardContent className="p-6">
