@@ -1,0 +1,186 @@
+import { useState } from "react";
+import { Link, useLocation } from "wouter";
+import { useAuth } from "@/hooks/useAuth";
+import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu, GraduationCap } from "lucide-react";
+
+export default function Navbar() {
+  const { isAuthenticated, user } = useAuth();
+  const [location] = useLocation();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const navItems = [
+    { href: "/universities", label: "Universities" },
+    { href: "/scholarships", label: "Scholarships" },
+    { href: "/services", label: "Services" },
+  ];
+
+  return (
+    <nav className="bg-card border-b border-border sticky top-0 z-50" data-testid="navbar">
+      <div className="container mx-auto px-4 lg:px-6">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
+            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
+              <GraduationCap className="text-primary-foreground text-xl" />
+            </div>
+            <span className="text-xl font-bold text-foreground">ApplyHub</span>
+            <span className="text-sm text-muted-foreground hidden sm:inline">Uganda</span>
+          </Link>
+          
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`font-medium transition-colors ${
+                  location === item.href
+                    ? "text-primary"
+                    : "text-foreground hover:text-primary"
+                }`}
+                data-testid={`nav-link-${item.label.toLowerCase()}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          
+          {/* Auth Buttons */}
+          <div className="hidden md:flex items-center space-x-4">
+            {isAuthenticated ? (
+              <>
+                <Link
+                  href="/dashboard"
+                  className="text-foreground hover:text-primary font-medium transition-colors"
+                  data-testid="dashboard-link"
+                >
+                  Dashboard
+                </Link>
+                {user?.isAdmin && (
+                  <Link
+                    href="/admin"
+                    className="text-foreground hover:text-primary font-medium transition-colors"
+                    data-testid="admin-link"
+                  >
+                    Admin
+                  </Link>
+                )}
+                <Button
+                  variant="outline"
+                  onClick={() => (window.location.href = "/api/logout")}
+                  data-testid="logout-button"
+                >
+                  Logout
+                </Button>
+              </>
+            ) : (
+              <>
+                <Button
+                  variant="ghost"
+                  onClick={() => (window.location.href = "/api/login")}
+                  data-testid="login-button"
+                >
+                  Login
+                </Button>
+                <Button
+                  onClick={() => (window.location.href = "/api/login")}
+                  data-testid="signup-button"
+                >
+                  Sign Up
+                </Button>
+              </>
+            )}
+          </div>
+          
+          {/* Mobile Menu Button */}
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+            <SheetTrigger asChild className="md:hidden">
+              <Button variant="ghost" size="icon" data-testid="mobile-menu-button">
+                <Menu className="h-5 w-5" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-80">
+              <div className="flex flex-col space-y-4 mt-8">
+                {navItems.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`text-lg font-medium transition-colors ${
+                      location === item.href
+                        ? "text-primary"
+                        : "text-foreground hover:text-primary"
+                    }`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    data-testid={`mobile-nav-link-${item.label.toLowerCase()}`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+                
+                {isAuthenticated ? (
+                  <>
+                    <Link
+                      href="/dashboard"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                      data-testid="mobile-dashboard-link"
+                    >
+                      Dashboard
+                    </Link>
+                    {user?.isAdmin && (
+                      <Link
+                        href="/admin"
+                        className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                        onClick={() => setMobileMenuOpen(false)}
+                        data-testid="mobile-admin-link"
+                      >
+                        Admin
+                      </Link>
+                    )}
+                    <Button
+                      variant="outline"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        window.location.href = "/api/logout";
+                      }}
+                      className="justify-start"
+                      data-testid="mobile-logout-button"
+                    >
+                      Logout
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Button
+                      variant="ghost"
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        window.location.href = "/api/login";
+                      }}
+                      className="justify-start"
+                      data-testid="mobile-login-button"
+                    >
+                      Login
+                    </Button>
+                    <Button
+                      onClick={() => {
+                        setMobileMenuOpen(false);
+                        window.location.href = "/api/login";
+                      }}
+                      className="justify-start"
+                      data-testid="mobile-signup-button"
+                    >
+                      Sign Up
+                    </Button>
+                  </>
+                )}
+              </div>
+            </SheetContent>
+          </Sheet>
+        </div>
+      </div>
+    </nav>
+  );
+}
