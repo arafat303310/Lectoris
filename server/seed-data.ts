@@ -11,6 +11,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1500000",
     tuitionMax: "4000000",
     websiteUrl: "https://www.mak.ac.ug",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Makerere_University_Logo.svg/512px-Makerere_University_Logo.svg.png",
     established: 1922,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Agriculture", "Humanities"]
   },
@@ -23,6 +24,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2000000",
     tuitionMax: "5000000",
     websiteUrl: "https://www.must.ac.ug",
+    logoUrl: "https://must.ac.ug/wp-content/uploads/2020/09/must-logo-1.png",
     established: 1989,
     specialties: ["Medicine", "Science & Technology", "Health Sciences", "Computing", "Development Studies"]
   },
@@ -35,6 +37,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1800000",
     tuitionMax: "4500000",
     websiteUrl: "https://www.gu.ac.ug",
+    logoUrl: "https://gu.ac.ug/sites/default/files/logo_3.png",
     established: 2002,
     specialties: ["Agriculture", "Education", "Medicine", "Business", "Engineering"]
   },
@@ -46,6 +49,7 @@ export const ugandaUniversitiesData = [
     description: "Education and technology focused university providing quality training for teachers and technical professionals.",
     tuitionMin: "1400000",
     tuitionMax: "3800000",
+    logoUrl: "https://kyu.ac.ug/sites/default/files/logo_1.png",
     established: 2003,
     specialties: ["Education", "Engineering", "Special Needs Education", "Vocational Studies"]
   },
@@ -57,6 +61,7 @@ export const ugandaUniversitiesData = [
     description: "Engineering and agriculture focused institution with emphasis on practical skills and innovation.",
     tuitionMin: "1600000",
     tuitionMax: "4200000",
+    logoUrl: "https://busitema.ac.ug/wp-content/uploads/2021/08/busitema-logo.png",
     established: 2007,
     specialties: ["Engineering", "Agriculture", "Applied Sciences", "Health Sciences"]
   },
@@ -69,6 +74,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "3000000",
     tuitionMax: "6000000",
     websiteUrl: "https://www.ucu.ac.ug",
+    logoUrl: "https://www.ucu.ac.ug/wp-content/uploads/2019/11/UCU-Logo.png",
     established: 1997,
     specialties: ["Theology", "Business", "Law", "Journalism", "Education", "Social Sciences"]
   },
@@ -81,6 +87,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2500000",
     tuitionMax: "7000000",
     websiteUrl: "https://www.kiu.ac.ug",
+    logoUrl: "https://kiu.ac.ug/wp-content/uploads/2021/03/KIU-Logo-1.png",
     established: 2001,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Pharmacy", "Nursing"]
   },
@@ -93,6 +100,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2000000",
     tuitionMax: "5500000",
     websiteUrl: "https://www.iuiu.ac.ug",
+    logoUrl: "https://iuiu.ac.ug/wp-content/uploads/2021/04/IUIU-Logo.png",
     established: 1988,
     specialties: ["Islamic Studies", "Education", "Management", "Science & Technology"]
   },
@@ -105,6 +113,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2800000",
     tuitionMax: "5800000",
     websiteUrl: "https://www.umu.ac.ug",
+    logoUrl: "https://www.umu.ac.ug/wp-content/uploads/2020/01/UMU-logo.png",
     established: 1993,
     specialties: ["Business", "Social Sciences", "Education", "Ethics & Development Studies"]
   },
@@ -116,6 +125,7 @@ export const ugandaUniversitiesData = [
     description: "One of Uganda's oldest private universities established in 1992, offering diverse academic programs.",
     tuitionMin: "2200000",
     tuitionMax: "5200000",
+    logoUrl: "https://ndejjeuniversity.ac.ug/wp-content/uploads/2021/03/Ndejje-Logo.png",
     established: 1992,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
   },
@@ -127,6 +137,7 @@ export const ugandaUniversitiesData = [
     description: "Business-focused private university located near Lake Victoria with modern facilities.",
     tuitionMin: "2400000",
     tuitionMax: "5600000",
+    logoUrl: "https://nkumbauniversity.ac.ug/wp-content/uploads/2021/02/Nkumba-Logo.png",
     established: 1994,
     specialties: ["Business", "Computing", "Social Sciences", "Mass Communication"]
   },
@@ -138,6 +149,7 @@ export const ugandaUniversitiesData = [
     description: "Seventh-day Adventist university offering holistic education with emphasis on Christian values.",
     tuitionMin: "2300000",
     tuitionMax: "5400000",
+    logoUrl: "https://bugema.ac.ug/wp-content/uploads/2021/04/Bugema-Logo.png",
     established: 1994,
     specialties: ["Theology", "Business", "Education", "Health Sciences"]
   },
@@ -149,6 +161,7 @@ export const ugandaUniversitiesData = [
     description: "Regional university serving western Uganda with focus on community development.",
     tuitionMin: "2100000",
     tuitionMax: "4800000",
+    logoUrl: "https://mmu.ac.ug/wp-content/uploads/2021/04/MMU-Logo.png",
     established: 2005,
     specialties: ["Health Sciences", "Business", "Education", "Development Studies"]
   },
@@ -160,6 +173,7 @@ export const ugandaUniversitiesData = [
     description: "Anglican university in southwestern Uganda focusing on holistic education.",
     tuitionMin: "2200000",
     tuitionMax: "5000000",
+    logoUrl: "https://bsu.ac.ug/wp-content/uploads/2021/04/BSU-Logo.png",
     established: 2003,
     specialties: ["Theology", "Education", "Development Studies", "Business"]
   },
@@ -171,6 +185,7 @@ export const ugandaUniversitiesData = [
     description: "Technology and business focused university with modern programs and facilities.",
     tuitionMin: "2600000",
     tuitionMax: "6200000",
+    logoUrl: "https://iuea.ac.ug/wp-content/uploads/2021/05/IUEA-Logo.png",
     established: 2010,
     specialties: ["Information Technology", "Business", "Engineering", "Health Sciences"]
   },
@@ -182,6 +197,7 @@ export const ugandaUniversitiesData = [
     description: "International university offering globally recognized programs with modern facilities.",
     tuitionMin: "3200000",
     tuitionMax: "7200000",
+    logoUrl: "https://cavendish.ac.ug/wp-content/uploads/2021/03/Cavendish-Logo.png",
     established: 2008,
     specialties: ["Business", "Law", "Psychology", "Information Technology"]
   },
@@ -193,6 +209,7 @@ export const ugandaUniversitiesData = [
     description: "Recently chartered university offering contemporary programs in business and technology.",
     tuitionMin: "2800000",
     tuitionMax: "6500000",
+    logoUrl: "https://vu.ac.ug/wp-content/uploads/2021/03/Victoria-Logo.png",
     established: 2011,
     specialties: ["Business", "Information Technology", "Social Sciences"]
   },
@@ -204,6 +221,7 @@ export const ugandaUniversitiesData = [
     description: "Serving the West Nile region with focus on regional development and community engagement.",
     tuitionMin: "1700000",
     tuitionMax: "4300000",
+    logoUrl: "https://muni.ac.ug/wp-content/uploads/2021/06/muni-university-logo.png",
     established: 2013,
     specialties: ["Medicine", "Applied Sciences", "Education", "Agriculture"]
   },
@@ -215,6 +233,7 @@ export const ugandaUniversitiesData = [
     description: "Northern Uganda university focusing on agriculture, education, and regional development.",
     tuitionMin: "1600000",
     tuitionMax: "4100000",
+    logoUrl: "https://lirauni.ac.ug/wp-content/uploads/2021/05/lira-university-logo.png",
     established: 2015,
     specialties: ["Agriculture", "Education", "Applied Sciences"]
   },
@@ -226,6 +245,7 @@ export const ugandaUniversitiesData = [
     description: "Southwestern regional university with emphasis on agriculture and development studies.",
     tuitionMin: "1500000",
     tuitionMax: "4000000",
+    logoUrl: "https://kab.ac.ug/wp-content/uploads/2021/06/kabale-university-logo.png",
     established: 2015,
     specialties: ["Agriculture", "Education", "Development Studies", "Business"]
   }
@@ -426,7 +446,7 @@ export async function seedDatabase() {
 }
 
 // Run seeding if this file is executed directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   seedDatabase()
     .then(() => process.exit(0))
     .catch(() => process.exit(1));
