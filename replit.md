@@ -46,11 +46,18 @@ The application integrates **Replit's OIDC authentication** system with:
 - **User profile management** with automatic user creation/updates
 - **Role-based access control** with admin functionality
 
+### Theme System
+The application supports Light, Dark, and System themes:
+- **ThemeProvider** component manages theme state and persistence
+- **Theme stored in localStorage** under key "applyhub-theme"
+- **CSS variables** defined in index.css for both :root (light) and .dark classes
+- **ThemeToggle** component in navbar for theme switching
+
 ### State Management
 Client-side state is managed through:
 - **React Query** for server state, caching, and synchronization
 - **React Hook Form** for form state management
-- **React Context** (minimal usage) for global UI state
+- **React Context** for theme state (ThemeProvider)
 - **Local component state** for UI interactions
 
 ### API Design
