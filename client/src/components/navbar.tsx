@@ -15,6 +15,7 @@ export default function Navbar() {
     { href: "/universities", label: "Universities" },
     { href: "/scholarships", label: "Scholarships" },
     { href: "/services", label: "Services" },
+    { href: "/pricing", label: "Pricing" },
   ];
 
   return (

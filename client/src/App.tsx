@@ -11,6 +11,7 @@ import Universities from "@/pages/universities";
 import UniversityDetail from "@/pages/university-detail";
 import Scholarships from "@/pages/scholarships";
 import Services from "@/pages/services";
+import Pricing from "@/pages/pricing";
 import Dashboard from "@/pages/dashboard";
 import AdminDashboard from "@/pages/admin-dashboard";
 import NotFound from "@/pages/not-found";
@@ -27,6 +28,7 @@ function Router() {
           <Route path="/universities/:id" component={UniversityDetail} />
           <Route path="/scholarships" component={Scholarships} />
           <Route path="/services" component={Services} />
+          <Route path="/pricing" component={Pricing} />
         </>
       ) : (
         <>
@@ -35,6 +37,7 @@ function Router() {
           <Route path="/universities/:id" component={UniversityDetail} />
           <Route path="/scholarships" component={Scholarships} />
           <Route path="/services" component={Services} />
+          <Route path="/pricing" component={Pricing} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/admin" component={AdminDashboard} />
         </>

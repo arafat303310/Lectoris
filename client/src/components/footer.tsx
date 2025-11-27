@@ -40,6 +40,7 @@ export default function Footer() {
               <li><Link href="/universities" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-universities-link">Universities</Link></li>
               <li><Link href="/scholarships" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-scholarships-link">Scholarships</Link></li>
               <li><Link href="/services" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-services-link">Services</Link></li>
+              <li><Link href="/pricing" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-pricing-link">Pricing</Link></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-blog-link">Blog</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-about-link">About Us</a></li>
             </ul>
