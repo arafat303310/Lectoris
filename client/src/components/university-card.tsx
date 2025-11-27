@@ -79,7 +79,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
       {/* University logo with brand colors */}
       <div 
-        className="h-48 flex items-center justify-center relative"
+        className="h-36 sm:h-48 flex items-center justify-center relative"
         style={{ 
           background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
         }}
@@ -88,12 +88,12 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-28 h-28 object-contain rounded-lg shadow-md bg-white p-3"
+            className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-lg shadow-md bg-white p-2 sm:p-3"
             onError={() => setImageError(true)}
           />
         ) : (
           <div 
-            className="w-28 h-28 rounded-2xl flex flex-col items-center justify-center shadow-lg border-4"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center shadow-lg border-2 sm:border-4"
             style={{ 
               backgroundColor: getBrandColors().primary,
               borderColor: getBrandColors().secondary
@@ -101,10 +101,10 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           >
             {(() => {
               const IconComponent = getIcon();
-              return <IconComponent className="w-10 h-10 mb-1" style={{ color: getBrandColors().secondary }} />;
+              return <IconComponent className="w-7 h-7 sm:w-10 sm:h-10 mb-1" style={{ color: getBrandColors().secondary }} />;
             })()}
             <span 
-              className="text-lg font-bold tracking-wide"
+              className="text-sm sm:text-lg font-bold tracking-wide"
               style={{ color: getBrandColors().secondary }}
             >
               {getBrandColors().initials}
@@ -113,29 +113,29 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
         )}
       </div>
       
-      <CardContent className="p-6">
-        <div className="flex items-start justify-between mb-3">
-          <h3 className="text-xl font-bold text-foreground line-clamp-2" data-testid={`university-name-${university.id}`}>
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex items-start justify-between gap-2 mb-2 sm:mb-3">
+          <h3 className="text-base sm:text-xl font-bold text-foreground line-clamp-2" data-testid={`university-name-${university.id}`}>
             {university.name}
           </h3>
-          <Badge className={getTypeColor()} data-testid={`university-type-${university.id}`}>
+          <Badge className={`${getTypeColor()} text-xs shrink-0`} data-testid={`university-type-${university.id}`}>
             {university.type}
           </Badge>
         </div>
         
-        <p className="text-muted-foreground text-sm mb-3 flex items-center" data-testid={`university-location-${university.id}`}>
-          <MapPin className="h-4 w-4 mr-1" />
+        <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 flex items-center" data-testid={`university-location-${university.id}`}>
+          <MapPin className="h-3 w-3 sm:h-4 sm:w-4 mr-1 shrink-0" />
           {university.location}
         </p>
         
         {university.description && (
-          <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`university-description-${university.id}`}>
+          <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3" data-testid={`university-description-${university.id}`}>
             {university.description}
           </p>
         )}
         
-        <div className="flex items-center justify-between">
-          <span className="text-sm font-medium text-foreground" data-testid={`university-tuition-${university.id}`}>
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+          <span className="text-xs sm:text-sm font-medium text-foreground" data-testid={`university-tuition-${university.id}`}>
             {formatTuition()}
           </span>
           <div className="flex items-center space-x-2">
@@ -143,6 +143,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
               <Button
                 variant="outline"
                 size="sm"
+                className="text-xs h-8"
                 onClick={() => onSave(university.id)}
                 data-testid={`save-university-${university.id}`}
               >
@@ -150,8 +151,8 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
               </Button>
             )}
             <Link href={`/universities/${university.id}`}>
-              <Button variant="ghost" size="sm" data-testid={`view-university-${university.id}`}>
-                View Details <ArrowRight className="ml-1 h-3 w-3" />
+              <Button variant="ghost" size="sm" className="text-xs h-8" data-testid={`view-university-${university.id}`}>
+                View <ArrowRight className="ml-1 h-3 w-3" />
               </Button>
             </Link>
           </div>

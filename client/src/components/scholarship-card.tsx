@@ -39,52 +39,53 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
 
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`scholarship-card-${scholarship.id}`}>
-      <div className={`h-4 bg-gradient-to-r ${
+      <div className={`h-2 sm:h-4 bg-gradient-to-r ${
         scholarship.type === "government" ? "from-accent to-primary" :
         scholarship.type === "international" ? "from-primary to-secondary" :
         "from-secondary to-accent"
       }`} />
       
-      <CardContent className="p-6">
-        <div className="flex items-start justify-between mb-4">
-          <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-            <Trophy className="text-accent" />
+      <CardContent className="p-4 sm:p-6">
+        <div className="flex items-start justify-between mb-3 sm:mb-4">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-full flex items-center justify-center">
+            <Trophy className="text-accent h-5 w-5 sm:h-6 sm:w-6" />
           </div>
-          <Badge className={getTypeColor()} data-testid={`scholarship-type-${scholarship.id}`}>
+          <Badge className={`${getTypeColor()} text-xs`} data-testid={`scholarship-type-${scholarship.id}`}>
             {scholarship.type}
           </Badge>
         </div>
         
-        <h3 className="text-xl font-bold text-foreground mb-3 line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
+        <h3 className="text-base sm:text-xl font-bold text-foreground mb-2 sm:mb-3 line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
           {scholarship.title}
         </h3>
         
-        <p className="text-sm text-muted-foreground mb-4 line-clamp-3" data-testid={`scholarship-description-${scholarship.id}`}>
+        <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3" data-testid={`scholarship-description-${scholarship.id}`}>
           {scholarship.description}
         </p>
         
-        <div className="space-y-2 mb-4">
-          <div className="flex items-center text-sm text-muted-foreground">
-            <DollarSign className="h-4 w-4 mr-2" />
+        <div className="space-y-1.5 sm:space-y-2 mb-3 sm:mb-4">
+          <div className="flex items-center text-xs sm:text-sm text-muted-foreground">
+            <DollarSign className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 shrink-0" />
             <span data-testid={`scholarship-amount-${scholarship.id}`}>{formatAmount()}</span>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <Calendar className="h-4 w-4 mr-2" />
+          <div className="flex items-center text-xs sm:text-sm text-muted-foreground">
+            <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 shrink-0" />
             <span className={isDeadlineSoon() ? "text-destructive font-medium" : ""} data-testid={`scholarship-deadline-${scholarship.id}`}>
-              Deadline: {format(new Date(scholarship.deadline), "MMMM d, yyyy")}
+              {format(new Date(scholarship.deadline), "MMM d, yyyy")}
             </span>
           </div>
-          <div className="flex items-center text-sm text-muted-foreground">
-            <User className="h-4 w-4 mr-2" />
-            <span data-testid={`scholarship-level-${scholarship.id}`}>{scholarship.level}</span>
+          <div className="flex items-center text-xs sm:text-sm text-muted-foreground">
+            <User className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 shrink-0" />
+            <span className="capitalize" data-testid={`scholarship-level-${scholarship.id}`}>{scholarship.level}</span>
           </div>
         </div>
         
-        <div className="flex items-center space-x-2">
+        <div className="flex flex-wrap items-center gap-2">
           {onSave && (
             <Button
               variant="outline"
               size="sm"
+              className="text-xs h-8"
               onClick={() => onSave(scholarship.id)}
               data-testid={`save-scholarship-${scholarship.id}`}
             >
@@ -92,9 +93,9 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
             </Button>
           )}
           {scholarship.applicationUrl && (
-            <Button asChild size="sm" data-testid={`apply-scholarship-${scholarship.id}`}>
+            <Button asChild size="sm" className="text-xs h-8" data-testid={`apply-scholarship-${scholarship.id}`}>
               <a href={scholarship.applicationUrl} target="_blank" rel="noopener noreferrer">
-                Apply Now <ExternalLink className="ml-1 h-3 w-3" />
+                Apply <ExternalLink className="ml-1 h-3 w-3" />
               </a>
             </Button>
           )}

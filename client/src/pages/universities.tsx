@@ -142,42 +142,42 @@ export default function Universities() {
     <div className="min-h-screen bg-background" data-testid="universities-page">
       <Navbar />
       
-      <div className="container mx-auto px-4 lg:px-6 py-8">
+      <div className="container mx-auto px-4 lg:px-6 py-6 sm:py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid="universities-title">
+        <div className="text-center mb-6 sm:mb-8">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4" data-testid="universities-title">
             Uganda Universities Directory
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
             Explore 46+ universities across Uganda. Find the perfect institution for your academic journey.
           </p>
         </div>
 
         {/* Filters */}
-        <Card className="mb-8" data-testid="filters-card">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Filter className="h-5 w-5" />
-              Search & Filter Universities
+        <Card className="mb-6 sm:mb-8" data-testid="filters-card">
+          <CardHeader className="p-4 sm:p-6">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
+              <Filter className="h-4 w-4 sm:h-5 sm:w-5" />
+              Search & Filter
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="relative">
+          <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="relative sm:col-span-2 md:col-span-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search universities..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={handleKeyPress}
-                  className="pl-10"
+                  className="pl-10 text-sm"
                   data-testid="search-universities-input"
                 />
               </div>
               
               <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger data-testid="type-filter-select">
-                  <SelectValue placeholder="University Type" />
+                <SelectTrigger data-testid="type-filter-select" className="text-sm">
+                  <SelectValue placeholder="Type" />
                 </SelectTrigger>
                 <SelectContent>
                   <SelectItem value="public" data-testid="type-public">Public</SelectItem>
@@ -186,7 +186,7 @@ export default function Universities() {
               </Select>
               
               <Select value={locationFilter} onValueChange={setLocationFilter}>
-                <SelectTrigger data-testid="location-filter-select">
+                <SelectTrigger data-testid="location-filter-select" className="text-sm">
                   <SelectValue placeholder="Location" />
                 </SelectTrigger>
                 <SelectContent>
@@ -199,11 +199,11 @@ export default function Universities() {
               </Select>
               
               <div className="flex gap-2">
-                <Button onClick={handleApplyFilters} className="flex-1" data-testid="apply-filters-button">
-                  Apply Filters
+                <Button onClick={handleApplyFilters} className="flex-1 text-sm" data-testid="apply-filters-button">
+                  Apply
                 </Button>
                 {isFiltered && (
-                  <Button variant="outline" onClick={handleClearFilters} data-testid="clear-filters-button">
+                  <Button variant="outline" onClick={handleClearFilters} className="text-sm" data-testid="clear-filters-button">
                     Clear
                   </Button>
                 )}
@@ -211,9 +211,9 @@ export default function Universities() {
             </div>
             
             {isFiltered && (
-              <div className="text-sm text-muted-foreground">
-                Showing results for: {appliedFilters.search && `"${appliedFilters.search}"`} 
-                {appliedFilters.type && ` • ${appliedFilters.type} universities`}
+              <div className="text-xs sm:text-sm text-muted-foreground">
+                Showing: {appliedFilters.search && `"${appliedFilters.search}"`} 
+                {appliedFilters.type && ` • ${appliedFilters.type}`}
                 {appliedFilters.location && ` • ${appliedFilters.location}`}
               </div>
             )}
@@ -222,40 +222,40 @@ export default function Universities() {
 
         {/* Results */}
         {isLoading ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="loading-skeleton">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" data-testid="loading-skeleton">
             {[...Array(6)].map((_, i) => (
               <Card key={i} className="overflow-hidden">
-                <Skeleton className="h-48 w-full" />
-                <CardContent className="p-6">
-                  <Skeleton className="h-6 w-3/4 mb-2" />
-                  <Skeleton className="h-4 w-1/2 mb-4" />
-                  <Skeleton className="h-16 w-full mb-4" />
+                <Skeleton className="h-36 sm:h-48 w-full" />
+                <CardContent className="p-4 sm:p-6">
+                  <Skeleton className="h-5 sm:h-6 w-3/4 mb-2" />
+                  <Skeleton className="h-3 sm:h-4 w-1/2 mb-3 sm:mb-4" />
+                  <Skeleton className="h-12 sm:h-16 w-full mb-3 sm:mb-4" />
                   <Skeleton className="h-8 w-full" />
                 </CardContent>
               </Card>
             ))}
           </div>
         ) : universities.length === 0 ? (
-          <Card className="text-center py-12" data-testid="no-universities-found">
+          <Card className="text-center py-8 sm:py-12" data-testid="no-universities-found">
             <CardContent>
-              <h3 className="text-lg font-semibold text-foreground mb-2">No Universities Found</h3>
-              <p className="text-muted-foreground mb-4">
-                Try adjusting your search criteria or filters to find more results.
+              <h3 className="text-base sm:text-lg font-semibold text-foreground mb-2">No Universities Found</h3>
+              <p className="text-sm text-muted-foreground mb-4">
+                Try adjusting your search criteria or filters.
               </p>
-              <Button onClick={handleClearFilters} data-testid="clear-filters-no-results">
+              <Button onClick={handleClearFilters} className="text-sm" data-testid="clear-filters-no-results">
                 Clear Filters
               </Button>
             </CardContent>
           </Card>
         ) : (
           <>
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-semibold text-foreground" data-testid="results-count">
+            <div className="flex items-center justify-between mb-4 sm:mb-6">
+              <h2 className="text-base sm:text-xl font-semibold text-foreground" data-testid="results-count">
                 {universities.length} Universities Found
               </h2>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="universities-grid">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" data-testid="universities-grid">
               {universities.map((university) => (
                 <UniversityCard
                   key={university.id}
