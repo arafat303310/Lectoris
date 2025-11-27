@@ -2,6 +2,7 @@ import { db } from "./db";
 import { universities, scholarships, services } from "@shared/schema";
 
 export const ugandaUniversitiesData = [
+  // PUBLIC UNIVERSITIES (10)
   {
     name: "Makerere University",
     location: "Kampala",
@@ -11,22 +12,20 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1500000",
     tuitionMax: "4000000",
     websiteUrl: "https://www.mak.ac.ug",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/8/86/Makerere_University_Logo.svg/512px-Makerere_University_Logo.svg.png",
     established: 1922,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Agriculture", "Humanities"]
   },
   {
-    name: "Mbarara University of Science and Technology",
-    location: "Mbarara",
+    name: "Kyambogo University",
+    location: "Kampala",
     type: "public" as const,
     status: "chartered" as const,
-    description: "Leading institution for science, technology, and health sciences with strong research programs and modern facilities.",
-    tuitionMin: "2000000",
-    tuitionMax: "5000000",
-    websiteUrl: "https://www.must.ac.ug",
-    logoUrl: "https://must.ac.ug/wp-content/uploads/2020/09/must-logo-1.png",
-    established: 1989,
-    specialties: ["Medicine", "Science & Technology", "Health Sciences", "Computing", "Development Studies"]
+    description: "Education and technology focused university providing quality training for teachers and technical professionals.",
+    tuitionMin: "1400000",
+    tuitionMax: "3800000",
+    websiteUrl: "https://www.kyu.ac.ug",
+    established: 2003,
+    specialties: ["Education", "Engineering", "Special Needs Education", "Vocational Studies"]
   },
   {
     name: "Gulu University",
@@ -37,21 +36,8 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1800000",
     tuitionMax: "4500000",
     websiteUrl: "https://www.gu.ac.ug",
-    logoUrl: "https://gu.ac.ug/sites/default/files/logo_3.png",
     established: 2002,
     specialties: ["Agriculture", "Education", "Medicine", "Business", "Engineering"]
-  },
-  {
-    name: "Kyambogo University",
-    location: "Kampala",
-    type: "public" as const,
-    status: "chartered" as const,
-    description: "Education and technology focused university providing quality training for teachers and technical professionals.",
-    tuitionMin: "1400000",
-    tuitionMax: "3800000",
-    logoUrl: "https://kyu.ac.ug/sites/default/files/logo_1.png",
-    established: 2003,
-    specialties: ["Education", "Engineering", "Special Needs Education", "Vocational Studies"]
   },
   {
     name: "Busitema University",
@@ -61,10 +47,84 @@ export const ugandaUniversitiesData = [
     description: "Engineering and agriculture focused institution with emphasis on practical skills and innovation.",
     tuitionMin: "1600000",
     tuitionMax: "4200000",
-    logoUrl: "https://busitema.ac.ug/wp-content/uploads/2021/08/busitema-logo.png",
+    websiteUrl: "https://www.busitema.ac.ug",
     established: 2007,
     specialties: ["Engineering", "Agriculture", "Applied Sciences", "Health Sciences"]
   },
+  {
+    name: "Mbarara University of Science and Technology",
+    location: "Mbarara",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Leading institution for science, technology, and health sciences with strong research programs and modern facilities.",
+    tuitionMin: "2000000",
+    tuitionMax: "5000000",
+    websiteUrl: "https://www.must.ac.ug",
+    established: 1989,
+    specialties: ["Medicine", "Science & Technology", "Health Sciences", "Computing", "Development Studies"]
+  },
+  {
+    name: "Muni University",
+    location: "Arua",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Serving the West Nile region with focus on regional development and community engagement.",
+    tuitionMin: "1700000",
+    tuitionMax: "4300000",
+    websiteUrl: "https://www.muni.ac.ug",
+    established: 2013,
+    specialties: ["Medicine", "Applied Sciences", "Education", "Agriculture"]
+  },
+  {
+    name: "Kabale University",
+    location: "Kabale",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Southwestern regional university with emphasis on agriculture and development studies.",
+    tuitionMin: "1500000",
+    tuitionMax: "4000000",
+    websiteUrl: "https://www.kab.ac.ug",
+    established: 2015,
+    specialties: ["Agriculture", "Education", "Development Studies", "Business"]
+  },
+  {
+    name: "Soroti University",
+    location: "Soroti",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Eastern Uganda university focusing on agriculture, education, and regional development.",
+    tuitionMin: "1600000",
+    tuitionMax: "4100000",
+    websiteUrl: "https://www.soru.ac.ug",
+    established: 2015,
+    specialties: ["Agriculture", "Education", "Applied Sciences", "Business"]
+  },
+  {
+    name: "Lira University",
+    location: "Lira",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Northern Uganda university focusing on agriculture, education, and regional development.",
+    tuitionMin: "1600000",
+    tuitionMax: "4100000",
+    websiteUrl: "https://www.lirauni.ac.ug",
+    established: 2015,
+    specialties: ["Agriculture", "Education", "Applied Sciences"]
+  },
+  {
+    name: "Mountains of the Moon University",
+    location: "Fort Portal",
+    type: "public" as const,
+    status: "chartered" as const,
+    description: "Regional university serving western Uganda with focus on community development.",
+    tuitionMin: "2100000",
+    tuitionMax: "4800000",
+    websiteUrl: "https://www.mmu.ac.ug",
+    established: 2005,
+    specialties: ["Health Sciences", "Business", "Education", "Development Studies"]
+  },
+  
+  // PRIVATE CHARTERED UNIVERSITIES (20)
   {
     name: "Uganda Christian University",
     location: "Mukono",
@@ -74,35 +134,8 @@ export const ugandaUniversitiesData = [
     tuitionMin: "3000000",
     tuitionMax: "6000000",
     websiteUrl: "https://www.ucu.ac.ug",
-    logoUrl: "https://www.ucu.ac.ug/wp-content/uploads/2019/11/UCU-Logo.png",
     established: 1997,
     specialties: ["Theology", "Business", "Law", "Journalism", "Education", "Social Sciences"]
-  },
-  {
-    name: "Kampala International University",
-    location: "Kampala",
-    type: "private" as const,
-    status: "chartered" as const,
-    description: "Comprehensive private university with diverse programs and international partnerships for global education opportunities.",
-    tuitionMin: "2500000",
-    tuitionMax: "7000000",
-    websiteUrl: "https://www.kiu.ac.ug",
-    logoUrl: "https://kiu.ac.ug/wp-content/uploads/2021/03/KIU-Logo-1.png",
-    established: 2001,
-    specialties: ["Medicine", "Engineering", "Business", "Law", "Pharmacy", "Nursing"]
-  },
-  {
-    name: "Islamic University in Uganda",
-    location: "Mbale",
-    type: "private" as const,
-    status: "chartered" as const,
-    description: "Islamic institution offering diverse programs with emphasis on Islamic values, ethics, and comprehensive education.",
-    tuitionMin: "2000000",
-    tuitionMax: "5500000",
-    websiteUrl: "https://www.iuiu.ac.ug",
-    logoUrl: "https://iuiu.ac.ug/wp-content/uploads/2021/04/IUIU-Logo.png",
-    established: 1988,
-    specialties: ["Islamic Studies", "Education", "Management", "Science & Technology"]
   },
   {
     name: "Uganda Martyrs University",
@@ -113,9 +146,20 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2800000",
     tuitionMax: "5800000",
     websiteUrl: "https://www.umu.ac.ug",
-    logoUrl: "https://www.umu.ac.ug/wp-content/uploads/2020/01/UMU-logo.png",
     established: 1993,
     specialties: ["Business", "Social Sciences", "Education", "Ethics & Development Studies"]
+  },
+  {
+    name: "Islamic University in Uganda",
+    location: "Mbale",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Islamic institution offering diverse programs with emphasis on Islamic values, ethics, and comprehensive education.",
+    tuitionMin: "2000000",
+    tuitionMax: "5500000",
+    websiteUrl: "https://www.iuiu.ac.ug",
+    established: 1988,
+    specialties: ["Islamic Studies", "Education", "Management", "Science & Technology"]
   },
   {
     name: "Ndejje University",
@@ -125,7 +169,7 @@ export const ugandaUniversitiesData = [
     description: "One of Uganda's oldest private universities established in 1992, offering diverse academic programs.",
     tuitionMin: "2200000",
     tuitionMax: "5200000",
-    logoUrl: "https://ndejjeuniversity.ac.ug/wp-content/uploads/2021/03/Ndejje-Logo.png",
+    websiteUrl: "https://www.ndejjeuniversity.ac.ug",
     established: 1992,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
   },
@@ -137,9 +181,33 @@ export const ugandaUniversitiesData = [
     description: "Business-focused private university located near Lake Victoria with modern facilities.",
     tuitionMin: "2400000",
     tuitionMax: "5600000",
-    logoUrl: "https://nkumbauniversity.ac.ug/wp-content/uploads/2021/02/Nkumba-Logo.png",
+    websiteUrl: "https://www.nkumbauniversity.ac.ug",
     established: 1994,
     specialties: ["Business", "Computing", "Social Sciences", "Mass Communication"]
+  },
+  {
+    name: "Kampala International University",
+    location: "Kampala",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Comprehensive private university with diverse programs and international partnerships for global education opportunities.",
+    tuitionMin: "2500000",
+    tuitionMax: "7000000",
+    websiteUrl: "https://www.kiu.ac.ug",
+    established: 2001,
+    specialties: ["Medicine", "Engineering", "Business", "Law", "Pharmacy", "Nursing"]
+  },
+  {
+    name: "Kampala University",
+    location: "Kampala",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Urban private university offering business and social sciences programs in the heart of Kampala.",
+    tuitionMin: "2300000",
+    tuitionMax: "5500000",
+    websiteUrl: "https://www.ku.ac.ug",
+    established: 2005,
+    specialties: ["Business", "Social Sciences", "Education", "Information Technology"]
   },
   {
     name: "Bugema University",
@@ -149,21 +217,21 @@ export const ugandaUniversitiesData = [
     description: "Seventh-day Adventist university offering holistic education with emphasis on Christian values.",
     tuitionMin: "2300000",
     tuitionMax: "5400000",
-    logoUrl: "https://bugema.ac.ug/wp-content/uploads/2021/04/Bugema-Logo.png",
+    websiteUrl: "https://www.bugema.ac.ug",
     established: 1994,
     specialties: ["Theology", "Business", "Education", "Health Sciences"]
   },
   {
-    name: "Mountains of the Moon University",
-    location: "Fort Portal",
+    name: "Busoga University",
+    location: "Iganga",
     type: "private" as const,
     status: "chartered" as const,
-    description: "Regional university serving western Uganda with focus on community development.",
+    description: "Serving the Busoga region with diverse academic programs and community development focus.",
     tuitionMin: "2100000",
-    tuitionMax: "4800000",
-    logoUrl: "https://mmu.ac.ug/wp-content/uploads/2021/04/MMU-Logo.png",
-    established: 2005,
-    specialties: ["Health Sciences", "Business", "Education", "Development Studies"]
+    tuitionMax: "5000000",
+    websiteUrl: "https://www.busogauniversity.ac.ug",
+    established: 1999,
+    specialties: ["Business", "Education", "Agriculture", "Health Sciences"]
   },
   {
     name: "Bishop Stuart University",
@@ -173,9 +241,33 @@ export const ugandaUniversitiesData = [
     description: "Anglican university in southwestern Uganda focusing on holistic education.",
     tuitionMin: "2200000",
     tuitionMax: "5000000",
-    logoUrl: "https://bsu.ac.ug/wp-content/uploads/2021/04/BSU-Logo.png",
+    websiteUrl: "https://www.bsu.ac.ug",
     established: 2003,
     specialties: ["Theology", "Education", "Development Studies", "Business"]
+  },
+  {
+    name: "Clarke International University",
+    location: "Kampala",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Health sciences focused university providing quality medical and nursing education.",
+    tuitionMin: "3500000",
+    tuitionMax: "8000000",
+    websiteUrl: "https://www.ciu.ac.ug",
+    established: 2008,
+    specialties: ["Medicine", "Nursing", "Public Health", "Pharmacy"]
+  },
+  {
+    name: "Victoria University",
+    location: "Kampala",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Recently chartered university offering contemporary programs in business and technology.",
+    tuitionMin: "2800000",
+    tuitionMax: "6500000",
+    websiteUrl: "https://www.vu.ac.ug",
+    established: 2011,
+    specialties: ["Business", "Information Technology", "Social Sciences"]
   },
   {
     name: "International University of East Africa",
@@ -185,7 +277,7 @@ export const ugandaUniversitiesData = [
     description: "Technology and business focused university with modern programs and facilities.",
     tuitionMin: "2600000",
     tuitionMax: "6200000",
-    logoUrl: "https://iuea.ac.ug/wp-content/uploads/2021/05/IUEA-Logo.png",
+    websiteUrl: "https://www.iuea.ac.ug",
     established: 2010,
     specialties: ["Information Technology", "Business", "Engineering", "Health Sciences"]
   },
@@ -197,57 +289,81 @@ export const ugandaUniversitiesData = [
     description: "International university offering globally recognized programs with modern facilities.",
     tuitionMin: "3200000",
     tuitionMax: "7200000",
-    logoUrl: "https://cavendish.ac.ug/wp-content/uploads/2021/03/Cavendish-Logo.png",
+    websiteUrl: "https://www.cavendish.ac.ug",
     established: 2008,
     specialties: ["Business", "Law", "Psychology", "Information Technology"]
   },
   {
-    name: "Victoria University",
+    name: "St. Lawrence University",
     location: "Kampala",
     type: "private" as const,
     status: "chartered" as const,
-    description: "Recently chartered university offering contemporary programs in business and technology.",
-    tuitionMin: "2800000",
-    tuitionMax: "6500000",
-    logoUrl: "https://vu.ac.ug/wp-content/uploads/2021/03/Victoria-Logo.png",
-    established: 2011,
-    specialties: ["Business", "Information Technology", "Social Sciences"]
+    description: "Private university offering business and social sciences programs with strong industry connections.",
+    tuitionMin: "2500000",
+    tuitionMax: "5800000",
+    websiteUrl: "https://www.slau.ac.ug",
+    established: 2007,
+    specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
   },
   {
-    name: "Muni University",
-    location: "Arua",
-    type: "public" as const,
+    name: "African Bible University",
+    location: "Kampala",
+    type: "private" as const,
     status: "chartered" as const,
-    description: "Serving the West Nile region with focus on regional development and community engagement.",
-    tuitionMin: "1700000",
-    tuitionMax: "4300000",
-    logoUrl: "https://muni.ac.ug/wp-content/uploads/2021/06/muni-university-logo.png",
-    established: 2013,
-    specialties: ["Medicine", "Applied Sciences", "Education", "Agriculture"]
+    description: "Christian university focused on biblical studies and leadership development.",
+    tuitionMin: "2000000",
+    tuitionMax: "4500000",
+    websiteUrl: "https://www.abu.ac.ug",
+    established: 2005,
+    specialties: ["Theology", "Biblical Studies", "Leadership", "Education"]
   },
   {
-    name: "Lira University",
-    location: "Lira",
-    type: "public" as const,
+    name: "Uganda Pentecostal University",
+    location: "Fort Portal",
+    type: "private" as const,
     status: "chartered" as const,
-    description: "Northern Uganda university focusing on agriculture, education, and regional development.",
-    tuitionMin: "1600000",
-    tuitionMax: "4100000",
-    logoUrl: "https://lirauni.ac.ug/wp-content/uploads/2021/05/lira-university-logo.png",
-    established: 2015,
-    specialties: ["Agriculture", "Education", "Applied Sciences"]
+    description: "Pentecostal university offering education rooted in Christian values and community service.",
+    tuitionMin: "2200000",
+    tuitionMax: "5100000",
+    websiteUrl: "https://www.upu.ac.ug",
+    established: 2005,
+    specialties: ["Theology", "Education", "Business", "Social Work"]
   },
   {
-    name: "Kabale University",
-    location: "Kabale",
-    type: "public" as const,
+    name: "Team University",
+    location: "Kampala",
+    type: "private" as const,
     status: "chartered" as const,
-    description: "Southwestern regional university with emphasis on agriculture and development studies.",
-    tuitionMin: "1500000",
-    tuitionMax: "4000000",
-    logoUrl: "https://kab.ac.ug/wp-content/uploads/2021/06/kabale-university-logo.png",
-    established: 2015,
-    specialties: ["Agriculture", "Education", "Development Studies", "Business"]
+    description: "Modern private university with innovative programs and entrepreneurship focus.",
+    tuitionMin: "2400000",
+    tuitionMax: "5600000",
+    websiteUrl: "https://www.teamuniversity.ac.ug",
+    established: 2009,
+    specialties: ["Business", "Information Technology", "Media Studies", "Social Sciences"]
+  },
+  {
+    name: "Kayiwa International University",
+    location: "Kampala",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Private university offering diverse programs with international standards.",
+    tuitionMin: "2600000",
+    tuitionMax: "6000000",
+    websiteUrl: "https://www.kayiwa.ac.ug",
+    established: 2010,
+    specialties: ["Business", "Education", "Health Sciences", "Information Technology"]
+  },
+  {
+    name: "Kisubi University",
+    location: "Entebbe",
+    type: "private" as const,
+    status: "chartered" as const,
+    description: "Catholic university offering quality education with strong community engagement.",
+    tuitionMin: "2500000",
+    tuitionMax: "5700000",
+    websiteUrl: "https://www.kisubi.ac.ug",
+    established: 2008,
+    specialties: ["Business", "Education", "Social Sciences", "Development Studies"]
   }
 ];
 
@@ -405,9 +521,23 @@ export const servicesData = [
     isActive: true
   },
   {
-    name: "Expert Guidance",
-    description: "One-on-one consultation with education experts for career planning and academic decisions. Includes personalized roadmap and ongoing support.",
-    price: "50000",
+    name: "Career Guidance",
+    description: "One-on-one consultation with career experts for career planning, job search strategies, and professional development. Includes personalized roadmap and ongoing support.",
+    price: "100000",
+    currency: "UGX",
+    isActive: true
+  },
+  {
+    name: "SOP Writing",
+    description: "Expert Statement of Purpose writing services to help you stand out in competitive admissions. Personalized approach highlighting your unique story and goals.",
+    price: "120000",
+    currency: "UGX",
+    isActive: true
+  },
+  {
+    name: "Application Follow-up",
+    description: "Post-submission support including status tracking, communication with admissions offices, and guidance on next steps after application submission.",
+    price: "80000",
     currency: "UGX",
     isActive: true
   }
@@ -416,6 +546,12 @@ export const servicesData = [
 export async function seedDatabase() {
   try {
     console.log("Starting database seeding...");
+
+    // Clear existing data
+    console.log("Clearing existing data...");
+    await db.delete(universities);
+    await db.delete(scholarships);
+    await db.delete(services);
 
     // Seed universities
     console.log("Seeding universities...");

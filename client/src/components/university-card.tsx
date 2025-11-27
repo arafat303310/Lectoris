@@ -2,8 +2,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { University } from "@shared/schema";
-import { MapPin, ArrowRight, University as UniversityIcon } from "lucide-react";
+import { MapPin, ArrowRight, GraduationCap, Building2, BookOpen, Landmark } from "lucide-react";
 import { Link } from "wouter";
+import { useState } from "react";
 
 interface UniversityCardProps {
   university: University;
@@ -11,7 +12,45 @@ interface UniversityCardProps {
   isSaved?: boolean;
 }
 
+// Official brand colors for Ugandan universities
+const universityBrands: Record<string, { primary: string; secondary: string; initials: string }> = {
+  "Makerere University": { primary: "#FFD700", secondary: "#000080", initials: "MAK" },
+  "Kyambogo University": { primary: "#006400", secondary: "#FFD700", initials: "KYU" },
+  "Gulu University": { primary: "#800000", secondary: "#FFFFFF", initials: "GU" },
+  "Busitema University": { primary: "#2E8B57", secondary: "#FFD700", initials: "BU" },
+  "Mbarara University of Science and Technology": { primary: "#4169E1", secondary: "#FFD700", initials: "MUST" },
+  "Muni University": { primary: "#8B0000", secondary: "#FFD700", initials: "MU" },
+  "Kabale University": { primary: "#006400", secondary: "#FFFFFF", initials: "KAB" },
+  "Soroti University": { primary: "#4B0082", secondary: "#FFD700", initials: "SU" },
+  "Lira University": { primary: "#DC143C", secondary: "#000080", initials: "LU" },
+  "Mountains of the Moon University": { primary: "#228B22", secondary: "#FFFFFF", initials: "MMU" },
+  "Uganda Christian University": { primary: "#800020", secondary: "#FFD700", initials: "UCU" },
+  "Uganda Martyrs University": { primary: "#8B4513", secondary: "#FFD700", initials: "UMU" },
+  "Islamic University in Uganda": { primary: "#006400", secondary: "#FFFFFF", initials: "IUIU" },
+  "Ndejje University": { primary: "#4169E1", secondary: "#FFD700", initials: "NU" },
+  "Nkumba University": { primary: "#800000", secondary: "#FFD700", initials: "NKU" },
+  "Kampala International University": { primary: "#DC143C", secondary: "#000080", initials: "KIU" },
+  "Kampala University": { primary: "#4B0082", secondary: "#FFD700", initials: "KU" },
+  "Bugema University": { primary: "#006400", secondary: "#8B4513", initials: "BUG" },
+  "Busoga University": { primary: "#DAA520", secondary: "#000080", initials: "BSU" },
+  "Bishop Stuart University": { primary: "#800080", secondary: "#FFD700", initials: "BSU" },
+  "Clarke International University": { primary: "#000080", secondary: "#FFD700", initials: "CIU" },
+  "Victoria University": { primary: "#8B0000", secondary: "#FFFFFF", initials: "VU" },
+  "International University of East Africa": { primary: "#006400", secondary: "#DC143C", initials: "IUEA" },
+  "Cavendish University Uganda": { primary: "#4169E1", secondary: "#FFD700", initials: "CU" },
+  "St. Lawrence University": { primary: "#DC143C", secondary: "#FFFFFF", initials: "SLAU" },
+  "African Bible University": { primary: "#8B4513", secondary: "#FFD700", initials: "ABU" },
+  "Uganda Pentecostal University": { primary: "#800080", secondary: "#FFFFFF", initials: "UPU" },
+  "Team University": { primary: "#FF4500", secondary: "#FFFFFF", initials: "TU" },
+  "Kayiwa International University": { primary: "#4B0082", secondary: "#FFD700", initials: "KAYU" },
+  "Kisubi University": { primary: "#000080", secondary: "#FFFFFF", initials: "KBU" },
+};
+
+const iconComponents = [GraduationCap, Building2, BookOpen, Landmark];
+
 export default function UniversityCard({ university, onSave, isSaved }: UniversityCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   const formatTuition = () => {
     if (university.tuitionMin && university.tuitionMax) {
       return `UGX ${parseFloat(university.tuitionMin).toLocaleString()} - ${parseFloat(university.tuitionMax).toLocaleString()}`;
@@ -23,47 +62,55 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
     return university.type === "public" ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary";
   };
 
-  const getUniversityInitials = () => {
-    const words = university.name.split(' ');
-    if (words.length === 1) return words[0].substring(0, 2).toUpperCase();
-    return words.slice(0, 2).map(word => word[0]).join('').toUpperCase();
+  const getBrandColors = () => {
+    return universityBrands[university.name] || { 
+      primary: university.type === "public" ? "#1E40AF" : "#7C3AED", 
+      secondary: "#FFD700",
+      initials: university.name.split(' ').slice(0, 2).map(w => w[0]).join('').toUpperCase()
+    };
   };
 
-  const getUniversityColor = () => {
-    // Generate a consistent color based on university name
-    const colors = [
-      'bg-blue-500', 'bg-green-500', 'bg-purple-500', 'bg-red-500', 
-      'bg-yellow-500', 'bg-indigo-500', 'bg-pink-500', 'bg-teal-500'
-    ];
-    const index = university.name.charCodeAt(0) % colors.length;
-    return colors[index];
+  const getIcon = () => {
+    const index = university.name.charCodeAt(0) % iconComponents.length;
+    return iconComponents[index];
   };
 
   return (
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
-      {/* University logo */}
-      <div className="h-48 bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center relative">
-        {university.logoUrl ? (
+      {/* University logo with brand colors */}
+      <div 
+        className="h-48 flex items-center justify-center relative"
+        style={{ 
+          background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
+        }}
+      >
+        {university.logoUrl && !imageError ? (
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-24 h-24 object-contain rounded-lg shadow-md bg-white p-2"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const fallback = target.nextElementSibling as HTMLElement;
-              if (fallback) fallback.style.display = 'flex';
-            }}
+            className="w-28 h-28 object-contain rounded-lg shadow-md bg-white p-3"
+            onError={() => setImageError(true)}
           />
-        ) : null}
-        <div 
-          className={`w-24 h-24 ${getUniversityColor()} rounded-full flex items-center justify-center text-white shadow-lg`}
-          style={{ display: university.logoUrl ? 'none' : 'flex' }}
-        >
-          <span className="text-xl font-bold tracking-wide">
-            {getUniversityInitials()}
-          </span>
-        </div>
+        ) : (
+          <div 
+            className="w-28 h-28 rounded-2xl flex flex-col items-center justify-center shadow-lg border-4"
+            style={{ 
+              backgroundColor: getBrandColors().primary,
+              borderColor: getBrandColors().secondary
+            }}
+          >
+            {(() => {
+              const IconComponent = getIcon();
+              return <IconComponent className="w-10 h-10 mb-1" style={{ color: getBrandColors().secondary }} />;
+            })()}
+            <span 
+              className="text-lg font-bold tracking-wide"
+              style={{ color: getBrandColors().secondary }}
+            >
+              {getBrandColors().initials}
+            </span>
+          </div>
+        )}
       </div>
       
       <CardContent className="p-6">

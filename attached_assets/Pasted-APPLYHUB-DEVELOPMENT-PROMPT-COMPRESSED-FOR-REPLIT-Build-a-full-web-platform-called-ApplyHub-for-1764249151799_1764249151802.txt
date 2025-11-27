@@ -1,0 +1,91 @@
+APPLYHUB DEVELOPMENT PROMPT (COMPRESSED FOR REPLIT)
+
+Build a full web platform called ApplyHub for Ugandan university & scholarship applications.
+
+STACK:
+- Backend: Node.js + Express
+- Frontend: React/Next.js + TailwindCSS
+- DB: PostgreSQL + Prisma
+- Auth: JWT (Admin, Student)
+- Mobile-first UI, Campus France style
+- Security: helmet, cors, rate-limit, validation (Zod/Joi)
+
+CORE MODULES:
+
+1. HOME
+- Filters: Country, Degree level, University type
+- Featured universities, scholarships, blog, ads (free tier)
+
+2. UNIVERSITIES
+Include ALL Public Universities:
+1 Makerere, 2 Kyambogo, 3 Gulu, 4 Busitema, 5 MUST, 6 Muni, 7 Kabale, 8 Soroti, 9 Lira, 10 Mountains of the Moon.
+
+Include ALL Private Chartered Universities:
+UCU, UMU, IUIU, Ndejje, Nkumba, KIU, Kampala University, Bugema, Busoga, Bishop Stuart, Clarke, Victoria, IUEA, Cavendish, St. Lawrence, African Bible University, Uganda Pentecostal University, Team University, Kayiwa International, Kisubi University.
+
+Each university page must use official brand colors/layout.  
+Click APPLY → redirect to official university portal.  
+Store click analytics.
+
+3. SCHOLARSHIPS
+- Filters: Location, Level, Deadline, Eligibility
+- APPLY → redirect to official portal; track clicks.
+
+4. APPLY NOW SERVICES
+- Upload documents
+- Academic + personal data
+- Services: Resume writing, SOP writing, Application guidance, Follow-up, **Career guidance**
+- Booking + payments
+
+5. PAYMENTS
+- MTN MoMo  
+- Airtel Money  
+- Bank APIs  
+- Stripe cards  
+- Track receipts + subscription tiers (Free, Premium; ads removed for Premium)
+
+6. ADMIN DASHBOARD
+- Email notifications for new service requests
+- Export data: CSV, PDF
+- Manage Users, Universities, Scholarships, Blog, Ads, Services
+- Analytics: request trends, top universities, top scholarships, revenue, service status
+- Chat with students
+- Review documents
+
+7. STUDENT DASHBOARD
+- Track services, payments, recommendations
+- In‑app + email notifications
+- Document manager, receipts, chat
+
+8. AI CHAT
+- Student Assistant: recommendations
+- Admin Assistant: summaries + insights (OpenAI API)
+
+9. BLOG
+- Markdown editor
+- CRUD, SEO‑friendly
+
+10. ADS
+- Admin uploads ads
+- Show ads to free users; hide for Premium
+- Track impressions + clicks
+
+11. CONTACT
+WhatsApp Support: +256742259252  
+Email form  
+Google Maps API for university locations
+
+12. LEGAL/SECURITY
+- bcrypt hashing  
+- Input validation  
+- Terms, Privacy, Admin logs
+
+13. DELIVERABLES
+- Folder structure  
+- Prisma schema + seed with all universities  
+- Backend APIs  
+- Frontend pages + themed components  
+- Payment logic  
+- AI modules  
+- Postman collection  
+- Run: npm install → prisma migrate → npm run dev
