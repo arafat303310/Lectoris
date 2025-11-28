@@ -103,7 +103,7 @@ export default function Landing() {
                 <div className="text-white/80 text-xs sm:text-base">Scholarships</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-students">5,000+</div>
+                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-students">100+</div>
                 <div className="text-white/80 text-xs sm:text-base">Students</div>
               </div>
             </div>
@@ -266,7 +266,7 @@ export default function Landing() {
             {/* Trust Indicators */}
             <div className="mt-8 sm:mt-12 grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-8 max-w-2xl mx-auto" data-testid="trust-indicators">
               <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white">5,000+</div>
+                <div className="text-xl sm:text-3xl font-bold text-white">100+</div>
                 <div className="text-white/80 text-xs sm:text-sm">Students Assisted</div>
               </div>
               <div className="text-center">
