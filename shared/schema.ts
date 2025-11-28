@@ -53,6 +53,7 @@ export const universities = pgTable("universities", {
   tuitionMax: decimal("tuition_max"),
   applicationDeadline: timestamp("application_deadline"),
   websiteUrl: text("website_url"),
+  applicationPortalUrl: text("application_portal_url"), // Direct link to application portal
   logoUrl: text("logo_url"),
   established: integer("established"),
   ranking: integer("ranking"), // National ranking in Uganda
