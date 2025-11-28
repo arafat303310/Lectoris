@@ -127,7 +127,17 @@ export async function setupAuth(app: Express) {
 export const isAuthenticated: RequestHandler = async (req, res, next) => {
   const user = req.user as any;
 
-  if (!req.isAuthenticated() || !user.expires_at) {
+  if (!req.isAuthenticated()) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  // Check for local auth (password-based)
+  if (user.isLocalAuth) {
+    return next();
+  }
+
+  // Check for Replit OIDC auth
+  if (!user.expires_at) {
     return res.status(401).json({ message: "Unauthorized" });
   }
 
@@ -151,4 +161,11 @@ export const isAuthenticated: RequestHandler = async (req, res, next) => {
     res.status(401).json({ message: "Unauthorized" });
     return;
   }
+};
+
+export const isLocalAuthenticated: RequestHandler = async (req, res, next) => {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  return res.status(401).json({ message: "Unauthorized" });
 };

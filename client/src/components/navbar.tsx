@@ -3,12 +3,12 @@ import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, GraduationCap, MessageCircle } from "lucide-react";
+import { Menu, GraduationCap } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import SearchAutocomplete from "@/components/search-autocomplete";
 
 export default function Navbar() {
-  const { isAuthenticated, user } = useAuth();
+  const { isAuthenticated, user, logout } = useAuth();
   const [location] = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -74,7 +74,7 @@ export default function Navbar() {
                 )}
                 <Button
                   variant="outline"
-                  onClick={() => (window.location.href = "/api/logout")}
+                  onClick={logout}
                   data-testid="logout-button"
                 >
                   Logout
@@ -82,19 +82,21 @@ export default function Navbar() {
               </>
             ) : (
               <>
-                <Button
-                  variant="ghost"
-                  onClick={() => (window.location.href = "/api/login")}
-                  data-testid="login-button"
-                >
-                  Login
-                </Button>
-                <Button
-                  onClick={() => (window.location.href = "/api/login")}
-                  data-testid="signup-button"
-                >
-                  Sign Up
-                </Button>
+                <Link href="/login">
+                  <Button
+                    variant="ghost"
+                    data-testid="login-button"
+                  >
+                    Login
+                  </Button>
+                </Link>
+                <Link href="/signup">
+                  <Button
+                    data-testid="signup-button"
+                  >
+                    Sign Up
+                  </Button>
+                </Link>
               </>
             )}
           </div>
@@ -153,7 +155,7 @@ export default function Navbar() {
                       variant="outline"
                       onClick={() => {
                         setMobileMenuOpen(false);
-                        window.location.href = "/api/logout";
+                        logout();
                       }}
                       className="justify-start"
                       data-testid="mobile-logout-button"
@@ -163,27 +165,25 @@ export default function Navbar() {
                   </>
                 ) : (
                   <>
-                    <Button
-                      variant="ghost"
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = "/api/login";
-                      }}
-                      className="justify-start"
-                      data-testid="mobile-login-button"
+                    <Link
+                      href="/login"
+                      className="text-lg font-medium text-foreground hover:text-primary transition-colors"
+                      onClick={() => setMobileMenuOpen(false)}
+                      data-testid="mobile-login-link"
                     >
                       Login
-                    </Button>
-                    <Button
-                      onClick={() => {
-                        setMobileMenuOpen(false);
-                        window.location.href = "/api/login";
-                      }}
-                      className="justify-start"
-                      data-testid="mobile-signup-button"
+                    </Link>
+                    <Link
+                      href="/signup"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
-                      Sign Up
-                    </Button>
+                      <Button
+                        className="w-full justify-start"
+                        data-testid="mobile-signup-button"
+                      >
+                        Sign Up
+                      </Button>
+                    </Link>
                   </>
                 )}
               </div>

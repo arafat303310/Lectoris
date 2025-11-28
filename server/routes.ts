@@ -1,10 +1,11 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
-import { setupAuth, isAuthenticated } from "./replitAuth";
+import { setupAuth, isAuthenticated, isLocalAuthenticated } from "./replitAuth";
 import { insertUniversitySchema, insertScholarshipSchema, insertServiceSchema, insertServiceRequestSchema } from "@shared/schema";
 import { z } from "zod";
 import OpenAI from "openai";
+import bcrypt from "bcryptjs";
 
 const openai = new OpenAI({
   apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
@@ -18,6 +19,12 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Auth routes
   app.get('/api/auth/user', isAuthenticated, async (req: any, res) => {
     try {
+      // Handle local auth users
+      if (req.user.isLocalAuth) {
+        const user = await storage.getUser(req.user.userId);
+        return res.json(user);
+      }
+      // Handle Replit OIDC users
       const userId = req.user.claims.sub;
       const user = await storage.getUser(userId);
       res.json(user);
@@ -25,6 +32,107 @@ export async function registerRoutes(app: Express): Promise<Server> {
       console.error("Error fetching user:", error);
       res.status(500).json({ message: "Failed to fetch user" });
     }
+  });
+
+  // Password-based signup
+  const signupSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(6, "Password must be at least 6 characters"),
+    firstName: z.string().min(1, "First name is required"),
+    lastName: z.string().min(1, "Last name is required"),
+    phone: z.string().optional(),
+  });
+
+  app.post('/api/auth/signup', async (req, res) => {
+    try {
+      const validatedData = signupSchema.parse(req.body);
+      
+      // Check if email already exists
+      const existingUser = await storage.getUserByEmail(validatedData.email);
+      if (existingUser) {
+        return res.status(400).json({ message: "Email already registered" });
+      }
+
+      // Hash password
+      const hashedPassword = await bcrypt.hash(validatedData.password, 10);
+
+      // Create user
+      const user = await storage.createUser({
+        email: validatedData.email,
+        password: hashedPassword,
+        firstName: validatedData.firstName,
+        lastName: validatedData.lastName,
+        phone: validatedData.phone || null,
+        subscriptionTier: "free",
+      });
+
+      // Log user in
+      req.login({ userId: user.id, isLocalAuth: true }, (err: any) => {
+        if (err) {
+          console.error("Login error after signup:", err);
+          return res.status(500).json({ message: "Failed to complete signup" });
+        }
+        const { password, ...userWithoutPassword } = user;
+        res.status(201).json(userWithoutPassword);
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Signup error:", error);
+      res.status(500).json({ message: "Failed to create account" });
+    }
+  });
+
+  // Password-based login
+  const loginSchema = z.object({
+    email: z.string().email("Invalid email address"),
+    password: z.string().min(1, "Password is required"),
+  });
+
+  app.post('/api/auth/login', async (req, res) => {
+    try {
+      const validatedData = loginSchema.parse(req.body);
+      
+      // Find user by email
+      const user = await storage.getUserByEmail(validatedData.email);
+      if (!user || !user.password) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      // Verify password
+      const isValidPassword = await bcrypt.compare(validatedData.password, user.password);
+      if (!isValidPassword) {
+        return res.status(401).json({ message: "Invalid email or password" });
+      }
+
+      // Log user in
+      req.login({ userId: user.id, isLocalAuth: true }, (err: any) => {
+        if (err) {
+          console.error("Login error:", err);
+          return res.status(500).json({ message: "Failed to login" });
+        }
+        const { password, ...userWithoutPassword } = user;
+        res.json(userWithoutPassword);
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Login error:", error);
+      res.status(500).json({ message: "Failed to login" });
+    }
+  });
+
+  // Local logout
+  app.post('/api/auth/logout', (req, res) => {
+    req.logout((err: any) => {
+      if (err) {
+        console.error("Logout error:", err);
+        return res.status(500).json({ message: "Failed to logout" });
+      }
+      res.json({ message: "Logged out successfully" });
+    });
   });
 
   // University routes

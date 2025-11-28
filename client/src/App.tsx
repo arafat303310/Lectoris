@@ -14,6 +14,8 @@ import Services from "@/pages/services";
 import Pricing from "@/pages/pricing";
 import Dashboard from "@/pages/dashboard";
 import AdminDashboard from "@/pages/admin-dashboard";
+import Signup from "@/pages/signup";
+import Login from "@/pages/login";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -29,6 +31,8 @@ function Router() {
           <Route path="/scholarships" component={Scholarships} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
         </>
       ) : (
         <>
@@ -40,6 +44,8 @@ function Router() {
           <Route path="/pricing" component={Pricing} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/admin" component={AdminDashboard} />
+          <Route path="/signup" component={Signup} />
+          <Route path="/login" component={Login} />
         </>
       )}
       <Route component={NotFound} />
