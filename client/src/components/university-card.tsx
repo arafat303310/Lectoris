@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { University } from "@shared/schema";
-import { MapPin, ArrowRight, GraduationCap, Building2, BookOpen, Landmark } from "lucide-react";
+import { MapPin, ArrowRight, GraduationCap, Building2, BookOpen, Landmark, Trophy } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
 
@@ -84,6 +84,16 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
         }}
       >
+        {/* Ranking Badge */}
+        {university.ranking && (
+          <div 
+            className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg"
+            data-testid={`university-ranking-${university.id}`}
+          >
+            <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
+            <span className="text-xs sm:text-sm font-bold">#{university.ranking}</span>
+          </div>
+        )}
         {university.logoUrl && !imageError ? (
           <img 
             src={university.logoUrl} 

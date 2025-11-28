@@ -55,6 +55,7 @@ export const universities = pgTable("universities", {
   websiteUrl: text("website_url"),
   logoUrl: text("logo_url"),
   established: integer("established"),
+  ranking: integer("ranking"), // National ranking in Uganda
   specialties: text("specialties").array(),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

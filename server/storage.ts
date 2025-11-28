@@ -78,6 +78,7 @@ export class MemoryStorage implements IStorage {
         websiteUrl: uni.websiteUrl,
         logoUrl: uni.logoUrl || null,
         established: uni.established,
+        ranking: uni.ranking,
         specialties: uni.specialties,
         createdAt: new Date(),
         updatedAt: new Date(),
@@ -211,7 +212,11 @@ export class MemoryStorage implements IStorage {
       results = results.filter((uni) => uni.location.toLowerCase().includes(locationLower));
     }
 
-    return results.sort((a, b) => a.name.localeCompare(b.name));
+    return results.sort((a, b) => {
+      const rankA = a.ranking ?? 999;
+      const rankB = b.ranking ?? 999;
+      return rankA - rankB;
+    });
   }
 
   async getUniversity(id: string): Promise<University | undefined> {
@@ -233,6 +238,7 @@ export class MemoryStorage implements IStorage {
       websiteUrl: university.websiteUrl ?? null,
       logoUrl: university.logoUrl ?? null,
       established: university.established ?? null,
+      ranking: university.ranking ?? null,
       specialties: university.specialties ?? null,
       createdAt: new Date(),
       updatedAt: new Date(),
