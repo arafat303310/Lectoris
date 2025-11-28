@@ -1,8 +1,4 @@
-import { db } from "./db";
-import { universities, scholarships, services } from "@shared/schema";
-
 export const ugandaUniversitiesData = [
-  // PUBLIC UNIVERSITIES (10)
   {
     name: "Makerere University",
     location: "Kampala",
@@ -12,6 +8,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1500000",
     tuitionMax: "4000000",
     websiteUrl: "https://www.mak.ac.ug",
+    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Makerere_University_coat_of_arms.svg/200px-Makerere_University_coat_of_arms.svg.png",
     established: 1922,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Agriculture", "Humanities"]
   },
@@ -24,6 +21,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1400000",
     tuitionMax: "3800000",
     websiteUrl: "https://www.kyu.ac.ug",
+    logoUrl: "https://www.kyu.ac.ug/images/kyu-logo.png",
     established: 2003,
     specialties: ["Education", "Engineering", "Special Needs Education", "Vocational Studies"]
   },
@@ -36,6 +34,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1800000",
     tuitionMax: "4500000",
     websiteUrl: "https://www.gu.ac.ug",
+    logoUrl: "https://gu.ac.ug/wp-content/uploads/2020/03/gulu-university-logo.png",
     established: 2002,
     specialties: ["Agriculture", "Education", "Medicine", "Business", "Engineering"]
   },
@@ -48,6 +47,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1600000",
     tuitionMax: "4200000",
     websiteUrl: "https://www.busitema.ac.ug",
+    logoUrl: "https://busitema.ac.ug/wp-content/uploads/2021/03/busitema-logo.png",
     established: 2007,
     specialties: ["Engineering", "Agriculture", "Applied Sciences", "Health Sciences"]
   },
@@ -60,6 +60,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2000000",
     tuitionMax: "5000000",
     websiteUrl: "https://www.must.ac.ug",
+    logoUrl: "https://must.ac.ug/wp-content/uploads/2020/01/must-logo.png",
     established: 1989,
     specialties: ["Medicine", "Science & Technology", "Health Sciences", "Computing", "Development Studies"]
   },
@@ -72,6 +73,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1700000",
     tuitionMax: "4300000",
     websiteUrl: "https://www.muni.ac.ug",
+    logoUrl: "https://muni.ac.ug/images/muni-logo.png",
     established: 2013,
     specialties: ["Medicine", "Applied Sciences", "Education", "Agriculture"]
   },
@@ -84,6 +86,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1500000",
     tuitionMax: "4000000",
     websiteUrl: "https://www.kab.ac.ug",
+    logoUrl: "https://kab.ac.ug/wp-content/uploads/2020/01/kabale-logo.png",
     established: 2015,
     specialties: ["Agriculture", "Education", "Development Studies", "Business"]
   },
@@ -96,6 +99,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1600000",
     tuitionMax: "4100000",
     websiteUrl: "https://www.soru.ac.ug",
+    logoUrl: "https://soru.ac.ug/images/soroti-logo.png",
     established: 2015,
     specialties: ["Agriculture", "Education", "Applied Sciences", "Business"]
   },
@@ -108,6 +112,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "1600000",
     tuitionMax: "4100000",
     websiteUrl: "https://www.lirauni.ac.ug",
+    logoUrl: "https://lirauni.ac.ug/images/lira-logo.png",
     established: 2015,
     specialties: ["Agriculture", "Education", "Applied Sciences"]
   },
@@ -120,11 +125,10 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2100000",
     tuitionMax: "4800000",
     websiteUrl: "https://www.mmu.ac.ug",
+    logoUrl: "https://mmu.ac.ug/images/mmu-logo.png",
     established: 2005,
     specialties: ["Health Sciences", "Business", "Education", "Development Studies"]
   },
-  
-  // PRIVATE CHARTERED UNIVERSITIES (20)
   {
     name: "Uganda Christian University",
     location: "Mukono",
@@ -134,6 +138,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "3000000",
     tuitionMax: "6000000",
     websiteUrl: "https://www.ucu.ac.ug",
+    logoUrl: "https://ucu.ac.ug/images/ucu-logo.png",
     established: 1997,
     specialties: ["Theology", "Business", "Law", "Journalism", "Education", "Social Sciences"]
   },
@@ -146,6 +151,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2800000",
     tuitionMax: "5800000",
     websiteUrl: "https://www.umu.ac.ug",
+    logoUrl: "https://umu.ac.ug/images/umu-logo.png",
     established: 1993,
     specialties: ["Business", "Social Sciences", "Education", "Ethics & Development Studies"]
   },
@@ -158,6 +164,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2000000",
     tuitionMax: "5500000",
     websiteUrl: "https://www.iuiu.ac.ug",
+    logoUrl: "https://iuiu.ac.ug/images/iuiu-logo.png",
     established: 1988,
     specialties: ["Islamic Studies", "Education", "Management", "Science & Technology"]
   },
@@ -170,6 +177,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2200000",
     tuitionMax: "5200000",
     websiteUrl: "https://www.ndejjeuniversity.ac.ug",
+    logoUrl: "https://ndejjeuniversity.ac.ug/images/ndejje-logo.png",
     established: 1992,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
   },
@@ -182,6 +190,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2400000",
     tuitionMax: "5600000",
     websiteUrl: "https://www.nkumbauniversity.ac.ug",
+    logoUrl: "https://nkumbauniversity.ac.ug/images/nkumba-logo.png",
     established: 1994,
     specialties: ["Business", "Computing", "Social Sciences", "Mass Communication"]
   },
@@ -194,6 +203,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2500000",
     tuitionMax: "7000000",
     websiteUrl: "https://www.kiu.ac.ug",
+    logoUrl: "https://kiu.ac.ug/images/kiu-logo.png",
     established: 2001,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Pharmacy", "Nursing"]
   },
@@ -206,6 +216,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2300000",
     tuitionMax: "5500000",
     websiteUrl: "https://www.ku.ac.ug",
+    logoUrl: "https://ku.ac.ug/images/ku-logo.png",
     established: 2005,
     specialties: ["Business", "Social Sciences", "Education", "Information Technology"]
   },
@@ -218,6 +229,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2300000",
     tuitionMax: "5400000",
     websiteUrl: "https://www.bugema.ac.ug",
+    logoUrl: "https://bugema.ac.ug/images/bugema-logo.png",
     established: 1994,
     specialties: ["Theology", "Business", "Education", "Health Sciences"]
   },
@@ -230,6 +242,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2100000",
     tuitionMax: "5000000",
     websiteUrl: "https://www.busogauniversity.ac.ug",
+    logoUrl: "https://busogauniversity.ac.ug/images/busoga-logo.png",
     established: 1999,
     specialties: ["Business", "Education", "Agriculture", "Health Sciences"]
   },
@@ -242,6 +255,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2200000",
     tuitionMax: "5000000",
     websiteUrl: "https://www.bsu.ac.ug",
+    logoUrl: "https://bsu.ac.ug/images/bsu-logo.png",
     established: 2003,
     specialties: ["Theology", "Education", "Development Studies", "Business"]
   },
@@ -254,6 +268,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "3500000",
     tuitionMax: "8000000",
     websiteUrl: "https://www.ciu.ac.ug",
+    logoUrl: "https://ciu.ac.ug/images/ciu-logo.png",
     established: 2008,
     specialties: ["Medicine", "Nursing", "Public Health", "Pharmacy"]
   },
@@ -266,6 +281,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2800000",
     tuitionMax: "6500000",
     websiteUrl: "https://www.vu.ac.ug",
+    logoUrl: "https://vu.ac.ug/images/vu-logo.png",
     established: 2011,
     specialties: ["Business", "Information Technology", "Social Sciences"]
   },
@@ -278,6 +294,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2600000",
     tuitionMax: "6200000",
     websiteUrl: "https://www.iuea.ac.ug",
+    logoUrl: "https://iuea.ac.ug/images/iuea-logo.png",
     established: 2010,
     specialties: ["Information Technology", "Business", "Engineering", "Health Sciences"]
   },
@@ -290,6 +307,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "3200000",
     tuitionMax: "7200000",
     websiteUrl: "https://www.cavendish.ac.ug",
+    logoUrl: "https://cavendish.ac.ug/images/cavendish-logo.png",
     established: 2008,
     specialties: ["Business", "Law", "Psychology", "Information Technology"]
   },
@@ -302,6 +320,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2500000",
     tuitionMax: "5800000",
     websiteUrl: "https://www.slau.ac.ug",
+    logoUrl: "https://slau.ac.ug/images/slau-logo.png",
     established: 2007,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
   },
@@ -314,6 +333,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2000000",
     tuitionMax: "4500000",
     websiteUrl: "https://www.abu.ac.ug",
+    logoUrl: "https://abu.ac.ug/images/abu-logo.png",
     established: 2005,
     specialties: ["Theology", "Biblical Studies", "Leadership", "Education"]
   },
@@ -326,6 +346,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2200000",
     tuitionMax: "5100000",
     websiteUrl: "https://www.upu.ac.ug",
+    logoUrl: "https://upu.ac.ug/images/upu-logo.png",
     established: 2005,
     specialties: ["Theology", "Education", "Business", "Social Work"]
   },
@@ -338,6 +359,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2400000",
     tuitionMax: "5600000",
     websiteUrl: "https://www.teamuniversity.ac.ug",
+    logoUrl: "https://teamuniversity.ac.ug/images/team-logo.png",
     established: 2009,
     specialties: ["Business", "Information Technology", "Media Studies", "Social Sciences"]
   },
@@ -350,6 +372,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2600000",
     tuitionMax: "6000000",
     websiteUrl: "https://www.kayiwa.ac.ug",
+    logoUrl: "https://kayiwa.ac.ug/images/kayiwa-logo.png",
     established: 2010,
     specialties: ["Business", "Education", "Health Sciences", "Information Technology"]
   },
@@ -362,6 +385,7 @@ export const ugandaUniversitiesData = [
     tuitionMin: "2500000",
     tuitionMax: "5700000",
     websiteUrl: "https://www.kisubi.ac.ug",
+    logoUrl: "https://kisubi.ac.ug/images/kisubi-logo.png",
     established: 2008,
     specialties: ["Business", "Education", "Social Sciences", "Development Studies"]
   }
@@ -383,11 +407,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "Mastercard Foundation Scholars Program",
-    description: "Comprehensive scholarship covering tuition, accommodation, and mentorship for undergraduate studies at partner universities. Includes leadership development and community service components.",
+    description: "Comprehensive scholarship covering tuition, accommodation, and mentorship for undergraduate studies at partner universities.",
     provider: "Mastercard Foundation",
     amount: "15000000",
     currency: "UGX",
-    eligibility: "Academically talented students from disadvantaged backgrounds with leadership potential and commitment to giving back to their communities.",
+    eligibility: "Academically talented students from disadvantaged backgrounds with leadership potential.",
     level: "undergraduate" as const,
     type: "international" as const,
     deadline: new Date("2025-02-15"),
@@ -395,12 +419,12 @@ export const ugandaScholarshipsData = [
     isActive: true
   },
   {
-    title: "Commonwealth Scholarship for Ugandans",
-    description: "Fully funded masters and PhD opportunities in UK universities for students from Commonwealth countries including Uganda. Covers all expenses plus living allowance.",
+    title: "Commonwealth Scholarship",
+    description: "Fully funded masters and PhD opportunities in UK universities for students from Commonwealth countries.",
     provider: "Commonwealth Scholarship Commission",
     amount: "25000000",
     currency: "UGX",
-    eligibility: "First-class or upper second-class honors degree, proven academic merit, development impact potential, and English proficiency.",
+    eligibility: "First-class or upper second-class honors degree, proven academic merit.",
     level: "postgraduate" as const,
     type: "international" as const,
     deadline: new Date("2024-12-20"),
@@ -408,12 +432,12 @@ export const ugandaScholarshipsData = [
     isActive: true
   },
   {
-    title: "DAAD Scholarships for Development",
-    description: "German Academic Exchange Service scholarships for postgraduate studies in Germany with focus on development-related fields relevant to Uganda.",
+    title: "DAAD Scholarships",
+    description: "German Academic Exchange Service scholarships for postgraduate studies in Germany.",
     provider: "DAAD Germany",
     amount: "18000000",
     currency: "UGX",
-    eligibility: "Bachelor's degree in relevant field, two years work experience, strong academic record, and commitment to development in home country.",
+    eligibility: "Bachelor's degree in relevant field, two years work experience.",
     level: "postgraduate" as const,
     type: "international" as const,
     deadline: new Date("2025-01-31"),
@@ -422,11 +446,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "Uganda Women's Scholarship Fund",
-    description: "Supporting female students in STEM fields and traditionally male-dominated disciplines. Priority given to students from rural areas.",
+    description: "Supporting female students in STEM fields and traditionally male-dominated disciplines.",
     provider: "Uganda Women's Education Foundation",
     amount: "3000000",
     currency: "UGX",
-    eligibility: "Female students enrolled in STEM programs, demonstration of financial need, and academic merit.",
+    eligibility: "Female students enrolled in STEM programs, demonstration of financial need.",
     level: "both" as const,
     type: "private" as const,
     deadline: new Date("2025-04-15"),
@@ -434,11 +458,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "USAID Higher Education Scholarship",
-    description: "Merit-based scholarships for Ugandan students pursuing degrees in agriculture, health, education, and business. Includes mentorship and internship opportunities.",
+    description: "Merit-based scholarships for students pursuing degrees in agriculture, health, education, and business.",
     provider: "USAID Uganda",
     amount: "8000000",
     currency: "UGX",
-    eligibility: "Strong academic performance, leadership potential, commitment to contributing to Uganda's development.",
+    eligibility: "Strong academic performance, leadership potential.",
     level: "both" as const,
     type: "international" as const,
     deadline: new Date("2025-03-15"),
@@ -447,11 +471,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "Chevening Scholarships",
-    description: "UK government's global scholarship programme offering fully-funded one-year master's degrees for future leaders from Uganda.",
+    description: "UK government's global scholarship for fully-funded one-year master's degrees for future leaders.",
     provider: "UK Foreign, Commonwealth & Development Office",
     amount: "30000000",
     currency: "UGX",
-    eligibility: "Bachelor's degree, two years work experience, leadership potential, and strong networking skills.",
+    eligibility: "Bachelor's degree, two years work experience, leadership potential.",
     level: "postgraduate" as const,
     type: "international" as const,
     deadline: new Date("2024-11-05"),
@@ -460,11 +484,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "Islamic Development Bank Scholarship",
-    description: "Scholarships for undergraduate and postgraduate studies for students from member countries including Uganda, with preference for science and technology fields.",
+    description: "Scholarships for undergraduate and postgraduate studies with preference for science and technology.",
     provider: "Islamic Development Bank",
     amount: "12000000",
     currency: "UGX",
-    eligibility: "Muslim students with strong academic record, financial need, and commitment to community development.",
+    eligibility: "Muslim students with strong academic record, financial need.",
     level: "both" as const,
     type: "international" as const,
     deadline: new Date("2025-02-28"),
@@ -473,11 +497,11 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "Uganda Petroleum Institute Scholarship",
-    description: "Scholarships for students pursuing petroleum and energy-related studies, supporting Uganda's growing oil and gas sector.",
+    description: "Scholarships for students pursuing petroleum and energy-related studies.",
     provider: "Uganda Petroleum Institute",
     amount: "4500000",
     currency: "UGX",
-    eligibility: "Students in petroleum engineering, geology, and related fields with strong academic performance.",
+    eligibility: "Students in petroleum engineering, geology, and related fields.",
     level: "both" as const,
     type: "government" as const,
     deadline: new Date("2025-03-20"),
@@ -485,15 +509,141 @@ export const ugandaScholarshipsData = [
   },
   {
     title: "African Development Bank Scholarship",
-    description: "Supporting African students in higher education with focus on fields critical to Africa's development including agriculture, health, and engineering.",
+    description: "Supporting African students in higher education with focus on development fields.",
     provider: "African Development Bank",
     amount: "10000000",
     currency: "UGX",
-    eligibility: "African nationals with strong academic credentials and commitment to African development.",
+    eligibility: "African nationals with strong academic credentials.",
     level: "postgraduate" as const,
     type: "international" as const,
     deadline: new Date("2025-01-15"),
     applicationUrl: "https://www.afdb.org/en/about/careers/scholarship-program",
+    isActive: true
+  },
+  {
+    title: "Fulbright Foreign Student Program",
+    description: "Full scholarship for Ugandan students to pursue graduate studies in the United States.",
+    provider: "U.S. Department of State",
+    amount: "35000000",
+    currency: "UGX",
+    eligibility: "Bachelor's degree, English proficiency, leadership experience.",
+    level: "postgraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-04-30"),
+    applicationUrl: "https://ug.usembassy.gov/education-culture/fulbright-program/",
+    isActive: true
+  },
+  {
+    title: "MTN Uganda Foundation Scholarship",
+    description: "Supporting bright students from underserved communities in STEM education.",
+    provider: "MTN Uganda Foundation",
+    amount: "4000000",
+    currency: "UGX",
+    eligibility: "Students from underserved communities with strong STEM aptitude.",
+    level: "undergraduate" as const,
+    type: "private" as const,
+    deadline: new Date("2025-05-31"),
+    isActive: true
+  },
+  {
+    title: "Stanbic Bank Uganda Scholarship",
+    description: "Supporting students in business and finance programs with full tuition coverage.",
+    provider: "Stanbic Bank Uganda",
+    amount: "5000000",
+    currency: "UGX",
+    eligibility: "Students pursuing business, economics, or finance degrees.",
+    level: "undergraduate" as const,
+    type: "private" as const,
+    deadline: new Date("2025-03-01"),
+    isActive: true
+  },
+  {
+    title: "Japan MEXT Scholarship",
+    description: "Full scholarship for undergraduate and postgraduate studies in Japan.",
+    provider: "Japanese Government",
+    amount: "20000000",
+    currency: "UGX",
+    eligibility: "Under 35 years old, excellent academic record, good health.",
+    level: "both" as const,
+    type: "international" as const,
+    deadline: new Date("2025-04-10"),
+    applicationUrl: "https://www.studyinjapan.go.jp/en/smap_stopj-applications_research.html",
+    isActive: true
+  },
+  {
+    title: "Mandela Rhodes Scholarship",
+    description: "Leadership scholarship for young Africans to study in South Africa.",
+    provider: "Mandela Rhodes Foundation",
+    amount: "22000000",
+    currency: "UGX",
+    eligibility: "African under 30, completed undergraduate degree, leadership potential.",
+    level: "postgraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-02-20"),
+    applicationUrl: "https://www.mandelarhodes.org/",
+    isActive: true
+  },
+  {
+    title: "Australia Awards Scholarship",
+    description: "Fully funded scholarships for students from developing countries to study in Australia.",
+    provider: "Australian Government",
+    amount: "28000000",
+    currency: "UGX",
+    eligibility: "Work experience in development sector, commitment to return.",
+    level: "postgraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-04-25"),
+    applicationUrl: "https://www.dfat.gov.au/people-to-people/australia-awards",
+    isActive: true
+  },
+  {
+    title: "Rotary Peace Fellowship",
+    description: "Fellowship for students pursuing studies in peace and conflict resolution.",
+    provider: "Rotary International",
+    amount: "25000000",
+    currency: "UGX",
+    eligibility: "Work experience in peace-related fields, commitment to service.",
+    level: "postgraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-05-15"),
+    applicationUrl: "https://www.rotary.org/en/our-programs/peace-fellowships",
+    isActive: true
+  },
+  {
+    title: "UNICEF Youth Scholarship",
+    description: "Supporting young people pursuing studies in child development and social work.",
+    provider: "UNICEF Uganda",
+    amount: "6000000",
+    currency: "UGX",
+    eligibility: "Students in social work, education, or health programs.",
+    level: "undergraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-06-01"),
+    isActive: true
+  },
+  {
+    title: "Centenary Bank Scholarship",
+    description: "Merit-based scholarship for students from rural communities.",
+    provider: "Centenary Bank Uganda",
+    amount: "3500000",
+    currency: "UGX",
+    eligibility: "Students from rural areas with strong academic performance.",
+    level: "undergraduate" as const,
+    type: "private" as const,
+    deadline: new Date("2025-03-15"),
+    isActive: true
+  },
+  {
+    title: "World Bank Graduate Scholarship",
+    description: "Supporting students from developing countries in graduate studies related to development.",
+    provider: "World Bank",
+    amount: "32000000",
+    currency: "UGX",
+    eligibility: "Work experience in development, commitment to return to home country.",
+    level: "postgraduate" as const,
+    type: "international" as const,
+    deadline: new Date("2025-02-01"),
+    applicationUrl: "https://www.worldbank.org/en/programs/scholarships",
     isActive: true
   }
 ];
@@ -501,89 +651,44 @@ export const ugandaScholarshipsData = [
 export const servicesData = [
   {
     name: "Apply to Universities",
-    description: "Complete application assistance from document preparation to submission for your dream university. Includes application review, essay writing support, and deadline management.",
+    description: "Complete application assistance from document preparation to submission for your dream university.",
     price: "150000",
     currency: "UGX",
     isActive: true
   },
   {
     name: "Win Scholarships",
-    description: "Personalized scholarship search and application strategy to maximize your funding opportunities. Includes application writing, interview preparation, and funding strategy.",
+    description: "Personalized scholarship search and application strategy to maximize your funding opportunities.",
     price: "200000",
     currency: "UGX",
     isActive: true
   },
   {
     name: "Craft Resume",
-    description: "Professional resume and CV writing services tailored for academic and scholarship applications. Includes cover letter writing and LinkedIn profile optimization.",
+    description: "Professional resume and CV writing services tailored for academic and scholarship applications.",
     price: "75000",
     currency: "UGX",
     isActive: true
   },
   {
     name: "Career Guidance",
-    description: "One-on-one consultation with career experts for career planning, job search strategies, and professional development. Includes personalized roadmap and ongoing support.",
+    description: "One-on-one consultation with career experts for career planning and professional development.",
     price: "100000",
     currency: "UGX",
     isActive: true
   },
   {
     name: "SOP Writing",
-    description: "Expert Statement of Purpose writing services to help you stand out in competitive admissions. Personalized approach highlighting your unique story and goals.",
+    description: "Expert Statement of Purpose writing services to help you stand out in competitive admissions.",
     price: "120000",
     currency: "UGX",
     isActive: true
   },
   {
     name: "Application Follow-up",
-    description: "Post-submission support including status tracking, communication with admissions offices, and guidance on next steps after application submission.",
+    description: "Post-submission support including status tracking and communication with admissions offices.",
     price: "80000",
     currency: "UGX",
     isActive: true
   }
 ];
-
-export async function seedDatabase() {
-  try {
-    console.log("Starting database seeding...");
-
-    // Clear existing data
-    console.log("Clearing existing data...");
-    await db.delete(universities);
-    await db.delete(scholarships);
-    await db.delete(services);
-
-    // Seed universities
-    console.log("Seeding universities...");
-    for (const universityData of ugandaUniversitiesData) {
-      await db.insert(universities).values(universityData).onConflictDoNothing();
-    }
-    console.log(`Seeded ${ugandaUniversitiesData.length} universities`);
-
-    // Seed scholarships
-    console.log("Seeding scholarships...");
-    for (const scholarshipData of ugandaScholarshipsData) {
-      await db.insert(scholarships).values(scholarshipData).onConflictDoNothing();
-    }
-    console.log(`Seeded ${ugandaScholarshipsData.length} scholarships`);
-
-    // Seed services
-    console.log("Seeding services...");
-    for (const serviceData of servicesData) {
-      await db.insert(services).values(serviceData).onConflictDoNothing();
-    }
-    console.log(`Seeded ${servicesData.length} services`);
-
-    console.log("Database seeding completed successfully!");
-  } catch (error) {
-    console.error("Error seeding database:", error);
-    throw error;
-  }
-}
-
-// Run seeding if this file is executed directly
-if (import.meta.url === `file://${process.argv[1]}`) {
-  seedDatabase()
-    .then(() => process.exit(0))
-    .catch(() => process.exit(1));
-}

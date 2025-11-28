@@ -17,7 +17,12 @@ import { ugandaUniversitiesData, ugandaScholarshipsData, servicesData } from "./
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  getUserByUsername(username: string): Promise<User | undefined>;
   upsertUser(user: UpsertUser): Promise<User>;
+  createUser(user: UpsertUser): Promise<User>;
+  updateUser(id: string, user: Partial<UpsertUser>): Promise<User>;
+  getAllUsers(): Promise<User[]>;
   getUniversities(search?: string, type?: string, location?: string): Promise<University[]>;
   getUniversity(id: string): Promise<University | undefined>;
   createUniversity(university: InsertUniversity): Promise<University>;
@@ -71,7 +76,7 @@ export class MemoryStorage implements IStorage {
         tuitionMax: uni.tuitionMax,
         applicationDeadline: null,
         websiteUrl: uni.websiteUrl,
-        logoUrl: null,
+        logoUrl: uni.logoUrl || null,
         established: uni.established,
         specialties: uni.specialties,
         createdAt: new Date(),
@@ -126,15 +131,63 @@ export class MemoryStorage implements IStorage {
     const user: User = {
       id: userData.id!,
       email: userData.email ?? null,
+      username: userData.username ?? null,
+      password: userData.password ?? null,
       firstName: userData.firstName ?? null,
       lastName: userData.lastName ?? null,
       profileImageUrl: userData.profileImageUrl ?? null,
+      phone: userData.phone ?? null,
       isAdmin: existing?.isAdmin ?? false,
+      subscriptionTier: userData.subscriptionTier ?? "free",
       createdAt: existing?.createdAt ?? new Date(),
       updatedAt: new Date(),
     };
     this.users.set(userData.id!, user);
     return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(u => u.email === email);
+  }
+
+  async getUserByUsername(username: string): Promise<User | undefined> {
+    return Array.from(this.users.values()).find(u => u.username === username);
+  }
+
+  async createUser(userData: UpsertUser): Promise<User> {
+    const id = userData.id || nanoid();
+    const user: User = {
+      id,
+      email: userData.email ?? null,
+      username: userData.username ?? null,
+      password: userData.password ?? null,
+      firstName: userData.firstName ?? null,
+      lastName: userData.lastName ?? null,
+      profileImageUrl: userData.profileImageUrl ?? null,
+      phone: userData.phone ?? null,
+      isAdmin: userData.isAdmin ?? false,
+      subscriptionTier: userData.subscriptionTier ?? "free",
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.users.set(id, user);
+    return user;
+  }
+
+  async updateUser(id: string, userData: Partial<UpsertUser>): Promise<User> {
+    const existing = this.users.get(id);
+    if (!existing) throw new Error("User not found");
+    const user: User = {
+      ...existing,
+      ...userData,
+      updatedAt: new Date(),
+    };
+    this.users.set(id, user);
+    return user;
+  }
+
+  async getAllUsers(): Promise<User[]> {
+    return Array.from(this.users.values());
   }
 
   async getUniversities(search?: string, type?: string, location?: string): Promise<University[]> {

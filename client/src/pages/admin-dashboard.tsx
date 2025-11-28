@@ -69,19 +69,19 @@ export default function AdminDashboard() {
 
   const { data: serviceRequests = [], isLoading: loadingRequests } = useQuery<ServiceRequest[]>({
     queryKey: ["/api/service-requests"],
-    enabled: isAuthenticated && user?.isAdmin,
+    enabled: isAuthenticated && !!user?.isAdmin,
     retry: false,
   });
 
   const { data: universities = [] } = useQuery<University[]>({
     queryKey: ["/api/universities"],
-    enabled: isAuthenticated && user?.isAdmin,
+    enabled: isAuthenticated && !!user?.isAdmin,
     retry: false,
   });
 
   const { data: scholarships = [] } = useQuery<Scholarship[]>({
     queryKey: ["/api/scholarships"],
-    enabled: isAuthenticated && user?.isAdmin,
+    enabled: isAuthenticated && !!user?.isAdmin,
     retry: false,
   });
 
@@ -133,7 +133,7 @@ export default function AdminDashboard() {
 
   const handleViewRequest = (request: ServiceRequest) => {
     setSelectedRequest(request);
-    setNewStatus(request.status);
+    setNewStatus(request.status || "pending");
     setAdminNotes(request.adminNotes || "");
   };
 
@@ -193,9 +193,9 @@ export default function AdminDashboard() {
     }
   };
 
-  const pendingRequests = serviceRequests.filter(r => r.status === "pending");
-  const inProgressRequests = serviceRequests.filter(r => r.status === "in_progress");
-  const completedRequests = serviceRequests.filter(r => r.status === "completed");
+  const pendingRequests = (serviceRequests || []).filter((r: ServiceRequest) => r.status === "pending");
+  const inProgressRequests = (serviceRequests || []).filter((r: ServiceRequest) => r.status === "in_progress");
+  const completedRequests = (serviceRequests || []).filter((r: ServiceRequest) => r.status === "completed");
 
   return (
     <div className="min-h-screen bg-background" data-testid="admin-dashboard-page">
@@ -304,30 +304,30 @@ export default function AdminDashboard() {
                 ) : (
                   <div className="space-y-4" data-testid="service-requests-list">
                     {serviceRequests.map((request) => {
-                      const StatusIcon = getStatusIcon(request.status);
+                      const StatusIcon = getStatusIcon(request.status || "pending");
                       return (
                         <div key={request.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow" data-testid={`admin-request-${request.id}`}>
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex-1">
                               <h3 className="font-semibold text-foreground mb-1">
-                                Request #{request.id.slice(-8)}
+                                Request #{(request.id || "").slice(-8)}
                               </h3>
                               <p className="text-sm text-muted-foreground flex items-center gap-2">
                                 <Calendar className="h-4 w-4" />
-                                {format(new Date(request.createdAt), "MMMM d, yyyy")}
+                                {request.createdAt ? format(new Date(request.createdAt), "MMMM d, yyyy") : "N/A"}
                               </p>
                               <p className="text-sm text-muted-foreground">
                                 User ID: {request.userId.slice(-8)}
                               </p>
                             </div>
                             <div className="flex flex-col items-end gap-2">
-                              <Badge className={getStatusColor(request.status)} data-testid={`admin-request-status-${request.id}`}>
+                              <Badge className={getStatusColor(request.status || "pending")} data-testid={`admin-request-status-${request.id}`}>
                                 <StatusIcon className="h-3 w-3 mr-1" />
-                                {request.status.replace("_", " ")}
+                                {(request.status || "pending").replace("_", " ")}
                               </Badge>
-                              <Badge className={getPaymentStatusColor(request.paymentStatus)} data-testid={`admin-request-payment-${request.id}`}>
+                              <Badge className={getPaymentStatusColor(request.paymentStatus || "pending")} data-testid={`admin-request-payment-${request.id}`}>
                                 <DollarSign className="h-3 w-3 mr-1" />
-                                {request.paymentStatus}
+                                {request.paymentStatus || "pending"}
                               </Badge>
                             </div>
                           </div>

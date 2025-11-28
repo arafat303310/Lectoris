@@ -99,7 +99,7 @@ export default function Landing() {
                 <div className="text-white/80 text-xs sm:text-base">Universities</div>
               </div>
               <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-scholarships">200+</div>
+                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-scholarships">20</div>
                 <div className="text-white/80 text-xs sm:text-base">Scholarships</div>
               </div>
               <div className="text-center">

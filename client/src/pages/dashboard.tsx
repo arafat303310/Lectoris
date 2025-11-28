@@ -306,27 +306,27 @@ export default function Dashboard() {
                 ) : (
                   <div className="space-y-4" data-testid="service-requests-list">
                     {serviceRequests.map((request) => {
-                      const StatusIcon = getStatusIcon(request.status);
+                      const StatusIcon = getStatusIcon(request.status || "pending");
                       return (
                         <div key={request.id} className="border rounded-lg p-4 hover:shadow-md transition-shadow" data-testid={`service-request-${request.id}`}>
                           <div className="flex items-start justify-between mb-4">
                             <div className="flex-1">
                               <h3 className="font-semibold text-foreground mb-1" data-testid={`request-service-name-${request.id}`}>
-                                Service Request #{request.id.slice(-8)}
+                                Service Request #{(request.id || "").slice(-8)}
                               </h3>
                               <p className="text-sm text-muted-foreground flex items-center gap-2" data-testid={`request-date-${request.id}`}>
                                 <Calendar className="h-4 w-4" />
-                                {format(new Date(request.createdAt), "MMMM d, yyyy")}
+                                {request.createdAt ? format(new Date(request.createdAt), "MMMM d, yyyy") : "N/A"}
                               </p>
                             </div>
                             <div className="flex flex-col items-end gap-2">
-                              <Badge className={getStatusColor(request.status)} data-testid={`request-status-${request.id}`}>
+                              <Badge className={getStatusColor(request.status || "pending")} data-testid={`request-status-${request.id}`}>
                                 <StatusIcon className="h-3 w-3 mr-1" />
-                                {request.status.replace("_", " ")}
+                                {(request.status || "pending").replace("_", " ")}
                               </Badge>
-                              <Badge className={getPaymentStatusColor(request.paymentStatus)} data-testid={`request-payment-status-${request.id}`}>
+                              <Badge className={getPaymentStatusColor(request.paymentStatus || "pending")} data-testid={`request-payment-status-${request.id}`}>
                                 <DollarSign className="h-3 w-3 mr-1" />
-                                {request.paymentStatus}
+                                {request.paymentStatus || "pending"}
                               </Badge>
                             </div>
                           </div>
@@ -351,7 +351,7 @@ export default function Dashboard() {
                               Payment: {request.paymentMethod?.replace("_", " ") || "Not specified"}
                             </span>
                             <span className="text-sm font-medium text-foreground">
-                              Last updated: {format(new Date(request.updatedAt), "MMM d, yyyy")}
+                              Last updated: {request.updatedAt ? format(new Date(request.updatedAt), "MMM d, yyyy") : "N/A"}
                             </span>
                           </div>
                         </div>

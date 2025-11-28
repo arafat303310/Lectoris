@@ -96,3 +96,27 @@ The REST API follows conventional patterns with:
 - **React Hook Form** - Form handling and validation
 - **Zod** - Schema validation library
 - **date-fns** - Date manipulation utilities
+
+## Recent Changes (November 2025)
+
+### Features Added
+- **AI Course Advisor Chatbot** - Powered by OpenAI, helps students choose courses and universities based on academic performance
+- **Search Autocomplete** - Real-time search suggestions for universities and scholarships in navbar
+- **User Dashboard** - View saved universities, scholarships, and service requests
+- **Admin Dashboard** - Manage service requests, view platform statistics, user management
+- **Mobile Responsiveness** - Complete mobile-first responsive design across all pages
+
+### API Endpoints Added
+- `POST /api/chat` - AI chatbot for course guidance
+- `GET /api/search/autocomplete?q=` - Search suggestions for universities/scholarships
+- `GET /api/admin/stats` - Platform statistics (admin only)
+- `GET /api/admin/users` - User list (admin only)
+- `PUT /api/user/profile` - Update user profile
+
+### Current Database Status
+- **In-Memory Storage** - Currently using MemoryStorage class for data
+- **Data Seeding** - 30+ universities and 20 scholarships pre-loaded on startup
+- Note: Data resets on server restart (PostgreSQL connection pending resolution)
+
+### Contact Information
+- Phone: +256 708 922 009

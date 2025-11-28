@@ -4,6 +4,12 @@ import { storage } from "./storage";
 import { setupAuth, isAuthenticated } from "./replitAuth";
 import { insertUniversitySchema, insertScholarshipSchema, insertServiceSchema, insertServiceRequestSchema } from "@shared/schema";
 import { z } from "zod";
+import OpenAI from "openai";
+
+const openai = new OpenAI({
+  apiKey: process.env.AI_INTEGRATIONS_OPENAI_API_KEY,
+  baseURL: process.env.AI_INTEGRATIONS_OPENAI_BASE_URL,
+});
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Auth middleware
@@ -291,6 +297,133 @@ export async function registerRoutes(app: Express): Promise<Server> {
     } catch (error) {
       console.error("Error fetching saved scholarships:", error);
       res.status(500).json({ message: "Failed to fetch saved scholarships" });
+    }
+  });
+
+  // Search autocomplete endpoint
+  app.get("/api/search/autocomplete", async (req, res) => {
+    try {
+      const { q } = req.query;
+      if (!q || typeof q !== 'string' || q.length < 2) {
+        return res.json([]);
+      }
+      
+      const universities = await storage.getUniversities(q);
+      const scholarships = await storage.getScholarships(q);
+      
+      const suggestions = [
+        ...universities.slice(0, 5).map(u => ({ type: 'university', id: u.id, name: u.name, location: u.location })),
+        ...scholarships.slice(0, 3).map(s => ({ type: 'scholarship', id: s.id, name: s.title, provider: s.provider })),
+      ];
+      
+      res.json(suggestions);
+    } catch (error) {
+      console.error("Error in autocomplete:", error);
+      res.status(500).json({ message: "Failed to get suggestions" });
+    }
+  });
+
+  // AI Chatbot endpoint
+  app.post("/api/chat", async (req, res) => {
+    try {
+      const { message, studentInfo } = req.body;
+      
+      if (!message) {
+        return res.status(400).json({ message: "Message is required" });
+      }
+
+      const universities = await storage.getUniversities();
+      const scholarships = await storage.getScholarships();
+      
+      const systemPrompt = `You are ApplyHub's friendly course guidance counselor for Ugandan students. 
+You help students choose suitable courses and universities based on their academic performance, interests, and career goals.
+
+Available Universities in Uganda:
+${universities.slice(0, 15).map(u => `- ${u.name} (${u.location}): ${u.specialties?.join(', ')}`).join('\n')}
+
+Available Scholarships:
+${scholarships.slice(0, 10).map(s => `- ${s.title} by ${s.provider}: ${s.eligibility}`).join('\n')}
+
+Guidelines:
+- Be encouraging and supportive
+- Consider the student's O-level and A-level performance when recommending courses
+- Suggest courses that match their strengths and interests
+- Recommend suitable universities based on their preferences
+- Mention scholarship opportunities when relevant
+- Keep responses concise but helpful
+- Use simple, friendly language`;
+
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          { role: "system", content: systemPrompt },
+          { role: "user", content: `Student Info: ${JSON.stringify(studentInfo || {})}\n\nQuestion: ${message}` }
+        ],
+        max_tokens: 500,
+        temperature: 0.7,
+      });
+
+      const reply = response.choices[0]?.message?.content || "I'm sorry, I couldn't process your request. Please try again.";
+      res.json({ reply });
+    } catch (error) {
+      console.error("Error in chat:", error);
+      res.status(500).json({ message: "Failed to get response from AI", reply: "I'm having trouble connecting right now. Please try again later." });
+    }
+  });
+
+  // Admin routes for user management
+  app.get("/api/admin/users", isAuthenticated, async (req: any, res) => {
+    try {
+      const user = await storage.getUser(req.user.claims.sub);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      const users = await storage.getAllUsers();
+      res.json(users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+      res.status(500).json({ message: "Failed to fetch users" });
+    }
+  });
+
+  app.get("/api/admin/stats", isAuthenticated, async (req: any, res) => {
+    try {
+      const user = await storage.getUser(req.user.claims.sub);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const universities = await storage.getUniversities();
+      const scholarships = await storage.getScholarships();
+      const services = await storage.getServices();
+      const serviceRequests = await storage.getServiceRequests();
+      const users = await storage.getAllUsers();
+      
+      res.json({
+        totalUniversities: universities.length,
+        totalScholarships: scholarships.length,
+        totalServices: services.length,
+        totalServiceRequests: serviceRequests.length,
+        totalUsers: users.length,
+        pendingRequests: serviceRequests.filter(r => r.status === 'pending').length,
+        completedRequests: serviceRequests.filter(r => r.status === 'completed').length,
+      });
+    } catch (error) {
+      console.error("Error fetching stats:", error);
+      res.status(500).json({ message: "Failed to fetch stats" });
+    }
+  });
+
+  // User profile update
+  app.put("/api/user/profile", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.claims.sub;
+      const { firstName, lastName, phone } = req.body;
+      const user = await storage.updateUser(userId, { firstName, lastName, phone });
+      res.json(user);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      res.status(500).json({ message: "Failed to update profile" });
     }
   });
 
