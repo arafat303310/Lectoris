@@ -133,7 +133,7 @@ All 30 universities now have direct application portal links:
 - Note: Data resets on server restart (PostgreSQL credentials sync issue requires platform support)
 
 ### Branding Assets
-- Logo file: `attached_assets/ApplyHub_1764697974851.png`
+- Logo file: `attached_assets/ApplyHub_1764698946308.png`
 - Brand colors: Navy blue (#1e3a8a) and Green (#22c55e)
 
 ### Contact Information
