@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import SearchAutocomplete from "@/components/search-autocomplete";
-import applyHubLogo from "@assets/ApplyHub_1764697974851.png";
+import applyHubLogo from "@assets/ApplyHub_1764698946308.png";
 
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
