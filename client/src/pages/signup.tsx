@@ -12,7 +12,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { GraduationCap, Eye, EyeOff, Loader2 } from "lucide-react";
+import { Eye, EyeOff, Loader2 } from "lucide-react";
+import applyHubLogo from "@assets/ApplyHub_1764697974851.png";
 
 const signupSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -79,8 +80,8 @@ export default function Signup() {
       <main className="flex-1 container mx-auto px-4 py-8 sm:py-12 flex items-center justify-center">
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
-            <div className="mx-auto mb-4 w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center">
-              <GraduationCap className="w-8 h-8 text-primary" />
+            <div className="mx-auto mb-4">
+              <img src={applyHubLogo} alt="ApplyHub" className="h-16 w-auto" />
             </div>
             <CardTitle className="text-2xl font-bold">Create Your Account</CardTitle>
             <CardDescription>

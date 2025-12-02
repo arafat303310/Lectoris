@@ -3,9 +3,10 @@ import { Link, useLocation } from "wouter";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import { Menu, GraduationCap } from "lucide-react";
+import { Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import SearchAutocomplete from "@/components/search-autocomplete";
+import applyHubLogo from "@assets/ApplyHub_1764697974851.png";
 
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -25,11 +26,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
-            <div className="w-10 h-10 bg-primary rounded-lg flex items-center justify-center">
-              <GraduationCap className="text-primary-foreground text-xl" />
-            </div>
-            <span className="text-xl font-bold text-foreground">ApplyHub</span>
-            <span className="text-sm text-muted-foreground hidden sm:inline">Uganda</span>
+            <img 
+              src={applyHubLogo} 
+              alt="ApplyHub Uganda" 
+              className="h-10 w-auto"
+              data-testid="logo-image"
+            />
           </Link>
           
           {/* Desktop Navigation */}

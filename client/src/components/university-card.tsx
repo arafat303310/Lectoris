@@ -2,7 +2,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { University } from "@shared/schema";
-import { MapPin, ArrowRight, GraduationCap, Building2, BookOpen, Landmark, Trophy } from "lucide-react";
+import { MapPin, ArrowRight, GraduationCap, Building2, BookOpen, Landmark, Trophy, ExternalLink } from "lucide-react";
 import { Link } from "wouter";
 import { useState } from "react";
 
@@ -165,6 +165,18 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
                 View <ArrowRight className="ml-1 h-3 w-3" />
               </Button>
             </Link>
+            {university.applicationPortalUrl && (
+              <a 
+                href={university.applicationPortalUrl} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                data-testid={`apply-university-${university.id}`}
+              >
+                <Button size="sm" className="text-xs h-8 bg-green-600 hover:bg-green-700">
+                  Apply <ExternalLink className="ml-1 h-3 w-3" />
+                </Button>
+              </a>
+            )}
           </div>
         </div>
       </CardContent>

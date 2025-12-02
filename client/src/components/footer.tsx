@@ -1,5 +1,6 @@
 import { Link } from "wouter";
-import { GraduationCap, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-react";
+import applyHubLogo from "@assets/ApplyHub_1764697974851.png";
 
 export default function Footer() {
   return (
@@ -8,12 +9,14 @@ export default function Footer() {
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="col-span-2 sm:col-span-1 space-y-3 sm:space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-primary rounded-lg flex items-center justify-center">
-                <GraduationCap className="text-primary-foreground h-4 w-4 sm:h-5 sm:w-5" />
-              </div>
-              <span className="text-lg sm:text-xl font-bold text-foreground">ApplyHub</span>
-            </div>
+            <Link href="/" className="flex items-center">
+              <img 
+                src={applyHubLogo} 
+                alt="ApplyHub Uganda" 
+                className="h-8 sm:h-10 w-auto"
+                data-testid="footer-logo"
+              />
+            </Link>
             <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
               Your trusted partner for higher education in Uganda. Connecting students with universities since 2024.
             </p>

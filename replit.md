@@ -97,9 +97,13 @@ The REST API follows conventional patterns with:
 - **Zod** - Schema validation library
 - **date-fns** - Date manipulation utilities
 
-## Recent Changes (November 2025)
+## Recent Changes (December 2025)
 
 ### Features Added
+- **ApplyHub Logo** - Custom branded logo displayed in navbar, footer, and auth pages
+- **Direct Application Portal Links** - Each university card has an "Apply" button linking directly to the university's online application portal
+- **Password-Based Authentication** - Students can create accounts with email/password using bcrypt hashing
+- **University Ranking System** - Gold badges with rankings 1-30 based on Uganda's national ranking system
 - **AI Course Advisor Chatbot** - Powered by OpenAI, helps students choose courses and universities based on academic performance
 - **Search Autocomplete** - Real-time search suggestions for universities and scholarships in navbar
 - **User Dashboard** - View saved universities, scholarships, and service requests
@@ -107,16 +111,30 @@ The REST API follows conventional patterns with:
 - **Mobile Responsiveness** - Complete mobile-first responsive design across all pages
 
 ### API Endpoints Added
+- `POST /api/auth/signup` - Create new student account with email/password
+- `POST /api/auth/login` - Login with email/password
+- `POST /api/auth/logout` - Logout user
 - `POST /api/chat` - AI chatbot for course guidance
 - `GET /api/search/autocomplete?q=` - Search suggestions for universities/scholarships
 - `GET /api/admin/stats` - Platform statistics (admin only)
 - `GET /api/admin/users` - User list (admin only)
 - `PUT /api/user/profile` - Update user profile
 
+### University Application Portal URLs
+All 30 universities now have direct application portal links:
+- Makerere University: https://apply.mak.ac.ug
+- Kyambogo University: https://apply.kyu.ac.ug
+- Uganda Christian University: https://application.ucu.ac.ug
+- (and 27 more with similar patterns)
+
 ### Current Database Status
 - **In-Memory Storage** - Currently using MemoryStorage class for data
-- **Data Seeding** - 30+ universities and 20 scholarships pre-loaded on startup
-- Note: Data resets on server restart (PostgreSQL connection pending resolution)
+- **Data Seeding** - 30 universities and 20 scholarships pre-loaded on startup
+- Note: Data resets on server restart (PostgreSQL credentials sync issue requires platform support)
+
+### Branding Assets
+- Logo file: `attached_assets/ApplyHub_1764697974851.png`
+- Brand colors: Navy blue (#1e3a8a) and Green (#22c55e)
 
 ### Contact Information
 - Phone: +256 708 922 009
