@@ -6,7 +6,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { ThemeToggle } from "@/components/theme-toggle";
 import SearchAutocomplete from "@/components/search-autocomplete";
-import applyHubLogo from "@assets/ApplyHub_1764740854076.png";
+import applyHubLogo from "@assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png";
 
 export default function Navbar() {
   const { isAuthenticated, user, logout } = useAuth();
@@ -29,7 +29,7 @@ export default function Navbar() {
             <img 
               src={applyHubLogo} 
               alt="ApplyHub Uganda" 
-              className="h-10 w-auto"
+              className="h-14 w-auto"
               data-testid="logo-image"
             />
           </Link>

@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-react";
-import applyHubLogo from "@assets/ApplyHub_1764740854076.png";
+import applyHubLogo from "@assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png";
 
 export default function Footer() {
   return (
@@ -13,7 +13,7 @@ export default function Footer() {
               <img 
                 src={applyHubLogo} 
                 alt="ApplyHub Uganda" 
-                className="h-8 sm:h-10 w-auto"
+                className="h-12 sm:h-14 w-auto"
                 data-testid="footer-logo"
               />
             </Link>

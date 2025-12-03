@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import applyHubLogo from "@assets/ApplyHub_1764740854076.png";
+import applyHubLogo from "@assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png";
 
 const signupSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -81,7 +81,7 @@ export default function Signup() {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4">
-              <img src={applyHubLogo} alt="ApplyHub" className="h-16 w-auto" />
+              <img src={applyHubLogo} alt="ApplyHub" className="h-24 w-auto" />
             </div>
             <CardTitle className="text-2xl font-bold">Create Your Account</CardTitle>
             <CardDescription>
