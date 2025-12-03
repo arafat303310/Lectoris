@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Clock } from "lucide-react";
-import applyHubLogo from "@assets/ApplyHub_1764698946308.png";
+import applyHubLogo from "@assets/ApplyHub_1764740854076.png";
 
 export default function Footer() {
   return (
