@@ -79,7 +79,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
       {/* University logo with brand colors */}
       <div 
-        className="h-48 sm:h-64 flex items-center justify-center relative"
+        className="flex flex-col items-center justify-center p-4 sm:p-6 relative"
         style={{ 
           background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
         }}
@@ -94,16 +94,18 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
             <span className="text-xs sm:text-sm font-bold">#{university.ranking}</span>
           </div>
         )}
+        
+        {/* Logo */}
         {university.logoUrl && !imageError ? (
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-28 h-28 sm:w-40 sm:h-40 object-contain rounded-lg shadow-md bg-white p-3 sm:p-4"
+            className="w-28 h-28 sm:w-40 sm:h-40 object-contain rounded-lg shadow-md bg-white p-3 sm:p-4 mb-4"
             onError={() => setImageError(true)}
           />
         ) : (
           <div 
-            className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center shadow-lg border-2 sm:border-4"
+            className="w-20 h-20 sm:w-28 sm:h-28 rounded-xl sm:rounded-2xl flex flex-col items-center justify-center shadow-lg border-2 sm:border-4 mb-4"
             style={{ 
               backgroundColor: getBrandColors().primary,
               borderColor: getBrandColors().secondary
@@ -121,6 +123,29 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
             </span>
           </div>
         )}
+        
+        {/* Action Buttons */}
+        <div className="flex gap-2 w-full">
+          {university.applicationPortalUrl && (
+            <a 
+              href={university.applicationPortalUrl} 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="flex-1"
+              data-testid={`apply-button-${university.id}`}
+            >
+              <Button size="sm" className="w-full text-sm bg-green-600 hover:bg-green-700">
+                <ExternalLink className="w-3 h-3 mr-1" />
+                Apply
+              </Button>
+            </a>
+          )}
+          <Link href={`/universities/${university.id}`} className="flex-1">
+            <Button size="sm" variant="outline" className="w-full text-sm" data-testid={`learn-more-button-${university.id}`}>
+              Learn More
+            </Button>
+          </Link>
+        </div>
       </div>
       
       <CardContent className="p-4 sm:p-6">
