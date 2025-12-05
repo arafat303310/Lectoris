@@ -750,5 +750,11 @@ export const servicesData = [
     description: "Mock interview sessions and coaching to prepare for university or scholarship interviews.",
     tier: "premium" as const,
     isActive: true
+  },
+  {
+    name: "Appeal Letter Writing",
+    description: "Expert assistance in crafting compelling appeal letters for university admissions or scholarship reconsideration.",
+    tier: "premium" as const,
+    isActive: true
   }
 ];

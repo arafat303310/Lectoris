@@ -75,6 +75,7 @@ const pricingTiers = [
       { name: "University Application Assistance", included: true },
       { name: "Career Counseling Sessions", included: true },
       { name: "Interview Preparation Coaching", included: true },
+      { name: "Appeal Letter Writing", included: true },
       { name: "Priority 24/7 support", included: true },
       { name: "Monthly 1-on-1 consultation", included: true },
     ],

@@ -134,6 +134,7 @@ The REST API follows conventional patterns with:
 - University Application Assistance
 - Career Counseling Sessions
 - Interview Preparation Coaching
+- Appeal Letter Writing
 
 ### University Application Portal URLs
 All 30 universities now have direct application portal links:
