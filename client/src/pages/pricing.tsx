@@ -47,7 +47,9 @@ const pricingTiers = [
       { name: "Unlimited saved scholarships", included: true },
       { name: "Email notifications", included: true },
       { name: "Application tracking", included: true },
-      { name: "Document review (2/month)", included: true },
+      { name: "Professional Resume Writing", included: true },
+      { name: "Scholarship Essay Review", included: true },
+      { name: "Document Verification Service", included: true },
       { name: "Priority support", included: false },
       { name: "1-on-1 consultation", included: false },
     ],
@@ -70,7 +72,9 @@ const pricingTiers = [
       { name: "Unlimited saved scholarships", included: true },
       { name: "Email notifications", included: true },
       { name: "Application tracking", included: true },
-      { name: "Unlimited document reviews", included: true },
+      { name: "University Application Assistance", included: true },
+      { name: "Career Counseling Sessions", included: true },
+      { name: "Interview Preparation Coaching", included: true },
       { name: "Priority 24/7 support", included: true },
       { name: "Monthly 1-on-1 consultation", included: true },
     ],
@@ -225,56 +229,6 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* Additional Services */}
-      <section className="py-8 sm:py-12 lg:py-16 bg-muted/30">
-        <div className="container mx-auto px-4 lg:px-6">
-          <div className="text-center mb-6 sm:mb-12">
-            <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4" data-testid="services-title">
-              One-Time Services
-            </h2>
-            <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
-              Need extra help? Our expert team offers professional services to boost your applications.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {additionalServices.map((service, index) => (
-              <Card
-                key={service.name}
-                className="flex flex-col hover:shadow-lg transition-shadow"
-                data-testid={`service-card-${index}`}
-              >
-                <CardHeader className="p-4 sm:p-6 pb-2 sm:pb-3">
-                  <CardTitle className="text-base sm:text-lg">{service.name}</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">
-                    {service.description}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 p-4 sm:p-6 pt-2 sm:pt-3">
-                  <div className="text-xl sm:text-2xl font-bold text-primary mb-3 sm:mb-4">
-                    UGX {service.price}
-                  </div>
-                  <ul className="space-y-1.5 sm:space-y-2">
-                    {service.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm">
-                        <Check className="h-3 w-3 sm:h-4 sm:w-4 text-accent shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="p-4 sm:p-6 pt-2 sm:pt-3">
-                  <Link href="/services" className="w-full">
-                    <Button variant="outline" className="w-full text-xs sm:text-sm" data-testid={`service-cta-${index}`}>
-                      Learn More
-                    </Button>
-                  </Link>
-                </CardFooter>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* FAQ Section */}
       <section className="py-8 sm:py-12 lg:py-16">

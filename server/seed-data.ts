@@ -718,43 +718,37 @@ export const servicesData = [
   {
     name: "University Application Assistance",
     description: "Complete support for university applications including document preparation, personal statement writing, and application submission guidance.",
-    price: "150000",
-    currency: "UGX",
+    tier: "premium" as const,
     isActive: true
   },
   {
     name: "Professional Resume Writing",
     description: "Expert CV/resume writing service tailored for academic and professional applications.",
-    price: "80000",
-    currency: "UGX",
+    tier: "standard" as const,
     isActive: true
   },
   {
     name: "Scholarship Essay Review",
     description: "Professional review and editing of scholarship application essays to improve your chances of success.",
-    price: "100000",
-    currency: "UGX",
+    tier: "standard" as const,
     isActive: true
   },
   {
     name: "Career Counseling Session",
     description: "One-on-one career guidance session to help you choose the right course and university.",
-    price: "50000",
-    currency: "UGX",
+    tier: "premium" as const,
     isActive: true
   },
   {
     name: "Document Verification Service",
     description: "Assistance with verification and authentication of academic documents.",
-    price: "75000",
-    currency: "UGX",
+    tier: "standard" as const,
     isActive: true
   },
   {
     name: "Interview Preparation",
     description: "Mock interview sessions and coaching to prepare for university or scholarship interviews.",
-    price: "120000",
-    currency: "UGX",
+    tier: "premium" as const,
     isActive: true
   }
 ];

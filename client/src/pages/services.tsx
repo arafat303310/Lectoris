@@ -129,12 +129,13 @@ export default function Services() {
                       {service.description}
                     </p>
                     
-                    <div className="text-2xl font-bold text-primary mb-2" data-testid={`service-price-${service.id}`}>
-                      {service.currency} {parseFloat(service.price).toLocaleString()}
-                    </div>
-                    
-                    <div className="text-sm text-muted-foreground mb-6">
-                      per service
+                    <div className="mb-6">
+                      <Badge 
+                        className={service.tier === "premium" ? "bg-purple-600 hover:bg-purple-700" : "bg-blue-600 hover:bg-blue-700"} 
+                        data-testid={`service-tier-${service.id}`}
+                      >
+                        {service.tier === "premium" ? "Premium Plan" : "Standard Plan"}
+                      </Badge>
                     </div>
                     
                     <Button 

@@ -85,8 +85,7 @@ export const services = pgTable("services", {
   id: varchar("id").primaryKey().default(sql`gen_random_uuid()`),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  price: decimal("price").notNull(),
-  currency: varchar("currency", { length: 10 }).default("UGX"),
+  tier: varchar("tier", { length: 50 }).notNull(), // "standard" or "premium"
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

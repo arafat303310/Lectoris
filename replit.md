@@ -109,6 +109,9 @@ The REST API follows conventional patterns with:
 - **User Dashboard** - View saved universities, scholarships, and service requests
 - **Admin Dashboard** - Manage service requests, view platform statistics, user management
 - **Mobile Responsiveness** - Complete mobile-first responsive design across all pages
+- **Enlarged University Logos** - Increased logo sizes to w-28 h-28 (mobile) and sm:w-40 sm:h-40 (desktop)
+- **Apply & Learn More Buttons Below Logo** - Direct action buttons for each university below the logo area
+- **Services Tier Integration** - Services now bundled into subscription plans (Standard & Premium) instead of individual pricing
 
 ### API Endpoints Added
 - `POST /api/auth/signup` - Create new student account with email/password
@@ -119,6 +122,18 @@ The REST API follows conventional patterns with:
 - `GET /api/admin/stats` - Platform statistics (admin only)
 - `GET /api/admin/users` - User list (admin only)
 - `PUT /api/user/profile` - Update user profile
+- `GET /api/services` - List of all services with tier assignment (no individual pricing)
+
+### Subscription Tier Services
+**Standard Plan (UGX 50k/month):**
+- Professional Resume Writing
+- Scholarship Essay Review
+- Document Verification Service
+
+**Premium Plan (UGX 150k/month):**
+- University Application Assistance
+- Career Counseling Sessions
+- Interview Preparation Coaching
 
 ### University Application Portal URLs
 All 30 universities now have direct application portal links:
