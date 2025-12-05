@@ -4,12 +4,13 @@ import applyHubLogo from "@assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764
 
 export default function Footer() {
   return (
-    <footer className="bg-card border-t border-border" data-testid="footer">
-      <div className="container mx-auto px-4 lg:px-6 py-8 sm:py-12">
+    <footer className="bg-card border-t border-border relative overflow-hidden" data-testid="footer">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pointer-events-none" />
+      <div className="container mx-auto px-4 lg:px-6 py-8 sm:py-12 relative z-10">
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
           {/* Company Info */}
           <div className="col-span-2 sm:col-span-1 space-y-3 sm:space-y-4">
-            <Link href="/" className="flex items-center">
+            <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-300 inline-block">
               <img 
                 src={applyHubLogo} 
                 alt="ApplyHub Uganda" 
@@ -21,16 +22,16 @@ export default function Footer() {
               Your trusted partner for higher education in Uganda. Connecting students with universities since 2024.
             </p>
             <div className="flex space-x-3 sm:space-x-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="facebook-link">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-125" data-testid="facebook-link">
                 <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="twitter-link">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-125" data-testid="twitter-link">
                 <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="instagram-link">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-125" data-testid="instagram-link">
                 <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="linkedin-link">
+              <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-125" data-testid="linkedin-link">
                 <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
               </a>
             </div>

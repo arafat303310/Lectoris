@@ -22,11 +22,11 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className="bg-card border-b border-border sticky top-0 z-50" data-testid="navbar">
+    <nav className="bg-card/95 backdrop-blur-md border-b border-border sticky top-0 z-50 animate-fade-in-down" data-testid="navbar">
       <div className="container mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2" data-testid="logo-link">
+          <Link href="/" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300" data-testid="logo-link">
             <img 
               src={applyHubLogo} 
               alt="ApplyHub Uganda" 
@@ -42,7 +42,7 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`font-medium transition-colors ${
+                className={`font-medium transition-all duration-300 relative group ${
                   location === item.href
                     ? "text-primary"
                     : "text-foreground hover:text-primary"
@@ -50,6 +50,9 @@ export default function Navbar() {
                 data-testid={`nav-link-${item.label.toLowerCase()}`}
               >
                 {item.label}
+                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                  location === item.href ? "w-full" : "w-0 group-hover:w-full"
+                }`} />
               </Link>
             ))}
           </div>
@@ -88,6 +91,7 @@ export default function Navbar() {
                 <Link href="/login">
                   <Button
                     variant="ghost"
+                    className="hover:scale-105 transition-transform duration-300"
                     data-testid="login-button"
                   >
                     Login
@@ -95,6 +99,7 @@ export default function Navbar() {
                 </Link>
                 <Link href="/signup">
                   <Button
+                    className="btn-animate hover:scale-105 transition-transform duration-300"
                     data-testid="signup-button"
                   >
                     Sign Up

@@ -134,17 +134,17 @@ export default function Scholarships() {
       
       <div className="container mx-auto px-4 lg:px-6 py-8">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid="scholarships-title">
+        <div className="text-center mb-8 animate-fade-in-down">
+          <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 gradient-text" data-testid="scholarships-title">
             Scholarship Opportunities
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up delay-200">
             Discover funding opportunities for Ugandan students, from government scholarships to international programs.
           </p>
         </div>
 
         {/* Filters */}
-        <Card className="mb-8" data-testid="filters-card">
+        <Card className="mb-8 animate-scale-in delay-300" data-testid="filters-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Filter className="h-5 w-5" />
@@ -220,13 +220,14 @@ export default function Scholarships() {
             </div>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" data-testid="scholarships-grid">
-              {scholarships.map((scholarship) => (
-                <ScholarshipCard
-                  key={scholarship.id}
-                  scholarship={scholarship}
-                  onSave={isAuthenticated ? handleSaveScholarship : undefined}
-                  isSaved={savedScholarships.some(s => s.id === scholarship.id)}
-                />
+              {scholarships.map((scholarship, index) => (
+                <div key={scholarship.id} className="animate-fade-in-up" style={{ animationDelay: `${(index % 6) * 100}ms` }}>
+                  <ScholarshipCard
+                    scholarship={scholarship}
+                    onSave={isAuthenticated ? handleSaveScholarship : undefined}
+                    isSaved={savedScholarships.some(s => s.id === scholarship.id)}
+                  />
+                </div>
               ))}
             </div>
           </>

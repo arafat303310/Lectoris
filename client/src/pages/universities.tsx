@@ -134,17 +134,17 @@ export default function Universities() {
       
       <div className="container mx-auto px-4 lg:px-6 py-6 sm:py-8">
         {/* Header */}
-        <div className="text-center mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4" data-testid="universities-title">
+        <div className="text-center mb-6 sm:mb-8 animate-fade-in-down">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4 gradient-text" data-testid="universities-title">
             Uganda Universities Directory
           </h1>
-          <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2">
+          <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2 animate-fade-in-up delay-200">
             Explore 46+ universities across Uganda. Find the perfect institution for your academic journey.
           </p>
         </div>
 
         {/* Filters */}
-        <Card className="mb-6 sm:mb-8" data-testid="filters-card">
+        <Card className="mb-6 sm:mb-8 animate-scale-in delay-300" data-testid="filters-card">
           <CardHeader className="p-4 sm:p-6">
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               <Filter className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -215,13 +215,14 @@ export default function Universities() {
             </div>
             
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8" data-testid="universities-grid">
-              {universities.map((university) => (
-                <UniversityCard
-                  key={university.id}
-                  university={university}
-                  onSave={isAuthenticated ? handleSaveUniversity : undefined}
-                  isSaved={savedUniversities.some(u => u.id === university.id)}
-                />
+              {universities.map((university, index) => (
+                <div key={university.id} className={`animate-fade-in-up`} style={{ animationDelay: `${(index % 6) * 100}ms` }}>
+                  <UniversityCard
+                    university={university}
+                    onSave={isAuthenticated ? handleSaveUniversity : undefined}
+                    isSaved={savedUniversities.some(u => u.id === university.id)}
+                  />
+                </div>
               ))}
             </div>
           </>

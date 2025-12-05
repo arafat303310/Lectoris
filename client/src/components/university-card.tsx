@@ -76,7 +76,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 service-hover card-hover group" data-testid={`university-card-${university.id}`}>
       {/* University logo with brand colors */}
       <div 
         className="flex flex-col items-center justify-center p-4 sm:p-6 relative"
@@ -87,7 +87,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
         {/* Ranking Badge */}
         {university.ranking && (
           <div 
-            className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg"
+            className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg badge-bounce"
             data-testid={`university-ranking-${university.id}`}
           >
             <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
@@ -100,7 +100,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-28 h-28 sm:w-40 sm:h-40 object-contain rounded-lg shadow-md bg-white p-3 sm:p-4 mb-4"
+            className="w-28 h-28 sm:w-40 sm:h-40 object-contain rounded-lg shadow-md bg-white p-3 sm:p-4 mb-4 group-hover:scale-105 transition-transform duration-500"
             onError={() => setImageError(true)}
           />
         ) : (
@@ -134,14 +134,14 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
               className="flex-1"
               data-testid={`apply-button-${university.id}`}
             >
-              <Button size="sm" className="w-full text-sm bg-green-600 hover:bg-green-700">
+              <Button size="sm" className="w-full text-sm bg-green-600 hover:bg-green-700 btn-animate hover:scale-105 transition-transform duration-300">
                 <ExternalLink className="w-3 h-3 mr-1" />
                 Apply
               </Button>
             </a>
           )}
           <Link href={`/universities/${university.id}`} className="flex-1">
-            <Button size="sm" variant="outline" className="w-full text-sm" data-testid={`learn-more-button-${university.id}`}>
+            <Button size="sm" variant="outline" className="w-full text-sm btn-animate hover:scale-105 transition-transform duration-300" data-testid={`learn-more-button-${university.id}`}>
               Learn More
             </Button>
           </Link>

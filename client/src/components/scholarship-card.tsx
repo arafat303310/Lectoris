@@ -38,8 +38,8 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`scholarship-card-${scholarship.id}`}>
-      <div className={`h-2 sm:h-4 bg-gradient-to-r ${
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 service-hover card-hover group" data-testid={`scholarship-card-${scholarship.id}`}>
+      <div className={`h-2 sm:h-4 bg-gradient-to-r transition-all duration-500 group-hover:h-3 sm:group-hover:h-5 ${
         scholarship.type === "government" ? "from-accent to-primary" :
         scholarship.type === "international" ? "from-primary to-secondary" :
         "from-secondary to-accent"
@@ -47,8 +47,8 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
       
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-3 sm:mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-full flex items-center justify-center">
-            <Trophy className="text-accent h-5 w-5 sm:h-6 sm:w-6" />
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+            <Trophy className="text-accent h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-pulse" />
           </div>
           <Badge className={`${getTypeColor()} text-xs`} data-testid={`scholarship-type-${scholarship.id}`}>
             {scholarship.type}
@@ -93,7 +93,7 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
             </Button>
           )}
           {scholarship.applicationUrl && (
-            <Button asChild size="sm" className="text-xs h-8" data-testid={`apply-scholarship-${scholarship.id}`}>
+            <Button asChild size="sm" className="text-xs h-8 btn-animate hover:scale-105 transition-transform duration-300" data-testid={`apply-scholarship-${scholarship.id}`}>
               <a href={scholarship.applicationUrl} target="_blank" rel="noopener noreferrer">
                 Apply <ExternalLink className="ml-1 h-3 w-3" />
               </a>

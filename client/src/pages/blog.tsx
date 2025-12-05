@@ -161,11 +161,11 @@ export default function Blog() {
       
       <div className="container mx-auto px-4 lg:px-6">
         {/* Newsletter Section */}
-        <section className="py-12 sm:py-16 lg:py-20 text-center mb-12">
-          <Badge variant="secondary" className="mb-4 text-sm" data-testid="newsletter-badge">
+        <section className="py-12 sm:py-16 lg:py-20 text-center mb-12 animate-fade-in">
+          <Badge variant="secondary" className="mb-4 text-sm badge-bounce" data-testid="newsletter-badge">
             Stay Informed
           </Badge>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid="newsletter-title">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4 gradient-text animate-fade-in-down" data-testid="newsletter-title">
             Subscribe to Our Newsletter
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" data-testid="newsletter-description">
@@ -173,7 +173,7 @@ export default function Blog() {
           </p>
           
           {/* Subscription Form */}
-          <Card className="max-w-md mx-auto mb-12" data-testid="newsletter-form-card">
+          <Card className="max-w-md mx-auto mb-12 animate-scale-in delay-300 shadow-glow" data-testid="newsletter-form-card">
             <CardHeader className="text-center">
               <CardTitle>Join 5,000+ Students</CardTitle>
               <CardDescription>Subscribe and get started in seconds</CardDescription>
@@ -209,9 +209,9 @@ export default function Blog() {
             {newsletterBenefits.map((benefit, index) => {
               const IconComponent = benefit.icon;
               return (
-                <Card key={index} className="text-center" data-testid={`newsletter-benefit-${index}`}>
+                <Card key={index} className="text-center card-hover animate-fade-in-up" style={{ animationDelay: `${(index + 1) * 150}ms` }} data-testid={`newsletter-benefit-${index}`}>
                   <CardContent className="p-6">
-                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 animate-float">
                       <IconComponent className="h-6 w-6 text-primary" />
                     </div>
                     <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
@@ -224,11 +224,11 @@ export default function Blog() {
         </section>
 
         {/* Blog Hero Section */}
-        <section className="py-12 sm:py-16 lg:py-20 text-center">
+        <section className="py-12 sm:py-16 lg:py-20 text-center animate-fade-in">
           <Badge variant="secondary" className="mb-4 text-sm" data-testid="blog-badge">
             Insights & Guidance
           </Badge>
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4" data-testid="blog-title">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4 gradient-text" data-testid="blog-title">
             ApplyHub Blog
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" data-testid="blog-description">
@@ -281,10 +281,11 @@ export default function Blog() {
             </Card>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {filteredPosts.map((post) => (
+              {filteredPosts.map((post, index) => (
                 <Card 
                   key={post.id} 
-                  className="flex flex-col hover:shadow-lg transition-shadow cursor-pointer"
+                  className="flex flex-col hover:shadow-lg transition-all duration-500 cursor-pointer card-hover animate-fade-in-up"
+                  style={{ animationDelay: `${(index % 4) * 100}ms` }}
                   data-testid={`blog-post-${post.id}`}
                 >
                   <CardHeader>

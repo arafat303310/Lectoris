@@ -56,19 +56,19 @@ export default function Landing() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="hero-gradient py-10 sm:py-16 lg:py-24" data-testid="hero-section">
-        <div className="container mx-auto px-4 lg:px-6">
+      <section className="hero-gradient py-10 sm:py-16 lg:py-24 relative" data-testid="hero-section">
+        <div className="container mx-auto px-4 lg:px-6 relative z-10">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight" data-testid="hero-title">
+            <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight animate-fade-in-down" data-testid="hero-title">
               Your Gateway to <br className="hidden sm:block" />
-              <span className="text-secondary">Higher Education</span> in Uganda
+              <span className="text-secondary animate-pulse-slow">Higher Education</span> in Uganda
             </h1>
-            <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2" data-testid="hero-description">
+            <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2 animate-fade-in-up delay-200" data-testid="hero-description">
               Discover universities, find scholarships, and get expert guidance for your academic journey. From Makerere to Mbarara, we help you find your perfect match.
             </p>
             
             {/* Search Bar */}
-            <div className="bg-white rounded-xl p-2 max-w-2xl mx-auto mb-6 sm:mb-8 shadow-2xl" data-testid="search-container">
+            <div className="bg-white rounded-xl p-2 max-w-2xl mx-auto mb-6 sm:mb-8 shadow-2xl animate-scale-in delay-300 glass" data-testid="search-container">
               <div className="flex flex-col sm:flex-row gap-2">
                 <div className="flex-1 relative">
                   <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5" />
@@ -93,17 +93,17 @@ export default function Landing() {
             </div>
             
             {/* Quick Stats */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto" data-testid="quick-stats">
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-universities">46+</div>
+            <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up delay-500" data-testid="quick-stats">
+              <div className="text-center glass rounded-lg p-4 hover:scale-105 transition-transform duration-300">
+                <div className="text-xl sm:text-3xl font-bold text-white stat-number" data-testid="stats-universities">46+</div>
                 <div className="text-white/80 text-xs sm:text-base">Universities</div>
               </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-scholarships">20</div>
+              <div className="text-center glass rounded-lg p-4 hover:scale-105 transition-transform duration-300">
+                <div className="text-xl sm:text-3xl font-bold text-white stat-number" data-testid="stats-scholarships">20</div>
                 <div className="text-white/80 text-xs sm:text-base">Scholarships</div>
               </div>
-              <div className="text-center">
-                <div className="text-xl sm:text-3xl font-bold text-white" data-testid="stats-students">100+</div>
+              <div className="text-center glass rounded-lg p-4 hover:scale-105 transition-transform duration-300">
+                <div className="text-xl sm:text-3xl font-bold text-white stat-number" data-testid="stats-students">100+</div>
                 <div className="text-white/80 text-xs sm:text-base">Students</div>
               </div>
             </div>
@@ -124,8 +124,10 @@ export default function Landing() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12" data-testid="universities-grid">
-            {featuredUniversities.map((university) => (
-              <UniversityCard key={university.id} university={university} />
+            {featuredUniversities.map((university, index) => (
+              <div key={university.id} className={`animate-fade-in-up delay-${(index + 1) * 100}`}>
+                <UniversityCard university={university} />
+              </div>
             ))}
           </div>
           
@@ -155,12 +157,16 @@ export default function Landing() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12" data-testid="services-grid">
-            {services.map((service) => {
+            {services.map((service, index) => {
               const IconComponent = getServiceIcon(service.name);
               return (
-                <Card key={service.id} className="text-center service-hover cursor-pointer" data-testid={`service-card-${service.id}`}>
+                <Card 
+                  key={service.id} 
+                  className={`text-center service-hover cursor-pointer animate-fade-in-up delay-${(index + 1) * 100}`} 
+                  data-testid={`service-card-${service.id}`}
+                >
                   <CardContent className="p-4 sm:p-6 lg:p-8">
-                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <div className="w-12 h-12 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6 animate-float">
                       <IconComponent className="text-primary h-6 w-6 sm:h-8 sm:w-8" />
                     </div>
                     <h3 className="text-base sm:text-xl font-bold text-foreground mb-2 sm:mb-4" data-testid={`service-name-${service.id}`}>
@@ -169,12 +175,18 @@ export default function Landing() {
                     <p className="text-xs sm:text-base text-muted-foreground mb-4 sm:mb-6 leading-relaxed" data-testid={`service-description-${service.id}`}>
                       {service.description}
                     </p>
-                    <div className="text-lg sm:text-2xl font-bold text-primary mb-2" data-testid={`service-price-${service.id}`}>
-                      {service.currency} {parseFloat(service.price).toLocaleString()}
+                    <div className="mb-4">
+                      <span className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${
+                        service.tier === "premium" 
+                          ? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300" 
+                          : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                      }`}>
+                        {service.tier === "premium" ? "Premium Plan" : "Standard Plan"}
+                      </span>
                     </div>
                     <Link href="/services">
-                      <Button className="w-full text-xs sm:text-sm" data-testid={`request-service-${service.id}`}>
-                        Request Service
+                      <Button className="w-full text-xs sm:text-sm btn-animate" data-testid={`request-service-${service.id}`}>
+                        Learn More
                       </Button>
                     </Link>
                   </CardContent>
@@ -218,8 +230,10 @@ export default function Landing() {
           </div>
           
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mb-8 sm:mb-12" data-testid="scholarships-grid">
-            {featuredScholarships.map((scholarship) => (
-              <ScholarshipCard key={scholarship.id} scholarship={scholarship} />
+            {featuredScholarships.map((scholarship, index) => (
+              <div key={scholarship.id} className={`animate-fade-in-up delay-${(index + 1) * 100}`}>
+                <ScholarshipCard scholarship={scholarship} />
+              </div>
             ))}
           </div>
           
