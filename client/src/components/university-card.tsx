@@ -126,9 +126,9 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
         
         {/* Action Buttons */}
         <div className="flex gap-2 w-full">
-          {university.applicationPortalUrl && (
+          {(university.applicationPortalUrl || university.websiteUrl) && (
             <a 
-              href={university.applicationPortalUrl} 
+              href={university.applicationPortalUrl || university.websiteUrl || '#'} 
               target="_blank" 
               rel="noopener noreferrer"
               className="flex-1"
@@ -190,18 +190,6 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
                 View <ArrowRight className="ml-1 h-3 w-3" />
               </Button>
             </Link>
-            {university.applicationPortalUrl && (
-              <a 
-                href={university.applicationPortalUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                data-testid={`apply-university-${university.id}`}
-              >
-                <Button size="sm" className="text-xs h-8 bg-green-600 hover:bg-green-700">
-                  Apply <ExternalLink className="ml-1 h-3 w-3" />
-                </Button>
-              </a>
-            )}
           </div>
         </div>
       </CardContent>
