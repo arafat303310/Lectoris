@@ -18,8 +18,7 @@ export default function Navbar() {
     { href: "/scholarships", label: "Scholarships" },
     { href: "/services", label: "Services" },
     { href: "/pricing", label: "Pricing" },
-    { href: "/blog", label: "Blog" },
-    { href: "/newsletter", label: "Newsletter" },
+    { href: "/blog", label: "Blog & Newsletter" },
   ];
 
   return (

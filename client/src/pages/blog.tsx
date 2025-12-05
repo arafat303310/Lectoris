@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Search, Calendar, User, ArrowRight } from "lucide-react";
+import { Search, Calendar, User, ArrowRight, Mail, Zap, Users, TrendingUp } from "lucide-react";
 import { useEffect } from "react";
 
 const blogPosts = [
@@ -73,10 +74,36 @@ const blogPosts = [
 
 const categories = ["All", "Application Tips", "Scholarships", "University Guide", "Interview Prep", "Financial Aid", "Career"];
 
+const newsletterBenefits = [
+  {
+    icon: Zap,
+    title: "Weekly Updates",
+    description: "Get the latest university deadlines and scholarship opportunities every week."
+  },
+  {
+    icon: Users,
+    title: "Success Stories",
+    description: "Learn from students who successfully secured their spots at top universities."
+  },
+  {
+    icon: TrendingUp,
+    title: "Expert Tips",
+    description: "Receive application advice and career guidance from education professionals."
+  },
+  {
+    icon: Mail,
+    title: "Exclusive Offers",
+    description: "Access special promotions on our premium services for subscribers only."
+  }
+];
+
 export default function Blog() {
+  const { toast } = useToast();
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [filteredPosts, setFilteredPosts] = useState(blogPosts);
+  const [email, setEmail] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     document.title = "Blog - ApplyHub Uganda | University Application Insights & Tips";
@@ -103,12 +130,100 @@ export default function Blog() {
     setFilteredPosts(filtered);
   }, [searchQuery, selectedCategory]);
 
+  const handleSubscribe = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!email || !email.includes("@")) {
+      toast({
+        title: "Invalid Email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+    
+    // Simulate subscription
+    setTimeout(() => {
+      toast({
+        title: "Subscribed!",
+        description: "Thank you for subscribing to our newsletter. Check your inbox for a welcome email!",
+      });
+      setEmail("");
+      setIsSubmitting(false);
+    }, 1000);
+  };
+
   return (
     <div className="min-h-screen bg-background" data-testid="blog-page">
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6">
-        {/* Hero Section */}
+        {/* Newsletter Section */}
+        <section className="py-12 sm:py-16 lg:py-20 text-center mb-12">
+          <Badge variant="secondary" className="mb-4 text-sm" data-testid="newsletter-badge">
+            Stay Informed
+          </Badge>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-4" data-testid="newsletter-title">
+            Subscribe to Our Newsletter
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8" data-testid="newsletter-description">
+            Get exclusive scholarship opportunities, university application tips, and success stories delivered to your inbox every week.
+          </p>
+          
+          {/* Subscription Form */}
+          <Card className="max-w-md mx-auto mb-12" data-testid="newsletter-form-card">
+            <CardHeader className="text-center">
+              <CardTitle>Join 5,000+ Students</CardTitle>
+              <CardDescription>Subscribe and get started in seconds</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <form onSubmit={handleSubscribe} className="space-y-4" data-testid="newsletter-form">
+                <Input
+                  type="email"
+                  placeholder="Enter your email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="text-sm"
+                  data-testid="newsletter-email-input"
+                  disabled={isSubmitting}
+                />
+                <Button 
+                  type="submit" 
+                  className="w-full"
+                  disabled={isSubmitting}
+                  data-testid="newsletter-subscribe-button"
+                >
+                  {isSubmitting ? "Subscribing..." : "Subscribe Now"}
+                </Button>
+              </form>
+              <p className="text-xs text-muted-foreground mt-4">
+                We'll never share your email. Unsubscribe anytime.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Newsletter Benefits */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-12">
+            {newsletterBenefits.map((benefit, index) => {
+              const IconComponent = benefit.icon;
+              return (
+                <Card key={index} className="text-center" data-testid={`newsletter-benefit-${index}`}>
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <IconComponent className="h-6 w-6 text-primary" />
+                    </div>
+                    <h3 className="font-semibold text-foreground mb-2">{benefit.title}</h3>
+                    <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  </CardContent>
+                </Card>
+              );
+            })}
+          </div>
+        </section>
+
+        {/* Blog Hero Section */}
         <section className="py-12 sm:py-16 lg:py-20 text-center">
           <Badge variant="secondary" className="mb-4 text-sm" data-testid="blog-badge">
             Insights & Guidance
@@ -214,22 +329,6 @@ export default function Blog() {
           )}
         </section>
 
-        {/* Newsletter CTA */}
-        <section className="py-12 sm:py-16 text-center mb-12">
-          <Card className="bg-gradient-to-r from-primary/10 to-accent/10 border-primary/20">
-            <CardContent className="p-8 sm:p-12">
-              <h2 className="text-2xl sm:text-3xl font-bold text-foreground mb-4">
-                Get More Content Like This
-              </h2>
-              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Subscribe to our newsletter for exclusive articles and insights delivered to your inbox weekly.
-              </p>
-              <Button size="lg" data-testid="blog-newsletter-cta">
-                Subscribe to Newsletter
-              </Button>
-            </CardContent>
-          </Card>
-        </section>
       </div>
 
       <Footer />
