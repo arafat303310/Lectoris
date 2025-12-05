@@ -79,7 +79,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 service-hover" data-testid={`university-card-${university.id}`}>
       {/* University logo with brand colors */}
       <div 
-        className="h-36 sm:h-48 flex items-center justify-center relative"
+        className="h-48 sm:h-64 flex items-center justify-center relative"
         style={{ 
           background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
         }}
@@ -98,7 +98,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           <img 
             src={university.logoUrl} 
             alt={`${university.name} logo`}
-            className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-lg shadow-md bg-white p-2 sm:p-3"
+            className="w-28 h-28 sm:w-40 sm:h-40 object-contain rounded-lg shadow-md bg-white p-3 sm:p-4"
             onError={() => setImageError(true)}
           />
         ) : (
