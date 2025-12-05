@@ -21,16 +21,12 @@ export default function Universities() {
   const queryClient = useQueryClient();
   
   const [searchQuery, setSearchQuery] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
-  const [locationFilter, setLocationFilter] = useState("");
   const [appliedFilters, setAppliedFilters] = useState({
     search: "",
-    type: "",
-    location: "",
   });
 
   const { data: universities = [], isLoading } = useQuery<University[]>({
-    queryKey: ["/api/universities", appliedFilters.search, appliedFilters.type, appliedFilters.location],
+    queryKey: ["/api/universities", appliedFilters.search],
     retry: false,
   });
 
@@ -114,19 +110,13 @@ export default function Universities() {
   const handleApplyFilters = () => {
     setAppliedFilters({
       search: searchQuery.trim(),
-      type: typeFilter,
-      location: locationFilter,
     });
   };
 
   const handleClearFilters = () => {
     setSearchQuery("");
-    setTypeFilter("");
-    setLocationFilter("");
     setAppliedFilters({
       search: "",
-      type: "",
-      location: "",
     });
   };
 
@@ -136,7 +126,7 @@ export default function Universities() {
     }
   };
 
-  const isFiltered = appliedFilters.search || appliedFilters.type || appliedFilters.location;
+  const isFiltered = appliedFilters.search;
 
   return (
     <div className="min-h-screen bg-background" data-testid="universities-page">
@@ -162,8 +152,8 @@ export default function Universities() {
             </CardTitle>
           </CardHeader>
           <CardContent className="p-4 sm:p-6 pt-0 sm:pt-0">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-3 sm:mb-4">
-              <div className="relative sm:col-span-2 md:col-span-1">
+            <div className="flex gap-3 sm:gap-4 mb-3 sm:mb-4">
+              <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search universities..."
@@ -175,32 +165,9 @@ export default function Universities() {
                 />
               </div>
               
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger data-testid="type-filter-select" className="text-sm">
-                  <SelectValue placeholder="Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="public" data-testid="type-public">Public</SelectItem>
-                  <SelectItem value="private" data-testid="type-private">Private</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Select value={locationFilter} onValueChange={setLocationFilter}>
-                <SelectTrigger data-testid="location-filter-select" className="text-sm">
-                  <SelectValue placeholder="Location" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Kampala" data-testid="location-kampala">Kampala</SelectItem>
-                  <SelectItem value="Mbarara" data-testid="location-mbarara">Mbarara</SelectItem>
-                  <SelectItem value="Gulu" data-testid="location-gulu">Gulu</SelectItem>
-                  <SelectItem value="Mukono" data-testid="location-mukono">Mukono</SelectItem>
-                  <SelectItem value="Mbale" data-testid="location-mbale">Mbale</SelectItem>
-                </SelectContent>
-              </Select>
-              
               <div className="flex gap-2">
-                <Button onClick={handleApplyFilters} className="flex-1 text-sm" data-testid="apply-filters-button">
-                  Apply
+                <Button onClick={handleApplyFilters} className="text-sm" data-testid="apply-filters-button">
+                  Search
                 </Button>
                 {isFiltered && (
                   <Button variant="outline" onClick={handleClearFilters} className="text-sm" data-testid="clear-filters-button">
@@ -209,14 +176,6 @@ export default function Universities() {
                 )}
               </div>
             </div>
-            
-            {isFiltered && (
-              <div className="text-xs sm:text-sm text-muted-foreground">
-                Showing: {appliedFilters.search && `"${appliedFilters.search}"`} 
-                {appliedFilters.type && ` • ${appliedFilters.type}`}
-                {appliedFilters.location && ` • ${appliedFilters.location}`}
-              </div>
-            )}
           </CardContent>
         </Card>
 

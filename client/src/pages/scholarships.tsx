@@ -21,16 +21,12 @@ export default function Scholarships() {
   const queryClient = useQueryClient();
   
   const [searchQuery, setSearchQuery] = useState("");
-  const [typeFilter, setTypeFilter] = useState("");
-  const [levelFilter, setLevelFilter] = useState("");
   const [appliedFilters, setAppliedFilters] = useState({
     search: "",
-    type: "",
-    level: "",
   });
 
   const { data: scholarships = [], isLoading } = useQuery<Scholarship[]>({
-    queryKey: ["/api/scholarships", appliedFilters.search, appliedFilters.type, appliedFilters.level],
+    queryKey: ["/api/scholarships", appliedFilters.search],
     retry: false,
   });
 
@@ -114,19 +110,13 @@ export default function Scholarships() {
   const handleApplyFilters = () => {
     setAppliedFilters({
       search: searchQuery.trim(),
-      type: typeFilter,
-      level: levelFilter,
     });
   };
 
   const handleClearFilters = () => {
     setSearchQuery("");
-    setTypeFilter("");
-    setLevelFilter("");
     setAppliedFilters({
       search: "",
-      type: "",
-      level: "",
     });
   };
 
@@ -136,7 +126,7 @@ export default function Scholarships() {
     }
   };
 
-  const isFiltered = appliedFilters.search || appliedFilters.type || appliedFilters.level;
+  const isFiltered = appliedFilters.search;
 
   return (
     <div className="min-h-screen bg-background" data-testid="scholarships-page">
@@ -162,8 +152,8 @@ export default function Scholarships() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
-              <div className="relative">
+            <div className="flex gap-4 mb-4">
+              <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search scholarships..."
@@ -175,31 +165,9 @@ export default function Scholarships() {
                 />
               </div>
               
-              <Select value={typeFilter} onValueChange={setTypeFilter}>
-                <SelectTrigger data-testid="type-filter-select">
-                  <SelectValue placeholder="Scholarship Type" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="government" data-testid="type-government">Government</SelectItem>
-                  <SelectItem value="international" data-testid="type-international">International</SelectItem>
-                  <SelectItem value="private" data-testid="type-private">Private</SelectItem>
-                </SelectContent>
-              </Select>
-              
-              <Select value={levelFilter} onValueChange={setLevelFilter}>
-                <SelectTrigger data-testid="level-filter-select">
-                  <SelectValue placeholder="Education Level" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="undergraduate" data-testid="level-undergraduate">Undergraduate</SelectItem>
-                  <SelectItem value="postgraduate" data-testid="level-postgraduate">Postgraduate</SelectItem>
-                  <SelectItem value="both" data-testid="level-both">Both Levels</SelectItem>
-                </SelectContent>
-              </Select>
-              
               <div className="flex gap-2">
-                <Button onClick={handleApplyFilters} className="flex-1" data-testid="apply-filters-button">
-                  Apply Filters
+                <Button onClick={handleApplyFilters} data-testid="apply-filters-button">
+                  Search
                 </Button>
                 {isFiltered && (
                   <Button variant="outline" onClick={handleClearFilters} data-testid="clear-filters-button">
@@ -208,14 +176,6 @@ export default function Scholarships() {
                 )}
               </div>
             </div>
-            
-            {isFiltered && (
-              <div className="text-sm text-muted-foreground">
-                Showing results for: {appliedFilters.search && `"${appliedFilters.search}"`} 
-                {appliedFilters.type && ` • ${appliedFilters.type} scholarships`}
-                {appliedFilters.level && ` • ${appliedFilters.level} level`}
-              </div>
-            )}
           </CardContent>
         </Card>
 
