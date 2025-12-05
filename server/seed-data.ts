@@ -9,7 +9,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4000000",
     websiteUrl: "https://www.mak.ac.ug",
     applicationPortalUrl: "https://apply.mak.ac.ug",
-    logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/5/5a/Makerere_University_coat_of_arms.svg/200px-Makerere_University_coat_of_arms.svg.png",
+    logoUrl: "/attached_assets/makerere-university-uganda_1764928321778.png",
     established: 1922,
     ranking: 1,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Agriculture", "Humanities"]
@@ -234,7 +234,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4100000",
     websiteUrl: "https://www.soru.ac.ug",
     applicationPortalUrl: "https://apply.soru.ac.ug",
-    logoUrl: "https://soru.ac.ug/images/soroti-logo.png",
+    logoUrl: "/attached_assets/soroti-university-logo-png_1764928321777.png",
     established: 2015,
     ranking: 16,
     specialties: ["Agriculture", "Education", "Applied Sciences", "Business"]
@@ -264,7 +264,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5000000",
     websiteUrl: "https://www.bsu.ac.ug",
     applicationPortalUrl: "https://apply.bsu.ac.ug",
-    logoUrl: "https://bsu.ac.ug/images/bsu-logo.png",
+    logoUrl: "/attached_assets/bishop-stuart-university-logo-png_1764928321765.png",
     established: 2003,
     ranking: 18,
     specialties: ["Theology", "Education", "Development Studies", "Business"]
@@ -279,7 +279,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "8000000",
     websiteUrl: "https://www.ciu.ac.ug",
     applicationPortalUrl: "https://apply.ciu.ac.ug",
-    logoUrl: "https://ciu.ac.ug/images/ciu-logo.png",
+    logoUrl: "/attached_assets/clarke-international-university-logo-png_1764928321777.png",
     established: 2008,
     ranking: 19,
     specialties: ["Medicine", "Nursing", "Public Health", "Pharmacy"]
@@ -294,7 +294,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5400000",
     websiteUrl: "https://www.bugema.ac.ug",
     applicationPortalUrl: "https://apply.bugema.ac.ug",
-    logoUrl: "https://bugema.ac.ug/images/bugema-logo.png",
+    logoUrl: "/attached_assets/bugema-university-logo-png_1764928321776.png",
     established: 1994,
     ranking: 20,
     specialties: ["Theology", "Business", "Education", "Health Sciences"]
@@ -309,7 +309,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "6500000",
     websiteUrl: "https://www.vu.ac.ug",
     applicationPortalUrl: "https://apply.vu.ac.ug",
-    logoUrl: "https://vu.ac.ug/images/vu-logo.png",
+    logoUrl: "/attached_assets/victoria-university-logo-png_1764928321775.png",
     established: 2011,
     ranking: 21,
     specialties: ["Business", "Information Technology", "Social Sciences"]
@@ -324,7 +324,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5500000",
     websiteUrl: "https://www.ku.ac.ug",
     applicationPortalUrl: "https://apply.ku.ac.ug",
-    logoUrl: "https://ku.ac.ug/images/ku-logo.png",
+    logoUrl: "/attached_assets/kampala-university-the-original-ku-logo-png_1764928321775.png",
     established: 2005,
     ranking: 22,
     specialties: ["Business", "Social Sciences", "Education", "Information Technology"]
@@ -339,7 +339,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5000000",
     websiteUrl: "https://www.busogauniversity.ac.ug",
     applicationPortalUrl: "https://apply.busogauniversity.ac.ug",
-    logoUrl: "https://busogauniversity.ac.ug/images/busoga-logo.png",
+    logoUrl: "/attached_assets/Busoga_university_1764928321774.jpg",
     established: 1999,
     ranking: 23,
     specialties: ["Business", "Education", "Agriculture", "Health Sciences"]
@@ -354,7 +354,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "6200000",
     websiteUrl: "https://www.iuea.ac.ug",
     applicationPortalUrl: "https://apply.iuea.ac.ug",
-    logoUrl: "https://iuea.ac.ug/images/iuea-logo.png",
+    logoUrl: "/attached_assets/international-university-of-east-africa-logo-png_1764928321773.png",
     established: 2010,
     ranking: 24,
     specialties: ["Information Technology", "Business", "Engineering", "Health Sciences"]
@@ -384,7 +384,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5700000",
     websiteUrl: "https://www.kisubi.ac.ug",
     applicationPortalUrl: "https://apply.kisubi.ac.ug",
-    logoUrl: "https://kisubi.ac.ug/images/kisubi-logo.png",
+    logoUrl: "/attached_assets/university-of-kisubi-logo-png_1764928321768.png",
     established: 2008,
     ranking: 26,
     specialties: ["Business", "Education", "Social Sciences", "Development Studies"]
@@ -399,7 +399,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5600000",
     websiteUrl: "https://www.teamuniversity.ac.ug",
     applicationPortalUrl: "https://apply.teamuniversity.ac.ug",
-    logoUrl: "https://teamuniversity.ac.ug/images/team-logo.png",
+    logoUrl: "/attached_assets/team-university-kampala-logo-png_1764928321769.png",
     established: 2009,
     ranking: 27,
     specialties: ["Business", "Information Technology", "Media Studies", "Social Sciences"]
@@ -414,7 +414,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5100000",
     websiteUrl: "https://www.upu.ac.ug",
     applicationPortalUrl: "https://apply.upu.ac.ug",
-    logoUrl: "https://upu.ac.ug/images/upu-logo.png",
+    logoUrl: "/attached_assets/uganda-pentecostal-university-logo-png_1764928321772.png",
     established: 2005,
     ranking: 28,
     specialties: ["Theology", "Education", "Business", "Social Work"]
@@ -429,7 +429,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "6000000",
     websiteUrl: "https://www.kayiwa.ac.ug",
     applicationPortalUrl: "https://apply.kayiwa.ac.ug",
-    logoUrl: "https://kayiwa.ac.ug/images/kayiwa-logo.png",
+    logoUrl: "/attached_assets/Kintu_1764928321771.jpg",
     established: 2010,
     ranking: 29,
     specialties: ["Business", "Education", "Health Sciences", "Information Technology"]
@@ -444,7 +444,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4500000",
     websiteUrl: "https://www.abu.ac.ug",
     applicationPortalUrl: "https://apply.abu.ac.ug",
-    logoUrl: "https://abu.ac.ug/images/abu-logo.png",
+    logoUrl: "/attached_assets/african-bible-university-uganda-logo-png_1764928321773.png",
     established: 2005,
     ranking: 30,
     specialties: ["Theology", "Biblical Studies", "Leadership", "Education"]
