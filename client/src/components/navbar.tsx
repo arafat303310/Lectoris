@@ -36,24 +36,29 @@ export default function Navbar() {
           </Link>
           
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden md:flex items-center space-x-4">
             <SearchAutocomplete className="w-48 lg:w-64" placeholder="Search..." />
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`font-medium transition-all duration-300 relative group ${
-                  location === item.href
-                    ? "text-primary"
-                    : "text-foreground hover:text-primary"
-                }`}
-                data-testid={`nav-link-${item.label.toLowerCase()}`}
-              >
-                {item.label}
-                <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
-                  location === item.href ? "w-full" : "w-0 group-hover:w-full"
-                }`} />
-              </Link>
+            <span className="text-muted-foreground/50">|</span>
+            {navItems.map((item, index) => (
+              <div key={item.href} className="flex items-center space-x-4">
+                <Link
+                  href={item.href}
+                  className={`font-medium transition-all duration-300 relative group ${
+                    location === item.href
+                      ? "text-primary"
+                      : "text-foreground hover:text-primary"
+                  }`}
+                  data-testid={`nav-link-${item.label.toLowerCase()}`}
+                >
+                  {item.label}
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    location === item.href ? "w-full" : "w-0 group-hover:w-full"
+                  }`} />
+                </Link>
+                {index < navItems.length - 1 && (
+                  <span className="text-muted-foreground/50">|</span>
+                )}
+              </div>
             ))}
           </div>
           
