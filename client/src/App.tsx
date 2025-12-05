@@ -12,6 +12,8 @@ import UniversityDetail from "@/pages/university-detail";
 import Scholarships from "@/pages/scholarships";
 import Services from "@/pages/services";
 import Pricing from "@/pages/pricing";
+import Newsletter from "@/pages/newsletter";
+import Blog from "@/pages/blog";
 import Dashboard from "@/pages/dashboard";
 import AdminDashboard from "@/pages/admin-dashboard";
 import Signup from "@/pages/signup";
@@ -31,6 +33,8 @@ function Router() {
           <Route path="/scholarships" component={Scholarships} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/newsletter" component={Newsletter} />
+          <Route path="/blog" component={Blog} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </>
@@ -42,6 +46,8 @@ function Router() {
           <Route path="/scholarships" component={Scholarships} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
+          <Route path="/newsletter" component={Newsletter} />
+          <Route path="/blog" component={Blog} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/admin" component={AdminDashboard} />
           <Route path="/signup" component={Signup} />
