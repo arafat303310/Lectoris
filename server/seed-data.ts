@@ -24,7 +24,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5000000",
     websiteUrl: "https://www.must.ac.ug",
     applicationPortalUrl: "https://applications.must.ac.ug",
-    logoUrl: "https://must.ac.ug/wp-content/uploads/2020/01/must-logo.png",
+    logoUrl: "/attached_assets/mbarara-university-of-science-technology-png_1764926452824.png",
     established: 1989,
     ranking: 2,
     specialties: ["Medicine", "Science & Technology", "Health Sciences", "Computing", "Development Studies"]
@@ -39,7 +39,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "3800000",
     websiteUrl: "https://www.kyu.ac.ug",
     applicationPortalUrl: "https://apply.kyu.ac.ug",
-    logoUrl: "https://www.kyu.ac.ug/images/kyu-logo.png",
+    logoUrl: "/attached_assets/kyambogo-university-logo-png_1764926452826.png",
     established: 2003,
     ranking: 3,
     specialties: ["Education", "Engineering", "Special Needs Education", "Vocational Studies"]
@@ -54,7 +54,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "6000000",
     websiteUrl: "https://www.ucu.ac.ug",
     applicationPortalUrl: "https://application.ucu.ac.ug",
-    logoUrl: "https://ucu.ac.ug/images/ucu-logo.png",
+    logoUrl: "/attached_assets/uganda-christian-university-logo-png_1764926452824.png",
     established: 1997,
     ranking: 4,
     specialties: ["Theology", "Business", "Law", "Journalism", "Education", "Social Sciences"]
@@ -69,7 +69,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4500000",
     websiteUrl: "https://www.gu.ac.ug",
     applicationPortalUrl: "https://admissions.gu.ac.ug",
-    logoUrl: "https://gu.ac.ug/wp-content/uploads/2020/03/gulu-university-logo.png",
+    logoUrl: "/attached_assets/Gulu-university_logo_1764926452822.png",
     established: 2002,
     ranking: 5,
     specialties: ["Agriculture", "Education", "Medicine", "Business", "Engineering"]
@@ -84,7 +84,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4200000",
     websiteUrl: "https://www.busitema.ac.ug",
     applicationPortalUrl: "https://apply.busitema.ac.ug",
-    logoUrl: "https://busitema.ac.ug/wp-content/uploads/2021/03/busitema-logo.png",
+    logoUrl: "/attached_assets/busitema-university-logo-png_1764926452822.png",
     established: 2007,
     ranking: 6,
     specialties: ["Engineering", "Agriculture", "Applied Sciences", "Health Sciences"]
@@ -99,7 +99,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5800000",
     websiteUrl: "https://www.umu.ac.ug",
     applicationPortalUrl: "https://apply.umu.ac.ug",
-    logoUrl: "https://umu.ac.ug/images/umu-logo.png",
+    logoUrl: "/attached_assets/uganda-martyrs-university-logo-png_1764926452819.png",
     established: 1993,
     ranking: 7,
     specialties: ["Business", "Social Sciences", "Education", "Ethics & Development Studies"]
@@ -114,7 +114,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "7000000",
     websiteUrl: "https://www.kiu.ac.ug",
     applicationPortalUrl: "https://applications.kiu.ac.ug",
-    logoUrl: "https://kiu.ac.ug/images/kiu-logo.png",
+    logoUrl: "/attached_assets/kampala-international-university-logo-png_1764926452819.png",
     established: 2001,
     ranking: 8,
     specialties: ["Medicine", "Engineering", "Business", "Law", "Pharmacy", "Nursing"]
@@ -129,7 +129,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5500000",
     websiteUrl: "https://www.iuiu.ac.ug",
     applicationPortalUrl: "https://apply.iuiu.ac.ug",
-    logoUrl: "https://iuiu.ac.ug/images/iuiu-logo.png",
+    logoUrl: "/attached_assets/iuiu-logo-png_1764926452823.png",
     established: 1988,
     ranking: 9,
     specialties: ["Islamic Studies", "Education", "Management", "Science & Technology"]
@@ -144,7 +144,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4300000",
     websiteUrl: "https://www.muni.ac.ug",
     applicationPortalUrl: "https://admissions.muni.ac.ug",
-    logoUrl: "https://muni.ac.ug/images/muni-logo.png",
+    logoUrl: "/attached_assets/muni-university-logo-png_1764926452817.png",
     established: 2013,
     ranking: 10,
     specialties: ["Medicine", "Applied Sciences", "Education", "Agriculture"]
@@ -159,7 +159,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5200000",
     websiteUrl: "https://www.ndejjeuniversity.ac.ug",
     applicationPortalUrl: "https://apply.ndejjeuniversity.ac.ug",
-    logoUrl: "https://ndejjeuniversity.ac.ug/images/ndejje-logo.png",
+    logoUrl: "/attached_assets/ndejje-university-logo-png_1764926452818.png",
     established: 1992,
     ranking: 11,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
@@ -174,7 +174,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5600000",
     websiteUrl: "https://www.nkumbauniversity.ac.ug",
     applicationPortalUrl: "https://application.nkumbauniversity.ac.ug",
-    logoUrl: "https://nkumbauniversity.ac.ug/images/nkumba-logo.png",
+    logoUrl: "/attached_assets/nkumba-university-logo-png_1764926452818.png",
     established: 1994,
     ranking: 12,
     specialties: ["Business", "Computing", "Social Sciences", "Mass Communication"]
@@ -189,7 +189,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4000000",
     websiteUrl: "https://www.kab.ac.ug",
     applicationPortalUrl: "https://apply.kab.ac.ug",
-    logoUrl: "https://kab.ac.ug/wp-content/uploads/2020/01/kabale-logo.png",
+    logoUrl: "/attached_assets/kabale-university-logo-png_1764926452817.png",
     established: 2015,
     ranking: 13,
     specialties: ["Agriculture", "Education", "Development Studies", "Business"]
@@ -204,7 +204,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4800000",
     websiteUrl: "https://www.mmu.ac.ug",
     applicationPortalUrl: "https://apply.mmu.ac.ug",
-    logoUrl: "https://mmu.ac.ug/images/mmu-logo.png",
+    logoUrl: "/attached_assets/mountains-of-the-moon-university-logo-png_1764926452816.png",
     established: 2005,
     ranking: 14,
     specialties: ["Health Sciences", "Business", "Education", "Development Studies"]
@@ -219,7 +219,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "7200000",
     websiteUrl: "https://www.cavendish.ac.ug",
     applicationPortalUrl: "https://apply.cavendish.ac.ug",
-    logoUrl: "https://cavendish.ac.ug/images/cavendish-logo.png",
+    logoUrl: "/attached_assets/cavendish-university-uganda-logo-png_1764926452815.png",
     established: 2008,
     ranking: 15,
     specialties: ["Business", "Law", "Psychology", "Information Technology"]
@@ -249,7 +249,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "4100000",
     websiteUrl: "https://www.lirauni.ac.ug",
     applicationPortalUrl: "https://apply.lirauni.ac.ug",
-    logoUrl: "https://lirauni.ac.ug/images/lira-logo.png",
+    logoUrl: "/attached_assets/Lira_university_logo_1764926452814.png",
     established: 2015,
     ranking: 17,
     specialties: ["Agriculture", "Education", "Applied Sciences"]
