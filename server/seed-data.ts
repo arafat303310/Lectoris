@@ -369,7 +369,7 @@ export const ugandaUniversitiesData = [
     tuitionMax: "5800000",
     websiteUrl: "https://www.slau.ac.ug",
     applicationPortalUrl: "https://apply.slau.ac.ug",
-    logoUrl: "https://slau.ac.ug/images/slau-logo.png",
+    logoUrl: "/attached_assets/St_lawrence_university_1764980297180.jpeg",
     established: 2007,
     ranking: 25,
     specialties: ["Business", "Education", "Social Sciences", "Information Technology"]
