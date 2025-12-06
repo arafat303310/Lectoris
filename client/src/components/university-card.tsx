@@ -51,13 +51,6 @@ const iconComponents = [GraduationCap, Building2, BookOpen, Landmark];
 export default function UniversityCard({ university, onSave, isSaved }: UniversityCardProps) {
   const [imageError, setImageError] = useState(false);
 
-  const formatTuition = () => {
-    if (university.tuitionMin && university.tuitionMax) {
-      return `UGX ${parseFloat(university.tuitionMin).toLocaleString()} - ${parseFloat(university.tuitionMax).toLocaleString()}`;
-    }
-    return "Contact for fees";
-  };
-
   const getTypeColor = () => {
     return university.type === "public" ? "bg-accent/10 text-accent" : "bg-primary/10 text-primary";
   };
@@ -169,28 +162,23 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
           </p>
         )}
         
-        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
-          <span className="text-xs sm:text-sm font-medium text-foreground" data-testid={`university-tuition-${university.id}`}>
-            {formatTuition()}
-          </span>
-          <div className="flex items-center space-x-2">
-            {onSave && (
-              <Button
-                variant="outline"
-                size="sm"
-                className="text-xs h-8"
-                onClick={() => onSave(university.id)}
-                data-testid={`save-university-${university.id}`}
-              >
-                {isSaved ? "Saved" : "Save"}
-              </Button>
-            )}
-            <Link href={`/universities/${university.id}`}>
-              <Button variant="ghost" size="sm" className="text-xs h-8" data-testid={`view-university-${university.id}`}>
-                View <ArrowRight className="ml-1 h-3 w-3" />
-              </Button>
-            </Link>
-          </div>
+        <div className="flex items-center space-x-2">
+          {onSave && (
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-xs h-8"
+              onClick={() => onSave(university.id)}
+              data-testid={`save-university-${university.id}`}
+            >
+              {isSaved ? "Saved" : "Save"}
+            </Button>
+          )}
+          <Link href={`/universities/${university.id}`}>
+            <Button variant="ghost" size="sm" className="text-xs h-8" data-testid={`view-university-${university.id}`}>
+              View <ArrowRight className="ml-1 h-3 w-3" />
+            </Button>
+          </Link>
         </div>
       </CardContent>
     </Card>
