@@ -32,12 +32,12 @@ const pricingTiers = [
     ctaVariant: "outline" as const,
   },
   {
-    name: "Standard",
-    description: "For students serious about their university applications",
-    price: "50,000",
+    name: "Pro",
+    description: "Complete support for your academic journey",
+    price: "150,000",
     currency: "UGX",
     period: "month",
-    icon: Zap,
+    icon: Crown,
     popular: true,
     features: [
       { name: "Browse all 30+ universities", included: true },
@@ -50,28 +50,6 @@ const pricingTiers = [
       { name: "Professional Resume Writing", included: true },
       { name: "Scholarship Essay Review", included: true },
       { name: "Document Verification Service", included: true },
-      { name: "Priority support", included: false },
-      { name: "1-on-1 consultation", included: false },
-    ],
-    cta: "Start Standard",
-    ctaVariant: "default" as const,
-  },
-  {
-    name: "Premium",
-    description: "Complete support for your academic journey",
-    price: "150,000",
-    currency: "UGX",
-    period: "month",
-    icon: Crown,
-    popular: false,
-    features: [
-      { name: "Browse all 30+ universities", included: true },
-      { name: "View scholarship listings", included: true },
-      { name: "Advanced search & filters", included: true },
-      { name: "Unlimited saved universities", included: true },
-      { name: "Unlimited saved scholarships", included: true },
-      { name: "Email notifications", included: true },
-      { name: "Application tracking", included: true },
       { name: "University Application Assistance", included: true },
       { name: "Career Counseling Sessions", included: true },
       { name: "Interview Preparation Coaching", included: true },
@@ -79,8 +57,8 @@ const pricingTiers = [
       { name: "Priority 24/7 support", included: true },
       { name: "Monthly 1-on-1 consultation", included: true },
     ],
-    cta: "Go Premium",
-    ctaVariant: "secondary" as const,
+    cta: "Go Pro",
+    ctaVariant: "default" as const,
   },
 ];
 
@@ -152,7 +130,7 @@ export default function Pricing() {
       {/* Pricing Tiers */}
       <section className="py-8 sm:py-12 lg:py-16">
         <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
             {pricingTiers.map((tier) => (
               <Card
                 key={tier.name}

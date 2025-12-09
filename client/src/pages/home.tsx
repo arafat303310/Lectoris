@@ -38,7 +38,7 @@ export default function Home() {
               Welcome back, {user?.firstName || "Student"}!
             </h1>
             <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 animate-fade-in-up delay-200" data-testid="welcome-subtitle">
-              Continue your journey towards <span className="text-green-400 font-semibold">higher education</span> in Uganda
+              Continue your journey towards <span className="text-emerald-400 font-semibold">higher education</span> in Uganda
             </p>
 
             {/* Quick Action Cards */}
