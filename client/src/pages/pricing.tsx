@@ -62,33 +62,6 @@ const pricingTiers = [
   },
 ];
 
-const additionalServices = [
-  {
-    name: "University Application Package",
-    description: "Complete assistance for applying to your dream university",
-    price: "150,000",
-    features: ["Application form assistance", "Document preparation", "Essay review", "Deadline tracking"],
-  },
-  {
-    name: "Scholarship Application Package",
-    description: "Expert guidance to maximize your scholarship chances",
-    price: "200,000",
-    features: ["Scholarship matching", "Application writing", "Interview prep", "Follow-up support"],
-  },
-  {
-    name: "Professional Resume/CV",
-    description: "Stand out with a professionally crafted resume",
-    price: "75,000",
-    features: ["Custom design", "ATS optimization", "Cover letter", "LinkedIn review"],
-  },
-  {
-    name: "Statement of Purpose",
-    description: "Compelling SOP that tells your unique story",
-    price: "120,000",
-    features: ["Personalized narrative", "Multiple revisions", "Expert editing", "University-specific versions"],
-  },
-];
-
 export default function Pricing() {
   const [, setLocation] = useLocation();
 
@@ -96,7 +69,7 @@ export default function Pricing() {
     document.title = "Pricing - ApplyHub Uganda | University Application Services";
     const metaDescription = document.querySelector('meta[name="description"]');
     if (metaDescription) {
-      metaDescription.setAttribute("content", "Choose from Free, Standard, or Premium plans to get expert help with your Ugandan university applications. Start free and upgrade as you grow.");
+      metaDescription.setAttribute("content", "Choose from Free or Pro plans to get expert help with your Ugandan university applications. Start free and upgrade as you grow.");
     }
   }, []);
 
