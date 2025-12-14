@@ -75,7 +75,7 @@ export const scholarships = pgTable("scholarships", {
   type: varchar("type", { length: 50 }).notNull(), // "government", "international", "private"
   deadline: timestamp("deadline").notNull(),
   applicationUrl: text("application_url"),
-  logoUrl: text("logo_url"),
+  icon: varchar("icon", { length: 50 }).notNull(), // lucide-react icon name
   isActive: boolean("is_active").default(true),
   createdAt: timestamp("created_at").defaultNow(),
   updatedAt: timestamp("updated_at").defaultNow(),

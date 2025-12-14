@@ -2,7 +2,8 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Scholarship } from "@shared/schema";
-import { Trophy, DollarSign, Calendar, User, ExternalLink } from "lucide-react";
+import * as Icons from "lucide-react";
+import { DollarSign, Calendar, User, ExternalLink } from "lucide-react";
 import { format } from "date-fns";
 
 interface ScholarshipCardProps {
@@ -30,6 +31,30 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
     }
   };
 
+  const getScholarshipIcon = () => {
+    const iconMap: Record<string, any> = {
+      Briefcase: Icons.Briefcase,
+      CreditCard: Icons.CreditCard,
+      Flag: Icons.Flag,
+      BookOpen: Icons.BookOpen,
+      Users: Icons.Users,
+      Globe: Icons.Globe,
+      Award: Icons.Award,
+      Star: Icons.Star,
+      Zap: Icons.Zap,
+      Banknote: Icons.Banknote,
+      Building2: Icons.Building2,
+      Stethoscope: Icons.Stethoscope,
+      HandCoins: Icons.HandCoins,
+      FlaskConical: Icons.FlaskConical,
+      Circle: Icons.Circle,
+      BookMarked: Icons.BookMarked,
+    };
+
+    const IconComponent = iconMap[scholarship.icon];
+    return IconComponent ? <IconComponent className="text-accent h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-pulse" /> : null;
+  };
+
   const isDeadlineSoon = () => {
     const deadline = new Date(scholarship.deadline);
     const now = new Date();
@@ -48,7 +73,7 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-3 sm:mb-4">
           <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <Trophy className="text-accent h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-pulse" />
+            {getScholarshipIcon()}
           </div>
           <Badge className={`${getTypeColor()} text-xs`} data-testid={`scholarship-type-${scholarship.id}`}>
             {scholarship.type}
