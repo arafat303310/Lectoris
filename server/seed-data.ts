@@ -477,7 +477,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-02-15"),
     applicationUrl: "https://mastercardfdn.org/",
-    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
+    logoUrl: "/attached_assets/masterpass-logo-png_seeklogo-452118_1765717403562.png",
     isActive: true
   },
   {
@@ -589,7 +589,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-06-30"),
     applicationUrl: "https://www.mtn.co.ug/foundation/",
-    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
+    logoUrl: "/attached_assets/mtn-logo-png_seeklogo-503277_1765717414653.png",
     isActive: true
   },
   {
@@ -715,7 +715,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-06-15"),
     applicationUrl: "https://www.rotary.org/",
-    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
+    logoUrl: "/attached_assets/rotary-international-logo-png_seeklogo-389860_1765717403561.png",
     isActive: true
   },
   {
