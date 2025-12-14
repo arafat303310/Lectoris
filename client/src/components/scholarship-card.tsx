@@ -68,7 +68,7 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
               <Award className="text-accent h-8 w-8 sm:h-12 sm:w-12" />
             </div>
           )}
-          <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
+          <h3 className="text-base sm:text-lg font-bold text-foreground" data-testid={`scholarship-title-${scholarship.id}`}>
             {scholarship.title}
           </h3>
         </div>
