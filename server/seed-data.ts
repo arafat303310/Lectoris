@@ -617,7 +617,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-04-30"),
     applicationUrl: "https://www.kcca.go.ug/",
-    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
+    logoUrl: "/attached_assets/logo_1765716493991.png",
     isActive: true
   },
   {
