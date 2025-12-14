@@ -491,7 +491,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-03-31"),
     applicationUrl: "https://www.education.go.ug/",
-    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
+    logoUrl: "/attached_assets/ministry_of_education_1765714833216.png",
     isActive: true
   },
   {
@@ -505,7 +505,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-04-15"),
     applicationUrl: "https://www.mak.ac.ug/",
-    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
+    logoUrl: "/attached_assets/ministry_of_education_1765714833216.png",
     isActive: true
   },
   {
@@ -603,7 +603,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-03-15"),
     applicationUrl: "https://www.stanbicbank.co.ug/",
-    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
+    logoUrl: "/attached_assets/stanbik_bank_1765714833217.png",
     isActive: true
   },
   {
@@ -687,7 +687,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-03-31"),
     applicationUrl: "https://www.campuschina.org/",
-    logoUrl: "/attached_assets/20170313105520_7012_1765711491535.jpg",
+    logoUrl: "/attached_assets/chinise_logo_1765714833215.jpg",
     isActive: true
   },
   {
