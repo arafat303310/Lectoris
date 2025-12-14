@@ -631,7 +631,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-04-30"),
     applicationUrl: "https://www.australiaawardsafrica.org/",
-    logoUrl: "/attached_assets/logo-light_1765711491534.png",
+    logoUrl: "/attached_assets/Australia_awards_logo_1765714762892.png",
     isActive: true
   },
   {
