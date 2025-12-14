@@ -673,7 +673,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-08-31"),
     applicationUrl: "https://www.nssfug.org/",
-    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
+    logoUrl: "/attached_assets/nssf-logo_1765714592372.png",
     isActive: true
   },
   {
