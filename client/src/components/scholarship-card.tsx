@@ -72,17 +72,19 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
       
       <CardContent className="p-4 sm:p-6">
         <div className="flex items-start justify-between mb-3 sm:mb-4">
-          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/10 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            {getScholarshipIcon()}
-          </div>
           <Badge className={`${getTypeColor()} text-xs`} data-testid={`scholarship-type-${scholarship.id}`}>
             {scholarship.type}
           </Badge>
         </div>
         
-        <h3 className="text-base sm:text-xl font-bold text-foreground mb-2 sm:mb-3 line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
-          {scholarship.title}
-        </h3>
+        <div className="flex items-center gap-2 mb-2 sm:mb-3">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
+            {getScholarshipIcon()}
+          </div>
+          <h3 className="text-base sm:text-xl font-bold text-foreground line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
+            {scholarship.title}
+          </h3>
+        </div>
         
         <p className="text-xs sm:text-sm text-muted-foreground mb-3 sm:mb-4 line-clamp-2 sm:line-clamp-3" data-testid={`scholarship-description-${scholarship.id}`}>
           {scholarship.description}
