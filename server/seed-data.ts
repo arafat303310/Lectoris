@@ -645,7 +645,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-04-15"),
     applicationUrl: "https://www.ug.emb-japan.go.jp/",
-    logoUrl: "/attached_assets/20170313105520_7012_1765711491535.jpg",
+    logoUrl: "/attached_assets/japanese_1765715385410.gif",
     isActive: true
   },
   {
