@@ -463,6 +463,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2024-11-05"),
     applicationUrl: "https://www.chevening.org/",
+    logoUrl: "/attached_assets/logo_1765711491539.png",
     isActive: true
   },
   {
@@ -476,6 +477,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-02-15"),
     applicationUrl: "https://mastercardfdn.org/",
+    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
     isActive: true
   },
   {
@@ -489,6 +491,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-03-31"),
     applicationUrl: "https://www.education.go.ug/",
+    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
     isActive: true
   },
   {
@@ -502,6 +505,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-04-15"),
     applicationUrl: "https://www.mak.ac.ug/",
+    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
     isActive: true
   },
   {
@@ -515,6 +519,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-01-15"),
     applicationUrl: "https://www.africanleadershipacademy.org/",
+    logoUrl: "/attached_assets/ALA-logo-RGB-Horizontal-1-colour-06_1765711491538.png",
     isActive: true
   },
   {
@@ -528,6 +533,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-07-31"),
     applicationUrl: "https://www.daad.de/",
+    logoUrl: "/attached_assets/logo_(1)_1765711491534.png",
     isActive: true
   },
   {
@@ -541,6 +547,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-04-30"),
     applicationUrl: "https://ug.usembassy.gov/education-culture/fulbright/",
+    logoUrl: "/attached_assets/use-uganda-seal1_1765711491535.png",
     isActive: true
   },
   {
@@ -554,6 +561,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-02-28"),
     applicationUrl: "https://cscuk.fcdo.gov.uk/",
+    logoUrl: "/attached_assets/Cscuk-Full-Logo-01_1765711491537.png",
     isActive: true
   },
   {
@@ -567,6 +575,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-05-30"),
     applicationUrl: "https://www.ucu.ac.ug/",
+    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
     isActive: true
   },
   {
@@ -580,6 +589,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-06-30"),
     applicationUrl: "https://www.mtn.co.ug/foundation/",
+    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
     isActive: true
   },
   {
@@ -593,6 +603,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-03-15"),
     applicationUrl: "https://www.stanbicbank.co.ug/",
+    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
     isActive: true
   },
   {
@@ -606,6 +617,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-04-30"),
     applicationUrl: "https://www.kcca.go.ug/",
+    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
     isActive: true
   },
   {
@@ -619,6 +631,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-04-30"),
     applicationUrl: "https://www.australiaawardsafrica.org/",
+    logoUrl: "/attached_assets/logo-light_1765711491534.png",
     isActive: true
   },
   {
@@ -632,6 +645,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-04-15"),
     applicationUrl: "https://www.ug.emb-japan.go.jp/",
+    logoUrl: "/attached_assets/20170313105520_7012_1765711491535.jpg",
     isActive: true
   },
   {
@@ -645,6 +659,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-07-31"),
     applicationUrl: "https://www.kiu.ac.ug/",
+    logoUrl: "/attached_assets/logo_(2)_1765711491532.png",
     isActive: true
   },
   {
@@ -658,6 +673,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-08-31"),
     applicationUrl: "https://www.nssfug.org/",
+    logoUrl: "/attached_assets/NewLogo2_1765711491536.png",
     isActive: true
   },
   {
@@ -671,6 +687,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-03-31"),
     applicationUrl: "https://www.campuschina.org/",
+    logoUrl: "/attached_assets/20170313105520_7012_1765711491535.jpg",
     isActive: true
   },
   {
@@ -684,6 +701,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-05-15"),
     applicationUrl: "https://www.aims.ac.za/",
+    logoUrl: "/attached_assets/AIMS-SOUTH-AFRICA-logo-WEB-rgb-1536x309_1765711491533.png",
     isActive: true
   },
   {
@@ -697,6 +715,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-06-15"),
     applicationUrl: "https://www.rotary.org/",
+    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
     isActive: true
   },
   {
@@ -710,6 +729,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-05-31"),
     applicationUrl: "https://www.unatu.org/",
+    logoUrl: "/attached_assets/LOGO-UNATU-01-240x78_1765711491532.png",
     isActive: true
   }
 ];
