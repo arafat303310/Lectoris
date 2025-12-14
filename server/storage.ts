@@ -101,6 +101,7 @@ export class MemoryStorage implements IStorage {
         type: sch.type,
         deadline: sch.deadline,
         applicationUrl: sch.applicationUrl || null,
+        logoUrl: sch.logoUrl || null,
         isActive: sch.isActive,
         createdAt: new Date(),
         updatedAt: new Date(),
