@@ -575,7 +575,7 @@ export const ugandaScholarshipsData = [
     type: "private" as const,
     deadline: new Date("2025-05-30"),
     applicationUrl: "https://www.ucu.ac.ug/",
-    logoUrl: "/attached_assets/3D-logo_1765711491531.png",
+    logoUrl: "/attached_assets/uganda-christian-university-logo-png_1765717556930.png",
     isActive: true
   },
   {
