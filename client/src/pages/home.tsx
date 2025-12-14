@@ -12,6 +12,12 @@ import { University as UniversityType, Scholarship } from "@shared/schema";
 
 export default function Home() {
   const { user } = useAuth();
+  const isNewSignup = localStorage.getItem("justSignedUp") === "true";
+
+  // Clear the flag after showing welcome message
+  if (isNewSignup) {
+    localStorage.removeItem("justSignedUp");
+  }
 
   const { data: universities = [] } = useQuery<UniversityType[]>({
     queryKey: ["/api/universities"],
@@ -35,7 +41,7 @@ export default function Home() {
         <div className="container mx-auto px-4 lg:px-6 relative z-10">
           <div className="max-w-4xl">
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 animate-fade-in-down" data-testid="welcome-title">
-              Welcome back, {user?.firstName || "Student"}!
+              {isNewSignup ? "Welcome to ApplyHub" : `Welcome back, ${user?.firstName || "Student"}!`}
             </h1>
             <p className="text-base sm:text-lg text-white/90 mb-6 sm:mb-8 animate-fade-in-up delay-200" data-testid="welcome-subtitle">
               Continue your journey towards <span className="text-emerald-500 font-semibold">higher education</span> in Uganda

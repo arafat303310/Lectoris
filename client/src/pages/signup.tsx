@@ -57,8 +57,9 @@ export default function Signup() {
         title: "Account Created!",
         description: "Welcome to ApplyHub Uganda. You can now explore universities and scholarships.",
       });
+      localStorage.setItem("justSignedUp", "true");
       queryClient.invalidateQueries({ queryKey: ["/api/auth/user"] });
-      setLocation("/dashboard");
+      setLocation("/");
     },
     onError: (error: any) => {
       toast({
