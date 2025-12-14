@@ -2,9 +2,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Scholarship } from "@shared/schema";
-import * as Icons from "lucide-react";
-import { DollarSign, Calendar, User, ExternalLink } from "lucide-react";
+import { DollarSign, Calendar, User, ExternalLink, Award } from "lucide-react";
 import { format } from "date-fns";
+import { useState } from "react";
 
 interface ScholarshipCardProps {
   scholarship: Scholarship;
@@ -13,6 +13,8 @@ interface ScholarshipCardProps {
 }
 
 export default function ScholarshipCard({ scholarship, onSave, isSaved }: ScholarshipCardProps) {
+  const [imageError, setImageError] = useState(false);
+
   const formatAmount = () => {
     if (scholarship.amount) {
       return `${scholarship.currency} ${parseFloat(scholarship.amount).toLocaleString()}`;
@@ -29,30 +31,6 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
       default:
         return "bg-secondary/10 text-secondary";
     }
-  };
-
-  const getScholarshipIcon = () => {
-    const iconMap: Record<string, any> = {
-      Briefcase: Icons.Briefcase,
-      CreditCard: Icons.CreditCard,
-      Flag: Icons.Flag,
-      BookOpen: Icons.BookOpen,
-      Users: Icons.Users,
-      Globe: Icons.Globe,
-      Award: Icons.Award,
-      Star: Icons.Star,
-      Zap: Icons.Zap,
-      Banknote: Icons.Banknote,
-      Building2: Icons.Building2,
-      Stethoscope: Icons.Stethoscope,
-      HandCoins: Icons.HandCoins,
-      FlaskConical: Icons.FlaskConical,
-      Circle: Icons.Circle,
-      BookMarked: Icons.BookMarked,
-    };
-
-    const IconComponent = iconMap[scholarship.icon];
-    return IconComponent ? <IconComponent className="text-accent h-5 w-5 sm:h-6 sm:w-6 group-hover:animate-pulse" /> : null;
   };
 
   const isDeadlineSoon = () => {
@@ -77,11 +55,20 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
           </Badge>
         </div>
         
-        <div className="flex items-center gap-2 mb-2 sm:mb-3">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform duration-300">
-            {getScholarshipIcon()}
-          </div>
-          <h3 className="text-base sm:text-xl font-bold text-foreground line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
+        <div className="flex items-start gap-3 mb-3 sm:mb-4">
+          {scholarship.logoUrl && !imageError ? (
+            <img 
+              src={scholarship.logoUrl} 
+              alt={`${scholarship.title} logo`}
+              className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg shadow-sm bg-white p-1.5 sm:p-2 flex-shrink-0 group-hover:scale-105 transition-transform duration-500"
+              onError={() => setImageError(true)}
+            />
+          ) : (
+            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+              <Award className="text-accent h-6 w-6 sm:h-8 sm:w-8" />
+            </div>
+          )}
+          <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
             {scholarship.title}
           </h3>
         </div>
