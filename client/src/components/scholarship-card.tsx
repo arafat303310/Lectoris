@@ -60,12 +60,12 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
             <img 
               src={scholarship.logoUrl} 
               alt={`${scholarship.title} logo`}
-              className="w-12 h-12 sm:w-16 sm:h-16 object-contain rounded-lg shadow-sm bg-white p-1.5 sm:p-2 flex-shrink-0 group-hover:scale-105 transition-transform duration-500"
+              className="w-20 h-20 sm:w-28 sm:h-28 object-contain rounded-lg shadow-sm bg-white p-2 sm:p-3 flex-shrink-0 group-hover:scale-105 transition-transform duration-500"
               onError={() => setImageError(true)}
             />
           ) : (
-            <div className="w-12 h-12 sm:w-16 sm:h-16 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
-              <Award className="text-accent h-6 w-6 sm:h-8 sm:w-8" />
+            <div className="w-20 h-20 sm:w-28 sm:h-28 bg-accent/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:scale-105 transition-transform duration-300">
+              <Award className="text-accent h-8 w-8 sm:h-12 sm:w-12" />
             </div>
           )}
           <h3 className="text-base sm:text-lg font-bold text-foreground line-clamp-2" data-testid={`scholarship-title-${scholarship.id}`}>
