@@ -519,7 +519,7 @@ export const ugandaScholarshipsData = [
     type: "international" as const,
     deadline: new Date("2025-01-15"),
     applicationUrl: "https://www.africanleadershipacademy.org/",
-    logoUrl: "/attached_assets/ALA-logo-RGB-Horizontal-1-colour-06_1765711491538.png",
+    logoUrl: "/attached_assets/ALA-logo-RGB-Horizontal-1-colour-06_1765715004926.png",
     isActive: true
   },
   {
