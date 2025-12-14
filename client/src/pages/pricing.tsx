@@ -34,7 +34,7 @@ const pricingTiers = [
   {
     name: "Pro",
     description: "Complete support for your academic journey",
-    price: "150,000",
+    price: "50,000",
     currency: "UGX",
     period: "month",
     icon: Crown,

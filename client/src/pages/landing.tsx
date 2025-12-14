@@ -61,36 +61,11 @@ export default function Landing() {
           <div className="text-center max-w-4xl mx-auto">
             <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight animate-fade-in-down" data-testid="hero-title">
               Your Gateway to <br className="hidden sm:block" />
-              <span className="text-secondary animate-pulse-slow">Higher Education</span> in Uganda
+              <span className="font-bold" style={{ color: '#d4af37' }}>Higher Education</span> in Uganda
             </h1>
             <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed max-w-2xl mx-auto px-2 animate-fade-in-up delay-200" data-testid="hero-description">
               Discover universities, find scholarships, and get expert guidance for your academic journey. From Makerere to Mbarara, we help you find your perfect match.
             </p>
-            
-            {/* Search Bar */}
-            <div className="bg-white rounded-xl p-2 max-w-2xl mx-auto mb-6 sm:mb-8 shadow-2xl animate-scale-in delay-300 glass" data-testid="search-container">
-              <div className="flex flex-col sm:flex-row gap-2">
-                <div className="flex-1 relative">
-                  <Search className="absolute left-3 sm:left-4 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 sm:h-5 sm:w-5" />
-                  <Input
-                    type="text"
-                    placeholder="Search universities, courses..."
-                    className="w-full pl-10 sm:pl-12 pr-3 sm:pr-4 py-2.5 sm:py-3 rounded-lg border-0 focus:ring-2 focus:ring-primary text-foreground text-sm sm:text-base"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    onKeyPress={handleKeyPress}
-                    data-testid="search-input"
-                  />
-                </div>
-                <Button
-                  onClick={handleSearch}
-                  className="bg-primary text-primary-foreground px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg font-semibold hover:bg-primary/90 transition-colors text-sm sm:text-base"
-                  data-testid="search-button"
-                >
-                  Search
-                </Button>
-              </div>
-            </div>
             
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up delay-500" data-testid="quick-stats">
@@ -176,12 +151,8 @@ export default function Landing() {
                       {service.description}
                     </p>
                     <div className="mb-4">
-                      <span className={`inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium ${
-                        service.tier === "premium" 
-                          ? "bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300" 
-                          : "bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
-                      }`}>
-                        {service.tier === "premium" ? "Premium Plan" : "Standard Plan"}
+                      <span className="inline-block px-3 py-1 rounded-full text-xs sm:text-sm font-medium bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300">
+                        Pro Plan
                       </span>
                     </div>
                     <Link href="/services">

@@ -58,7 +58,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="system" storageKey="applyhub-theme">
+    <ThemeProvider defaultTheme="light" storageKey="applyhub-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />

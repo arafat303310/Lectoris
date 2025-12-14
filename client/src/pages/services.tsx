@@ -131,10 +131,10 @@ export default function Services() {
                     
                     <div className="mb-6">
                       <Badge 
-                        className={service.tier === "premium" ? "bg-purple-600 hover:bg-purple-700" : "bg-blue-600 hover:bg-blue-700"} 
+                        className="bg-blue-600 hover:bg-blue-700" 
                         data-testid={`service-tier-${service.id}`}
                       >
-                        {service.tier === "premium" ? "Premium Plan" : "Standard Plan"}
+                        Pro Plan
                       </Badge>
                     </div>
                     
