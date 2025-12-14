@@ -505,7 +505,7 @@ export const ugandaScholarshipsData = [
     type: "government" as const,
     deadline: new Date("2025-04-15"),
     applicationUrl: "https://www.mak.ac.ug/",
-    logoUrl: "/attached_assets/ministry_of_education_1765714833216.png",
+    logoUrl: "/attached_assets/logo_(2)_1765716738558.png",
     isActive: true
   },
   {
