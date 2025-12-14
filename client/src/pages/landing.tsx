@@ -67,6 +67,24 @@ export default function Landing() {
               Discover universities, find scholarships, and get expert guidance for your academic journey. From Makerere to Mbarara, we help you find your perfect match.
             </p>
             
+            {/* Get Started Window */}
+            <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto mb-8 sm:mb-12 border border-white/20 animate-fade-in-up delay-300" data-testid="get-started-window">
+              <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">Ready to get started?</h3>
+              <p className="text-white/80 mb-6 text-sm sm:text-base">Join thousands of students exploring their educational future with ApplyHub.</p>
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                <Link href="/signup">
+                  <Button className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-signup">
+                    Create Free Account
+                  </Button>
+                </Link>
+                <Link href="/universities">
+                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-explore">
+                    Explore Universities
+                  </Button>
+                </Link>
+              </div>
+            </div>
+            
             {/* Quick Stats */}
             <div className="grid grid-cols-3 gap-4 sm:gap-6 max-w-2xl mx-auto animate-fade-in-up delay-500" data-testid="quick-stats">
               <div className="text-center glass rounded-lg p-4 hover:scale-105 transition-transform duration-300">
