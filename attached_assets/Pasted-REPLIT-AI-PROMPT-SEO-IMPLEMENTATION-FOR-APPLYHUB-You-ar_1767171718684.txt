@@ -1,0 +1,131 @@
+REPLIT AI PROMPT (SEO IMPLEMENTATION FOR APPLYHUB)
+You are acting as a senior full-stack engineer and technical SEO specialist.
+Your task is to implement complete on-page, technical, and structural SEO improvements for a production web application called ApplyHub (https://applyhub.app).
+Objective:
+Make ApplyHub rank well on Google for university applications and scholarships targeting Ugandan students, using best-practice SEO, mobile-first indexing, and structured data.
+1. GLOBAL SEO REQUIREMENTS (ALL PAGES)
+1.1 HTML Head Optimization
+For every page, ensure:
+Unique <title> tag (≤ 60 characters)
+Unique <meta name="description"> (140–160 characters)
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="canonical"> pointing to the clean page URL
+Titles and descriptions must be dynamic, generated per page.
+2. PAGE-SPECIFIC SEO IMPLEMENTATION
+2.1 Homepage (/)
+Primary keyword: “University applications & scholarships for Ugandan students”
+Title format:
+ApplyHub | University Applications & Scholarships for Ugandan Students
+H1:
+Apply to Universities and Scholarships in Uganda with Ease
+2.2 Universities Listing (/universities)
+Title:
+Universities in Uganda | Public & Private Institutions – ApplyHub
+H1:
+Universities in Uganda
+Each university must have its own SEO-indexable page:
+Copy code
+
+/universities/{slug}
+Each university page must include:
+H1: {University Name} – Application Guide
+Sections:
+Overview
+Courses Offered
+Application Requirements
+Tuition & Fees
+How to Apply via ApplyHub
+2.3 Scholarships (/scholarships)
+Title:
+Scholarships for Ugandan Students | Local & International – ApplyHub
+H1:
+Scholarships for Ugandan Students
+Each scholarship must have its own page:
+Copy code
+
+/scholarships/{slug}
+Each scholarship page must include:
+Eligibility
+Deadline
+Benefits
+Application Steps
+Internal links to relevant universities and the Apply Now page
+2.4 Apply Now (/apply)
+Title:
+University Application Assistance | ApplyHub
+H1:
+Get Help Applying to Universities and Scholarships
+2.5 Blog (/blog)
+SEO-friendly slugs:
+Copy code
+
+/blog/how-to-apply-to-university-in-uganda
+Each article:
+One H1
+Multiple H2/H3
+Internal links to universities, scholarships, and Apply Now
+Article schema markup
+3. TECHNICAL SEO
+3.1 Sitemap
+Auto-generate /sitemap.xml
+Include:
+Homepage
+All university pages
+All scholarship pages
+Blog posts
+Update dynamically when new content is added
+3.2 Robots
+Create /robots.txt:
+Copy code
+
+User-agent: *
+Allow: /
+Sitemap: https://applyhub.app/sitemap.xml
+3.3 Performance
+Enable image lazy loading
+Compress images
+Avoid blocking JS
+Ensure pages load in under 3 seconds on mobile
+4. STRUCTURED DATA (SCHEMA MARKUP)
+Implement JSON-LD schema for:
+4.1 Organization
+Copy code
+
+Organization
+Name: ApplyHub
+URL: https://applyhub.app
+Type: EducationalOrganization
+AreaServed: Uganda
+4.2 Universities
+Use CollegeOrUniversity schema.
+4.3 Scholarships
+Use EducationalOccupationalProgram or Scholarship where applicable.
+4.4 Blog Articles
+Use Article schema.
+5. INTERNAL LINKING
+Automatically link:
+University pages ↔ relevant scholarships
+Blog posts → universities, scholarships, Apply Now
+Scholarships → Apply Now
+6. MOBILE-FIRST DESIGN
+Fully responsive layout
+Touch-friendly buttons
+Proper font scaling
+No horizontal scrolling
+7. SEO-SAFE URL RULES
+Use lowercase
+Use hyphens
+No query strings for indexable pages
+8. ANALYTICS & INDEXING
+Add Google Analytics (GA4)
+Add Google Search Console verification meta tag
+9. FINAL CHECK
+Before finishing:
+Validate HTML
+Confirm only one H1 per page
+Confirm all pages are crawlable
+Confirm sitemap loads correctly
+Deliverable:
+Fully implemented SEO improvements in the codebase, ready for Google indexing, optimized specifically for Ugandan students searching for university applications and scholarships.
+Do not explain SEO theory.
+Implement directly in code following modern SEO best practices.
