@@ -18,6 +18,7 @@ import Dashboard from "@/pages/dashboard";
 import AdminDashboard from "@/pages/admin-dashboard";
 import Signup from "@/pages/signup";
 import Login from "@/pages/login";
+import Checkout from "@/pages/checkout";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -35,6 +36,7 @@ function Router() {
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/blog" component={Blog} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </>
@@ -50,6 +52,7 @@ function Router() {
           <Route path="/blog" component={Blog} />
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/admin" component={AdminDashboard} />
+          <Route path="/checkout" component={Checkout} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </>

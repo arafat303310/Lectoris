@@ -738,43 +738,127 @@ export const servicesData = [
   {
     name: "University Application Assistance",
     description: "Complete support for university applications including document preparation, personal statement writing, and application submission guidance.",
-    tier: "premium" as const,
+    category: "application",
+    basePrice: "250000",
+    deliveryDays: 14,
     isActive: true
   },
   {
-    name: "Professional Resume Writing",
+    name: "Scholarship Application Service",
+    description: "End-to-end support for scholarship applications including essay writing and document preparation.",
+    category: "application",
+    basePrice: "200000",
+    deliveryDays: 10,
+    isActive: true
+  },
+  {
+    name: "Professional Resume/CV Writing",
     description: "Expert CV/resume writing service tailored for academic and professional applications.",
-    tier: "standard" as const,
+    category: "document",
+    basePrice: "75000",
+    deliveryDays: 5,
     isActive: true
   },
   {
-    name: "Scholarship Essay Review",
-    description: "Professional review and editing of scholarship application essays to improve your chances of success.",
-    tier: "standard" as const,
+    name: "Statement of Purpose (SOP)",
+    description: "Professional SOP/motivation letter writing for university and scholarship applications.",
+    category: "document",
+    basePrice: "100000",
+    deliveryDays: 7,
+    isActive: true
+  },
+  {
+    name: "Document Review & Editing",
+    description: "Professional review and editing of application documents, essays, and academic papers.",
+    category: "document",
+    basePrice: "50000",
+    deliveryDays: 3,
     isActive: true
   },
   {
     name: "Career Counseling Session",
     description: "One-on-one career guidance session to help you choose the right course and university.",
-    tier: "premium" as const,
-    isActive: true
-  },
-  {
-    name: "Document Verification Service",
-    description: "Assistance with verification and authentication of academic documents.",
-    tier: "standard" as const,
+    category: "consultation",
+    basePrice: "100000",
+    deliveryDays: 1,
     isActive: true
   },
   {
     name: "Interview Preparation",
     description: "Mock interview sessions and coaching to prepare for university or scholarship interviews.",
-    tier: "premium" as const,
+    category: "consultation",
+    basePrice: "80000",
+    deliveryDays: 2,
     isActive: true
   },
   {
     name: "Appeal Letter Writing",
     description: "Expert assistance in crafting compelling appeal letters for university admissions or scholarship reconsideration.",
-    tier: "premium" as const,
+    category: "document",
+    basePrice: "120000",
+    deliveryDays: 5,
     isActive: true
+  }
+];
+
+export const subscriptionPlansData = [
+  {
+    name: "Free",
+    tierKey: "free",
+    description: "Basic access to browse universities and scholarships",
+    monthlyPrice: "0",
+    annualPrice: "0",
+    features: [
+      "Browse universities & scholarships",
+      "Basic search filters",
+      "5 AI chat messages/month",
+      "Ads enabled"
+    ],
+    serviceDiscount: 0,
+    aiChatLimit: 5,
+    documentReviews: 0,
+    adsEnabled: true,
+    sortOrder: 0
+  },
+  {
+    name: "Student Pro",
+    tierKey: "student_pro",
+    description: "Enhanced features for serious applicants",
+    monthlyPrice: "50000",
+    annualPrice: "500000",
+    features: [
+      "Everything in Free",
+      "No advertisements",
+      "Advanced search filters",
+      "Application tracking",
+      "50 AI chat messages/month",
+      "10% discount on services",
+      "Priority email support"
+    ],
+    serviceDiscount: 10,
+    aiChatLimit: 50,
+    documentReviews: 0,
+    adsEnabled: false,
+    sortOrder: 1
+  },
+  {
+    name: "Premium Applicant",
+    tierKey: "premium",
+    description: "All-inclusive package with human support",
+    monthlyPrice: "150000",
+    annualPrice: "1500000",
+    features: [
+      "Everything in Student Pro",
+      "Unlimited AI chat",
+      "2 free document reviews/month",
+      "20% discount on services",
+      "Priority phone support",
+      "Dedicated success advisor"
+    ],
+    serviceDiscount: 20,
+    aiChatLimit: -1,
+    documentReviews: 2,
+    adsEnabled: false,
+    sortOrder: 2
   }
 ];

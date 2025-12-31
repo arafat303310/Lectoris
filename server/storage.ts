@@ -11,9 +11,19 @@ import {
   type InsertServiceRequest,
   type SavedUniversity,
   type SavedScholarship,
+  type SubscriptionPlan,
+  type InsertSubscriptionPlan,
+  type UserSubscription,
+  type InsertUserSubscription,
+  type Order,
+  type InsertOrder,
+  type Payment,
+  type InsertPayment,
+  type Discount,
+  type InsertDiscount,
 } from "@shared/schema";
 import { nanoid } from "nanoid";
-import { ugandaUniversitiesData, ugandaScholarshipsData, servicesData } from "./seed-data";
+import { ugandaUniversitiesData, ugandaScholarshipsData, servicesData, subscriptionPlansData } from "./seed-data";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -47,6 +57,26 @@ export interface IStorage {
   saveScholarship(userId: string, scholarshipId: string): Promise<SavedScholarship>;
   unsaveScholarship(userId: string, scholarshipId: string): Promise<void>;
   getUserSavedScholarships(userId: string): Promise<Scholarship[]>;
+  getSubscriptionPlans(): Promise<SubscriptionPlan[]>;
+  getSubscriptionPlan(id: string): Promise<SubscriptionPlan | undefined>;
+  getSubscriptionPlanByTier(tierKey: string): Promise<SubscriptionPlan | undefined>;
+  createSubscriptionPlan(plan: InsertSubscriptionPlan): Promise<SubscriptionPlan>;
+  updateSubscriptionPlan(id: string, plan: Partial<InsertSubscriptionPlan>): Promise<SubscriptionPlan>;
+  getUserSubscription(userId: string): Promise<UserSubscription | undefined>;
+  createUserSubscription(sub: InsertUserSubscription): Promise<UserSubscription>;
+  updateUserSubscription(id: string, sub: Partial<InsertUserSubscription>): Promise<UserSubscription>;
+  getOrders(userId?: string): Promise<Order[]>;
+  getOrder(id: string): Promise<Order | undefined>;
+  createOrder(order: InsertOrder): Promise<Order>;
+  updateOrder(id: string, order: Partial<InsertOrder>): Promise<Order>;
+  getPayments(userId?: string): Promise<Payment[]>;
+  getPayment(id: string): Promise<Payment | undefined>;
+  createPayment(payment: InsertPayment): Promise<Payment>;
+  updatePayment(id: string, payment: Partial<InsertPayment>): Promise<Payment>;
+  getDiscounts(): Promise<Discount[]>;
+  getDiscountByCode(code: string): Promise<Discount | undefined>;
+  createDiscount(discount: InsertDiscount): Promise<Discount>;
+  updateDiscount(id: string, discount: Partial<InsertDiscount>): Promise<Discount>;
 }
 
 export class MemoryStorage implements IStorage {
@@ -57,6 +87,11 @@ export class MemoryStorage implements IStorage {
   private serviceRequests: Map<string, ServiceRequest> = new Map();
   private savedUniversities: Map<string, SavedUniversity> = new Map();
   private savedScholarships: Map<string, SavedScholarship> = new Map();
+  private subscriptionPlans: Map<string, SubscriptionPlan> = new Map();
+  private userSubscriptions: Map<string, UserSubscription> = new Map();
+  private orders: Map<string, Order> = new Map();
+  private payments: Map<string, Payment> = new Map();
+  private discounts: Map<string, Discount> = new Map();
 
   constructor() {
     this.initializeData();
@@ -115,12 +150,39 @@ export class MemoryStorage implements IStorage {
         id,
         name: svc.name,
         description: svc.description,
-        tier: svc.tier,
+        category: svc.category,
+        basePrice: svc.basePrice,
+        currency: "UGX",
+        deliveryDays: svc.deliveryDays,
         isActive: svc.isActive,
+        sortOrder: 0,
         createdAt: new Date(),
         updatedAt: new Date(),
       };
       this.services.set(id, service);
+    });
+
+    subscriptionPlansData.forEach((plan) => {
+      const id = nanoid();
+      const subscriptionPlan: SubscriptionPlan = {
+        id,
+        name: plan.name,
+        tierKey: plan.tierKey,
+        description: plan.description,
+        monthlyPrice: plan.monthlyPrice,
+        annualPrice: plan.annualPrice,
+        currency: "UGX",
+        features: plan.features,
+        serviceDiscount: plan.serviceDiscount,
+        aiChatLimit: plan.aiChatLimit,
+        documentReviews: plan.documentReviews,
+        adsEnabled: plan.adsEnabled,
+        isActive: true,
+        sortOrder: plan.sortOrder,
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+      this.subscriptionPlans.set(id, subscriptionPlan);
     });
   }
 
@@ -310,6 +372,7 @@ export class MemoryStorage implements IStorage {
       type: scholarship.type,
       deadline: scholarship.deadline,
       applicationUrl: scholarship.applicationUrl ?? null,
+      logoUrl: scholarship.logoUrl ?? null,
       isActive: scholarship.isActive ?? true,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -348,8 +411,12 @@ export class MemoryStorage implements IStorage {
       id,
       name: service.name,
       description: service.description,
-      tier: service.tier,
+      category: service.category,
+      basePrice: service.basePrice,
+      currency: service.currency ?? "UGX",
+      deliveryDays: service.deliveryDays ?? 7,
       isActive: service.isActive ?? true,
+      sortOrder: service.sortOrder ?? 0,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
@@ -462,6 +529,231 @@ export class MemoryStorage implements IStorage {
     return saved
       .map((s) => this.scholarships.get(s.scholarshipId))
       .filter((s): s is Scholarship => s !== undefined);
+  }
+
+  async getSubscriptionPlans(): Promise<SubscriptionPlan[]> {
+    return Array.from(this.subscriptionPlans.values())
+      .filter((p) => p.isActive)
+      .sort((a, b) => (a.sortOrder ?? 0) - (b.sortOrder ?? 0));
+  }
+
+  async getSubscriptionPlan(id: string): Promise<SubscriptionPlan | undefined> {
+    return this.subscriptionPlans.get(id);
+  }
+
+  async getSubscriptionPlanByTier(tierKey: string): Promise<SubscriptionPlan | undefined> {
+    return Array.from(this.subscriptionPlans.values()).find((p) => p.tierKey === tierKey);
+  }
+
+  async createSubscriptionPlan(plan: InsertSubscriptionPlan): Promise<SubscriptionPlan> {
+    const id = nanoid();
+    const newPlan: SubscriptionPlan = {
+      id,
+      name: plan.name,
+      tierKey: plan.tierKey,
+      description: plan.description ?? null,
+      monthlyPrice: plan.monthlyPrice,
+      annualPrice: plan.annualPrice ?? null,
+      currency: plan.currency ?? "UGX",
+      features: (plan.features as string[]) ?? [],
+      serviceDiscount: plan.serviceDiscount ?? 0,
+      aiChatLimit: plan.aiChatLimit ?? 5,
+      documentReviews: plan.documentReviews ?? 0,
+      adsEnabled: plan.adsEnabled ?? true,
+      isActive: plan.isActive ?? true,
+      sortOrder: plan.sortOrder ?? 0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.subscriptionPlans.set(id, newPlan);
+    return newPlan;
+  }
+
+  async updateSubscriptionPlan(id: string, plan: Partial<InsertSubscriptionPlan>): Promise<SubscriptionPlan> {
+    const existing = this.subscriptionPlans.get(id);
+    if (!existing) throw new Error("Subscription plan not found");
+    const updated: SubscriptionPlan = { 
+      ...existing, 
+      ...plan,
+      features: plan.features ? (plan.features as string[]) : existing.features,
+      updatedAt: new Date() 
+    };
+    this.subscriptionPlans.set(id, updated);
+    return updated;
+  }
+
+  async getUserSubscription(userId: string): Promise<UserSubscription | undefined> {
+    return Array.from(this.userSubscriptions.values()).find(
+      (s) => s.userId === userId && s.status === "active"
+    );
+  }
+
+  async createUserSubscription(sub: InsertUserSubscription): Promise<UserSubscription> {
+    const id = nanoid();
+    const newSub: UserSubscription = {
+      id,
+      userId: sub.userId,
+      planId: sub.planId,
+      status: sub.status ?? "active",
+      billingCycle: sub.billingCycle ?? "monthly",
+      startDate: sub.startDate ?? new Date(),
+      endDate: sub.endDate ?? null,
+      nextBillingDate: sub.nextBillingDate ?? null,
+      paymentMethod: sub.paymentMethod ?? null,
+      externalSubscriptionId: sub.externalSubscriptionId ?? null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.userSubscriptions.set(id, newSub);
+    return newSub;
+  }
+
+  async updateUserSubscription(id: string, sub: Partial<InsertUserSubscription>): Promise<UserSubscription> {
+    const existing = this.userSubscriptions.get(id);
+    if (!existing) throw new Error("User subscription not found");
+    const updated: UserSubscription = { ...existing, ...sub, updatedAt: new Date() };
+    this.userSubscriptions.set(id, updated);
+    return updated;
+  }
+
+  async getOrders(userId?: string): Promise<Order[]> {
+    let results = Array.from(this.orders.values());
+    if (userId) {
+      results = results.filter((o) => o.userId === userId);
+    }
+    return results.sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA;
+    });
+  }
+
+  async getOrder(id: string): Promise<Order | undefined> {
+    return this.orders.get(id);
+  }
+
+  async createOrder(order: InsertOrder): Promise<Order> {
+    const id = nanoid();
+    const newOrder: Order = {
+      id,
+      userId: order.userId,
+      serviceId: order.serviceId ?? null,
+      subscriptionPlanId: order.subscriptionPlanId ?? null,
+      orderType: order.orderType,
+      status: order.status ?? "pending",
+      basePrice: order.basePrice,
+      discountAmount: order.discountAmount ?? "0",
+      finalPrice: order.finalPrice,
+      currency: order.currency ?? "UGX",
+      discountCode: order.discountCode ?? null,
+      notes: order.notes ?? null,
+      adminNotes: order.adminNotes ?? null,
+      assignedAdminId: order.assignedAdminId ?? null,
+      dueDate: order.dueDate ?? null,
+      completedAt: order.completedAt ?? null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.orders.set(id, newOrder);
+    return newOrder;
+  }
+
+  async updateOrder(id: string, order: Partial<InsertOrder>): Promise<Order> {
+    const existing = this.orders.get(id);
+    if (!existing) throw new Error("Order not found");
+    const updated: Order = { ...existing, ...order, updatedAt: new Date() };
+    this.orders.set(id, updated);
+    return updated;
+  }
+
+  async getPayments(userId?: string): Promise<Payment[]> {
+    let results = Array.from(this.payments.values());
+    if (userId) {
+      results = results.filter((p) => p.userId === userId);
+    }
+    return results.sort((a, b) => {
+      const dateA = a.createdAt ? new Date(a.createdAt).getTime() : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt).getTime() : 0;
+      return dateB - dateA;
+    });
+  }
+
+  async getPayment(id: string): Promise<Payment | undefined> {
+    return this.payments.get(id);
+  }
+
+  async createPayment(payment: InsertPayment): Promise<Payment> {
+    const id = nanoid();
+    const newPayment: Payment = {
+      id,
+      orderId: payment.orderId ?? null,
+      userSubscriptionId: payment.userSubscriptionId ?? null,
+      userId: payment.userId,
+      amount: payment.amount,
+      currency: payment.currency ?? "UGX",
+      paymentMethod: payment.paymentMethod,
+      provider: payment.provider ?? null,
+      status: payment.status ?? "pending",
+      externalTransactionId: payment.externalTransactionId ?? null,
+      phoneNumber: payment.phoneNumber ?? null,
+      metadata: payment.metadata ?? null,
+      failureReason: payment.failureReason ?? null,
+      paidAt: payment.paidAt ?? null,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.payments.set(id, newPayment);
+    return newPayment;
+  }
+
+  async updatePayment(id: string, payment: Partial<InsertPayment>): Promise<Payment> {
+    const existing = this.payments.get(id);
+    if (!existing) throw new Error("Payment not found");
+    const updated: Payment = { ...existing, ...payment, updatedAt: new Date() };
+    this.payments.set(id, updated);
+    return updated;
+  }
+
+  async getDiscounts(): Promise<Discount[]> {
+    return Array.from(this.discounts.values()).filter((d) => d.isActive);
+  }
+
+  async getDiscountByCode(code: string): Promise<Discount | undefined> {
+    return Array.from(this.discounts.values()).find(
+      (d) => d.code.toLowerCase() === code.toLowerCase() && d.isActive
+    );
+  }
+
+  async createDiscount(discount: InsertDiscount): Promise<Discount> {
+    const id = nanoid();
+    const newDiscount: Discount = {
+      id,
+      code: discount.code,
+      description: discount.description ?? null,
+      discountType: discount.discountType,
+      discountValue: discount.discountValue,
+      currency: discount.currency ?? "UGX",
+      appliesTo: discount.appliesTo ?? "all",
+      eligibleTiers: discount.eligibleTiers ?? null,
+      minOrderAmount: discount.minOrderAmount ?? null,
+      maxUses: discount.maxUses ?? null,
+      usedCount: discount.usedCount ?? 0,
+      validFrom: discount.validFrom ?? new Date(),
+      validUntil: discount.validUntil ?? null,
+      isActive: discount.isActive ?? true,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    };
+    this.discounts.set(id, newDiscount);
+    return newDiscount;
+  }
+
+  async updateDiscount(id: string, discount: Partial<InsertDiscount>): Promise<Discount> {
+    const existing = this.discounts.get(id);
+    if (!existing) throw new Error("Discount not found");
+    const updated: Discount = { ...existing, ...discount, updatedAt: new Date() };
+    this.discounts.set(id, updated);
+    return updated;
   }
 }
 

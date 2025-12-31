@@ -1,89 +1,69 @@
 import { Link, useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Check, X, Sparkles, Zap, Crown } from "lucide-react";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Check, X, Sparkles, Zap, Crown, FileText, GraduationCap, MessageSquare, Clock } from "lucide-react";
+import type { SubscriptionPlan, Service } from "@shared/schema";
 
-const pricingTiers = [
-  {
-    name: "Free",
-    description: "Perfect for getting started with your university search",
-    price: "0",
-    currency: "UGX",
-    period: "forever",
-    icon: Sparkles,
-    popular: false,
-    features: [
-      { name: "Browse all 30+ universities", included: true },
-      { name: "View scholarship listings", included: true },
-      { name: "Basic search & filters", included: true },
-      { name: "Save up to 5 universities", included: true },
-      { name: "Save up to 3 scholarships", included: true },
-      { name: "Email notifications", included: false },
-      { name: "Application tracking", included: false },
-      { name: "Document review", included: false },
-      { name: "Priority support", included: false },
-      { name: "1-on-1 consultation", included: false },
-    ],
-    cta: "Get Started Free",
-    ctaVariant: "outline" as const,
-  },
-  {
-    name: "Pro",
-    description: "Complete support for your academic journey",
-    price: "50,000",
-    currency: "UGX",
-    period: "month",
-    icon: Crown,
-    popular: true,
-    features: [
-      { name: "Browse all 30+ universities", included: true },
-      { name: "View scholarship listings", included: true },
-      { name: "Advanced search & filters", included: true },
-      { name: "Unlimited saved universities", included: true },
-      { name: "Unlimited saved scholarships", included: true },
-      { name: "Email notifications", included: true },
-      { name: "Application tracking", included: true },
-      { name: "Professional Resume Writing", included: true },
-      { name: "Scholarship Essay Review", included: true },
-      { name: "Document Verification Service", included: true },
-      { name: "University Application Assistance", included: true },
-      { name: "Career Counseling Sessions", included: true },
-      { name: "Interview Preparation Coaching", included: true },
-      { name: "Appeal Letter Writing", included: true },
-      { name: "Priority 24/7 support", included: true },
-      { name: "Monthly 1-on-1 consultation", included: true },
-    ],
-    cta: "Go Pro",
-    ctaVariant: "default" as const,
-  },
-];
+function formatPrice(price: string | null): string {
+  if (!price || price === "0") return "Free";
+  const num = parseInt(price);
+  if (num >= 1000000) {
+    return `UGX ${(num / 1000000).toFixed(1)}M`;
+  }
+  return `UGX ${num.toLocaleString()}`;
+}
+
+const tierIcons: Record<string, typeof Sparkles> = {
+  free: Sparkles,
+  student_pro: Zap,
+  premium: Crown,
+};
+
+const categoryIcons: Record<string, typeof FileText> = {
+  application: GraduationCap,
+  document: FileText,
+  consultation: MessageSquare,
+};
 
 export default function Pricing() {
   const [, setLocation] = useLocation();
 
-  const handleGetStarted = (tier: string) => {
-    if (tier === "Free") {
-      setLocation("/universities");
+  const { data: plans, isLoading: plansLoading } = useQuery<SubscriptionPlan[]>({
+    queryKey: ["/api/subscription-plans"],
+  });
+
+  const { data: services, isLoading: servicesLoading } = useQuery<Service[]>({
+    queryKey: ["/api/services"],
+  });
+
+  const handleSubscribe = (plan: SubscriptionPlan) => {
+    if (plan.tierKey === "free") {
+      setLocation("/signup");
     } else {
-      window.location.href = "/api/login";
+      setLocation(`/checkout?type=subscription&planId=${plan.id}`);
     }
+  };
+
+  const handleBuyService = (service: Service) => {
+    setLocation(`/checkout?type=service&serviceId=${service.id}`);
   };
 
   return (
     <div className="min-h-screen bg-background" data-testid="pricing-page">
       <SEO 
         title="Pricing | University Application Services"
-        description="Choose from Free or Pro plans to get expert help with your Ugandan university applications. Professional services starting at UGX 50,000/month."
+        description="Choose from Free, Student Pro, or Premium plans. Get expert help with your Ugandan university applications. Pay-per-service options also available."
         canonical="/pricing"
         keywords="university application services pricing, ApplyHub pricing, application assistance Uganda"
       />
       <Navbar />
 
-      {/* Hero Section */}
       <section className="py-10 sm:py-16 lg:py-20 bg-gradient-to-b from-primary/5 to-background">
         <div className="container mx-auto px-4 lg:px-6 text-center">
           <Badge variant="secondary" className="mb-3 sm:mb-4 text-xs sm:text-sm" data-testid="pricing-badge">
@@ -93,131 +73,285 @@ export default function Pricing() {
             Choose Your Path to Success
           </h1>
           <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto px-2" data-testid="pricing-description">
-            Start free and upgrade as you grow. All plans include access to Uganda's most comprehensive university database.
+            Start free and upgrade anytime. Subscribe for full access or pay per service.
           </p>
         </div>
       </section>
 
-      {/* Pricing Tiers */}
       <section className="py-8 sm:py-12 lg:py-16">
         <div className="container mx-auto px-4 lg:px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8 max-w-4xl mx-auto">
-            {pricingTiers.map((tier) => (
-              <Card
-                key={tier.name}
-                className={`relative flex flex-col ${
-                  tier.popular
-                    ? "border-primary shadow-lg md:scale-105 z-10"
-                    : "border-border"
-                }`}
-                data-testid={`pricing-tier-${tier.name.toLowerCase()}`}
-              >
-                {tier.popular && (
-                  <Badge
-                    className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs"
-                    data-testid="popular-badge"
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center mb-8">
+            Subscription Plans
+          </h2>
+          
+          {plansLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {[1, 2, 3].map((i) => (
+                <Card key={i} className="flex flex-col">
+                  <CardHeader className="text-center">
+                    <Skeleton className="h-12 w-12 rounded-full mx-auto mb-4" />
+                    <Skeleton className="h-6 w-32 mx-auto mb-2" />
+                    <Skeleton className="h-4 w-48 mx-auto" />
+                  </CardHeader>
+                  <CardContent className="flex-1">
+                    <Skeleton className="h-10 w-32 mx-auto mb-6" />
+                    <div className="space-y-3">
+                      {[1, 2, 3, 4, 5].map((j) => (
+                        <Skeleton key={j} className="h-4 w-full" />
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {plans?.map((plan, index) => {
+                const Icon = tierIcons[plan.tierKey] || Sparkles;
+                const isPopular = plan.tierKey === "student_pro";
+                
+                return (
+                  <Card
+                    key={plan.id}
+                    className={`relative flex flex-col ${
+                      isPopular ? "border-primary shadow-lg md:scale-105 z-10" : "border-border"
+                    }`}
+                    data-testid={`pricing-tier-${plan.tierKey}`}
                   >
-                    Most Popular
-                  </Badge>
-                )}
-                <CardHeader className="text-center pb-2 sm:pb-4 pt-4 sm:pt-6">
-                  <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2 sm:mb-4">
-                    <tier.icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl" data-testid={`tier-name-${tier.name.toLowerCase()}`}>
-                    {tier.name}
-                  </CardTitle>
-                  <CardDescription className="text-xs sm:text-sm">{tier.description}</CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 px-4 sm:px-6">
-                  <div className="text-center mb-4 sm:mb-6">
-                    <span className="text-2xl sm:text-4xl font-bold text-foreground" data-testid={`tier-price-${tier.name.toLowerCase()}`}>
-                      {tier.price === "0" ? "Free" : `${tier.currency} ${tier.price}`}
-                    </span>
-                    {tier.price !== "0" && (
-                      <span className="text-sm sm:text-base text-muted-foreground">/{tier.period}</span>
+                    {isPopular && (
+                      <Badge className="absolute -top-3 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs">
+                        Most Popular
+                      </Badge>
                     )}
-                  </div>
-                  <ul className="space-y-2 sm:space-y-3">
-                    {tier.features.map((feature, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center gap-2 sm:gap-3"
-                        data-testid={`feature-${tier.name.toLowerCase()}-${index}`}
-                      >
-                        {feature.included ? (
-                          <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0" />
-                        ) : (
-                          <X className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground/50 flex-shrink-0" />
-                        )}
-                        <span
-                          className={`text-xs sm:text-sm ${
-                            feature.included
-                              ? "text-foreground"
-                              : "text-muted-foreground/50"
-                          }`}
-                        >
-                          {feature.name}
+                    <CardHeader className="text-center pb-2 sm:pb-4 pt-4 sm:pt-6">
+                      <div className="mx-auto w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 rounded-full flex items-center justify-center mb-2 sm:mb-4">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                      </div>
+                      <CardTitle className="text-xl sm:text-2xl">{plan.name}</CardTitle>
+                      <CardDescription className="text-xs sm:text-sm">{plan.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 px-4 sm:px-6">
+                      <div className="text-center mb-4 sm:mb-6">
+                        <span className="text-2xl sm:text-4xl font-bold text-foreground">
+                          {formatPrice(plan.monthlyPrice)}
                         </span>
-                      </li>
-                    ))}
-                  </ul>
-                </CardContent>
-                <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
-                  <Button
-                    variant={tier.ctaVariant}
-                    className="w-full text-sm sm:text-base"
-                    onClick={() => handleGetStarted(tier.name)}
-                    data-testid={`cta-${tier.name.toLowerCase()}`}
+                        {plan.monthlyPrice !== "0" && (
+                          <span className="text-sm sm:text-base text-muted-foreground">/month</span>
+                        )}
+                      </div>
+                      {plan.annualPrice && plan.monthlyPrice !== "0" && (
+                        <p className="text-center text-xs text-muted-foreground mb-4">
+                          or {formatPrice(plan.annualPrice)}/year (save 17%)
+                        </p>
+                      )}
+                      <ul className="space-y-2 sm:space-y-3">
+                        {(plan.features as string[])?.map((feature, i) => (
+                          <li key={i} className="flex items-start gap-2 sm:gap-3">
+                            <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0 mt-0.5" />
+                            <span className="text-xs sm:text-sm text-foreground">{feature}</span>
+                          </li>
+                        ))}
+                        {plan.serviceDiscount && plan.serviceDiscount > 0 && (
+                          <li className="flex items-start gap-2 sm:gap-3">
+                            <Check className="h-4 w-4 sm:h-5 sm:w-5 text-accent flex-shrink-0 mt-0.5" />
+                            <span className="text-xs sm:text-sm text-foreground font-medium">
+                              {plan.serviceDiscount}% off all services
+                            </span>
+                          </li>
+                        )}
+                      </ul>
+                    </CardContent>
+                    <CardFooter className="px-4 sm:px-6 pb-4 sm:pb-6">
+                      <Button
+                        variant={isPopular ? "default" : "outline"}
+                        className="w-full text-sm sm:text-base"
+                        onClick={() => handleSubscribe(plan)}
+                        data-testid={`cta-${plan.tierKey}`}
+                      >
+                        {plan.tierKey === "free" ? "Get Started Free" : `Subscribe to ${plan.name}`}
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
+        </div>
+      </section>
+
+      <section className="py-8 sm:py-12 lg:py-16 bg-muted/30">
+        <div className="container mx-auto px-4 lg:px-6">
+          <div className="text-center mb-8">
+            <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground mb-2">
+              Pay-Per-Service Options
+            </h2>
+            <p className="text-muted-foreground">
+              Need help with a specific task? Purchase individual services without a subscription.
+            </p>
+          </div>
+          
+          {servicesLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {[1, 2, 3, 4].map((i) => (
+                <Card key={i}>
+                  <CardHeader>
+                    <Skeleton className="h-8 w-8 rounded mb-2" />
+                    <Skeleton className="h-5 w-full" />
+                    <Skeleton className="h-4 w-3/4" />
+                  </CardHeader>
+                  <CardContent>
+                    <Skeleton className="h-6 w-24 mb-2" />
+                    <Skeleton className="h-4 w-20" />
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {services?.map((service) => {
+                const Icon = categoryIcons[service.category] || FileText;
+                
+                return (
+                  <Card 
+                    key={service.id} 
+                    className="flex flex-col hover:shadow-md transition-shadow"
+                    data-testid={`service-${service.id}`}
                   >
-                    {tier.cta}
-                  </Button>
-                </CardFooter>
-              </Card>
-            ))}
+                    <CardHeader className="pb-2">
+                      <div className="w-10 h-10 bg-accent/10 rounded-lg flex items-center justify-center mb-2">
+                        <Icon className="h-5 w-5 text-accent" />
+                      </div>
+                      <CardTitle className="text-base">{service.name}</CardTitle>
+                      <CardDescription className="text-xs line-clamp-2">
+                        {service.description}
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="flex-1 pb-2">
+                      <p className="text-lg font-bold text-foreground">
+                        {formatPrice(service.basePrice)}
+                      </p>
+                      <div className="flex items-center gap-1 text-xs text-muted-foreground mt-1">
+                        <Clock className="h-3 w-3" />
+                        <span>Delivery: {service.deliveryDays} days</span>
+                      </div>
+                    </CardContent>
+                    <CardFooter className="pt-2">
+                      <Button 
+                        variant="outline" 
+                        size="sm" 
+                        className="w-full"
+                        onClick={() => handleBuyService(service)}
+                        data-testid={`buy-service-${service.id}`}
+                      >
+                        Purchase
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                );
+              })}
+            </div>
+          )}
+          
+          <p className="text-center text-sm text-muted-foreground mt-6">
+            Pro and Premium subscribers get discounts on all services!
+          </p>
+        </div>
+      </section>
+
+      <section className="py-8 sm:py-12 lg:py-16">
+        <div className="container mx-auto px-4 lg:px-6">
+          <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground text-center mb-8">
+            Compare Plans
+          </h2>
+          
+          <div className="overflow-x-auto">
+            <table className="w-full max-w-4xl mx-auto text-sm" data-testid="comparison-table">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left py-3 px-4 font-medium text-muted-foreground">Feature</th>
+                  <th className="text-center py-3 px-4 font-medium">Free</th>
+                  <th className="text-center py-3 px-4 font-medium text-primary">Student Pro</th>
+                  <th className="text-center py-3 px-4 font-medium">Premium</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y">
+                <tr>
+                  <td className="py-3 px-4">Browse Universities & Scholarships</td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">AI Chat Messages/Month</td>
+                  <td className="text-center py-3 px-4">5</td>
+                  <td className="text-center py-3 px-4">50</td>
+                  <td className="text-center py-3 px-4">Unlimited</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Advertisements</td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-muted-foreground mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><X className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><X className="h-5 w-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Advanced Filters & Tracking</td>
+                  <td className="text-center py-3 px-4"><X className="h-5 w-5 text-muted-foreground/50 mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Service Discount</td>
+                  <td className="text-center py-3 px-4">-</td>
+                  <td className="text-center py-3 px-4 font-medium text-accent">10%</td>
+                  <td className="text-center py-3 px-4 font-medium text-accent">20%</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Free Document Reviews/Month</td>
+                  <td className="text-center py-3 px-4">0</td>
+                  <td className="text-center py-3 px-4">0</td>
+                  <td className="text-center py-3 px-4 font-medium text-accent">2</td>
+                </tr>
+                <tr>
+                  <td className="py-3 px-4">Priority Support</td>
+                  <td className="text-center py-3 px-4"><X className="h-5 w-5 text-muted-foreground/50 mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </section>
 
-
-      {/* FAQ Section */}
-      <section className="py-8 sm:py-12 lg:py-16">
+      <section className="py-8 sm:py-12 lg:py-16 bg-muted/30">
         <div className="container mx-auto px-4 lg:px-6">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6 sm:mb-8" data-testid="faq-title">
+            <h2 className="text-2xl sm:text-3xl font-bold text-foreground text-center mb-6 sm:mb-8">
               Frequently Asked Questions
             </h2>
             <div className="space-y-3 sm:space-y-6">
-              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border" data-testid="faq-1">
-                <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">
-                  Can I switch plans anytime?
-                </h3>
-                <p className="text-muted-foreground text-xs sm:text-base">
-                  Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate any differences.
-                </p>
-              </div>
-              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border" data-testid="faq-2">
+              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border">
                 <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">
                   What payment methods do you accept?
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-base">
-                  We accept MTN Mobile Money, Airtel Money, Visa, Mastercard, and bank transfers. All payments are processed securely.
+                  We accept MTN Mobile Money, Airtel Money, Visa, and Mastercard. All payments are processed securely.
                 </p>
               </div>
-              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border" data-testid="faq-3">
+              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border">
                 <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">
-                  Is there a student discount?
+                  Can I cancel my subscription anytime?
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-base">
-                  Yes! Students with a valid student ID can get 20% off all paid plans. Contact our support team to apply the discount.
+                  Yes! You can cancel at any time. You'll continue to have access until the end of your billing period.
                 </p>
               </div>
-              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border" data-testid="faq-4">
+              <div className="bg-card rounded-lg p-4 sm:p-6 border border-border">
                 <h3 className="font-semibold text-foreground mb-1 sm:mb-2 text-sm sm:text-base">
-                  What's included in the free plan?
+                  Do subscriber discounts apply to all services?
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-base">
-                  The free plan gives you full access to browse universities and scholarships, basic search features, and the ability to save up to 5 universities and 3 scholarships.
+                  Yes! Student Pro subscribers get 10% off and Premium subscribers get 20% off all pay-per-service purchases.
                 </p>
               </div>
             </div>
@@ -225,31 +359,25 @@ export default function Pricing() {
         </div>
       </section>
 
-      {/* CTA Section */}
       <section className="py-8 sm:py-12 lg:py-16 bg-primary">
         <div className="container mx-auto px-4 lg:px-6 text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground mb-3 sm:mb-4" data-testid="cta-title">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-primary-foreground mb-3 sm:mb-4">
             Ready to Start Your Journey?
           </h2>
           <p className="text-base sm:text-xl text-primary-foreground/90 mb-6 sm:mb-8 max-w-2xl mx-auto px-2">
             Join thousands of Ugandan students who have found their perfect university match with ApplyHub.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-            <Button
-              size="lg"
-              variant="secondary"
-              className="text-sm sm:text-base"
-              onClick={() => handleGetStarted("Free")}
-              data-testid="cta-signup"
-            >
-              Start Free Today
-            </Button>
+            <Link href="/signup">
+              <Button size="lg" variant="secondary" className="w-full sm:w-auto">
+                Start Free Today
+              </Button>
+            </Link>
             <Link href="/universities">
               <Button
                 size="lg"
                 variant="outline"
-                className="w-full sm:w-auto text-sm sm:text-base bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
-                data-testid="cta-browse"
+                className="w-full sm:w-auto bg-transparent border-primary-foreground text-primary-foreground hover:bg-primary-foreground/10"
               >
                 Browse Universities
               </Button>

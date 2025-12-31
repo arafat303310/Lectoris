@@ -535,6 +535,368 @@ Guidelines:
     }
   });
 
+  // ============ SUBSCRIPTION & PRICING ROUTES ============
+
+  // Get subscription plans
+  app.get("/api/subscription-plans", async (req, res) => {
+    try {
+      const plans = await storage.getSubscriptionPlans();
+      res.json(plans);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+      res.status(500).json({ message: "Failed to fetch plans" });
+    }
+  });
+
+  // Get user's active subscription
+  app.get("/api/user/subscription", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const subscription = await storage.getUserSubscription(userId);
+      if (subscription) {
+        const plan = await storage.getSubscriptionPlan(subscription.planId);
+        res.json({ subscription, plan });
+      } else {
+        const freePlan = await storage.getSubscriptionPlanByTier("free");
+        res.json({ subscription: null, plan: freePlan });
+      }
+    } catch (error) {
+      console.error("Error fetching subscription:", error);
+      res.status(500).json({ message: "Failed to fetch subscription" });
+    }
+  });
+
+  // ============ ORDER ROUTES ============
+
+  // Get user's orders
+  app.get("/api/orders", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      const orders = user?.isAdmin 
+        ? await storage.getOrders() 
+        : await storage.getOrders(userId);
+      res.json(orders);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+      res.status(500).json({ message: "Failed to fetch orders" });
+    }
+  });
+
+  // Create order (service or subscription purchase)
+  const createOrderSchema = z.object({
+    orderType: z.enum(["service", "subscription"]),
+    serviceId: z.string().optional(),
+    subscriptionPlanId: z.string().optional(),
+    billingCycle: z.enum(["monthly", "annual"]).optional(),
+    discountCode: z.string().optional(),
+    notes: z.string().optional(),
+  });
+
+  app.post("/api/orders", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const validatedData = createOrderSchema.parse(req.body);
+      
+      let basePrice = "0";
+      let finalPrice = "0";
+      let discountAmount = "0";
+      
+      if (validatedData.orderType === "service" && validatedData.serviceId) {
+        const service = await storage.getService(validatedData.serviceId);
+        if (!service) return res.status(404).json({ message: "Service not found" });
+        basePrice = service.basePrice;
+        
+        // Apply subscription discount if user has active subscription
+        const userSub = await storage.getUserSubscription(userId);
+        if (userSub) {
+          const plan = await storage.getSubscriptionPlan(userSub.planId);
+          if (plan?.serviceDiscount) {
+            discountAmount = String(Math.round(parseFloat(basePrice) * plan.serviceDiscount / 100));
+          }
+        }
+      } else if (validatedData.orderType === "subscription" && validatedData.subscriptionPlanId) {
+        const plan = await storage.getSubscriptionPlan(validatedData.subscriptionPlanId);
+        if (!plan) return res.status(404).json({ message: "Plan not found" });
+        basePrice = validatedData.billingCycle === "annual" && plan.annualPrice 
+          ? plan.annualPrice 
+          : plan.monthlyPrice;
+      }
+      
+      // Apply discount code
+      if (validatedData.discountCode) {
+        const discount = await storage.getDiscountByCode(validatedData.discountCode);
+        if (discount) {
+          if (discount.discountType === "percentage") {
+            discountAmount = String(Math.round(parseFloat(basePrice) * parseFloat(discount.discountValue) / 100));
+          } else {
+            discountAmount = discount.discountValue;
+          }
+        }
+      }
+      
+      finalPrice = String(Math.max(0, parseFloat(basePrice) - parseFloat(discountAmount)));
+      
+      const order = await storage.createOrder({
+        userId,
+        orderType: validatedData.orderType,
+        serviceId: validatedData.serviceId,
+        subscriptionPlanId: validatedData.subscriptionPlanId,
+        basePrice,
+        discountAmount,
+        finalPrice,
+        discountCode: validatedData.discountCode,
+        notes: validatedData.notes,
+        status: "pending",
+      });
+      
+      res.status(201).json(order);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error creating order:", error);
+      res.status(500).json({ message: "Failed to create order" });
+    }
+  });
+
+  // Update order (admin only)
+  app.put("/api/orders/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const order = await storage.updateOrder(req.params.id, req.body);
+      res.json(order);
+    } catch (error) {
+      console.error("Error updating order:", error);
+      res.status(500).json({ message: "Failed to update order" });
+    }
+  });
+
+  // ============ PAYMENT ROUTES ============
+
+  // Get user's payments
+  app.get("/api/payments", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      const payments = user?.isAdmin 
+        ? await storage.getPayments() 
+        : await storage.getPayments(userId);
+      res.json(payments);
+    } catch (error) {
+      console.error("Error fetching payments:", error);
+      res.status(500).json({ message: "Failed to fetch payments" });
+    }
+  });
+
+  // Initiate payment (placeholder for mobile money integration)
+  const initiatePaymentSchema = z.object({
+    orderId: z.string(),
+    paymentMethod: z.enum(["mtn_momo", "airtel_money", "card"]),
+    phoneNumber: z.string().optional(),
+  });
+
+  app.post("/api/payments/initiate", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const validatedData = initiatePaymentSchema.parse(req.body);
+      
+      const order = await storage.getOrder(validatedData.orderId);
+      if (!order) return res.status(404).json({ message: "Order not found" });
+      if (order.userId !== userId) return res.status(403).json({ message: "Access denied" });
+      
+      // Create payment record
+      const payment = await storage.createPayment({
+        orderId: order.id,
+        userId,
+        amount: order.finalPrice,
+        paymentMethod: validatedData.paymentMethod,
+        phoneNumber: validatedData.phoneNumber,
+        status: "pending",
+        provider: validatedData.paymentMethod === "mtn_momo" ? "mtn" 
+          : validatedData.paymentMethod === "airtel_money" ? "airtel" 
+          : "stripe",
+      });
+      
+      // PLACEHOLDER: Here you would integrate with actual payment providers
+      // For now, we simulate a successful payment after 2 seconds
+      setTimeout(async () => {
+        try {
+          await storage.updatePayment(payment.id, { 
+            status: "completed",
+            paidAt: new Date(),
+            externalTransactionId: `TXN_${Date.now()}`,
+          });
+          await storage.updateOrder(order.id, { status: "paid" });
+          
+          // If subscription order, create user subscription
+          if (order.orderType === "subscription" && order.subscriptionPlanId) {
+            const plan = await storage.getSubscriptionPlan(order.subscriptionPlanId);
+            if (plan) {
+              const nextBilling = new Date();
+              nextBilling.setMonth(nextBilling.getMonth() + 1);
+              
+              await storage.createUserSubscription({
+                userId,
+                planId: plan.id,
+                status: "active",
+                billingCycle: "monthly",
+                nextBillingDate: nextBilling,
+                paymentMethod: validatedData.paymentMethod,
+              });
+              
+              await storage.updateUser(userId, { subscriptionTier: plan.tierKey });
+            }
+          }
+        } catch (err) {
+          console.error("Error processing payment callback:", err);
+        }
+      }, 2000);
+      
+      res.status(201).json({ 
+        payment,
+        message: "Payment initiated. You will receive a prompt on your phone shortly.",
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error initiating payment:", error);
+      res.status(500).json({ message: "Failed to initiate payment" });
+    }
+  });
+
+  // ============ DISCOUNT ROUTES ============
+
+  // Validate discount code
+  app.post("/api/discounts/validate", async (req, res) => {
+    try {
+      const { code, orderType } = req.body;
+      const discount = await storage.getDiscountByCode(code);
+      
+      if (!discount) {
+        return res.status(404).json({ valid: false, message: "Invalid discount code" });
+      }
+      
+      const now = new Date();
+      if (discount.validUntil && new Date(discount.validUntil) < now) {
+        return res.status(400).json({ valid: false, message: "Discount code has expired" });
+      }
+      
+      if (discount.maxUses && discount.usedCount && discount.usedCount >= discount.maxUses) {
+        return res.status(400).json({ valid: false, message: "Discount code usage limit reached" });
+      }
+      
+      if (orderType && discount.appliesTo !== "all" && discount.appliesTo !== orderType) {
+        return res.status(400).json({ valid: false, message: "Discount not applicable to this order type" });
+      }
+      
+      res.json({ 
+        valid: true, 
+        discount: {
+          code: discount.code,
+          discountType: discount.discountType,
+          discountValue: discount.discountValue,
+          description: discount.description,
+        }
+      });
+    } catch (error) {
+      console.error("Error validating discount:", error);
+      res.status(500).json({ message: "Failed to validate discount" });
+    }
+  });
+
+  // ============ ADMIN PRICING MANAGEMENT ============
+
+  // Admin: Get all subscription plans (including inactive)
+  app.get("/api/admin/subscription-plans", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      const plans = await storage.getSubscriptionPlans();
+      res.json(plans);
+    } catch (error) {
+      console.error("Error fetching plans:", error);
+      res.status(500).json({ message: "Failed to fetch plans" });
+    }
+  });
+
+  // Admin: Update subscription plan
+  app.put("/api/admin/subscription-plans/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const plan = await storage.updateSubscriptionPlan(req.params.id, req.body);
+      res.json(plan);
+    } catch (error) {
+      console.error("Error updating plan:", error);
+      res.status(500).json({ message: "Failed to update plan" });
+    }
+  });
+
+  // Admin: Update service pricing
+  app.put("/api/admin/services/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const service = await storage.updateService(req.params.id, req.body);
+      res.json(service);
+    } catch (error) {
+      console.error("Error updating service:", error);
+      res.status(500).json({ message: "Failed to update service" });
+    }
+  });
+
+  // Admin: Create discount
+  app.post("/api/admin/discounts", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const discount = await storage.createDiscount(req.body);
+      res.status(201).json(discount);
+    } catch (error) {
+      console.error("Error creating discount:", error);
+      res.status(500).json({ message: "Failed to create discount" });
+    }
+  });
+
+  // Admin: Get all discounts
+  app.get("/api/admin/discounts", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+      
+      const discounts = await storage.getDiscounts();
+      res.json(discounts);
+    } catch (error) {
+      console.error("Error fetching discounts:", error);
+      res.status(500).json({ message: "Failed to fetch discounts" });
+    }
+  });
+
   // SEO: Robots.txt
   app.get("/robots.txt", (req, res) => {
     res.type("text/plain");
