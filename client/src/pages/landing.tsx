@@ -90,11 +90,6 @@ export default function Landing() {
                     Sign In
                   </Button>
                 </Link>
-                <Link href="/universities">
-                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-explore">
-                    Explore Universities
-                  </Button>
-                </Link>
               </div>
             </div>
             
