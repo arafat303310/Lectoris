@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO from "@/components/seo";
 import UniversityCard from "@/components/university-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,13 +131,19 @@ export default function Universities() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="universities-page">
+      <SEO 
+        title="Universities in Uganda | Public & Private Institutions"
+        description="Explore 46+ public and private universities in Uganda. Find Makerere, Kyambogo, UCU, and more with application guides, courses, and tuition information."
+        canonical="/universities"
+        keywords="universities in Uganda, Makerere University, Kyambogo University, UCU, private universities Uganda, public universities Uganda"
+      />
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6 py-6 sm:py-8">
         {/* Header */}
         <div className="text-center mb-6 sm:mb-8 animate-fade-in-down">
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-foreground mb-2 sm:mb-4 gradient-text" data-testid="universities-title">
-            Uganda Universities Directory
+            Universities in Uganda
           </h1>
           <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2 animate-fade-in-up delay-200">
             Explore 46+ universities across Uganda. Find the perfect institution for your academic journey.

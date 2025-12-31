@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useAuth } from "@/hooks/useAuth";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO from "@/components/seo";
 import ServiceRequestForm from "@/components/service-request-form";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -77,6 +78,12 @@ export default function Services() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="services-page">
+      <SEO 
+        title="University Application Assistance | Services"
+        description="Get professional help with university applications, scholarship essays, resume writing, and more. Expert guidance for Ugandan students pursuing higher education."
+        canonical="/services"
+        keywords="university application help Uganda, scholarship essay writing, resume writing services, application assistance"
+      />
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6 py-8">

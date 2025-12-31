@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { Link } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO, { organizationSchema } from "@/components/seo";
 import UniversityCard from "@/components/university-card";
 import ScholarshipCard from "@/components/scholarship-card";
 import { Button } from "@/components/ui/button";
@@ -53,6 +54,13 @@ export default function Landing() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="landing-page">
+      <SEO 
+        title="ApplyHub | University Applications & Scholarships for Ugandan Students"
+        description="Discover universities, find scholarships, and get expert guidance for higher education in Uganda. Apply to Makerere, UCU, KIU and 40+ universities."
+        canonical="/"
+        keywords="Uganda universities, scholarships Uganda, university applications, Makerere University, higher education Uganda"
+        structuredData={organizationSchema}
+      />
       <Navbar />
       
       {/* Hero Section */}

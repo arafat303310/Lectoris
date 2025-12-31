@@ -535,6 +535,85 @@ Guidelines:
     }
   });
 
+  // SEO: Robots.txt
+  app.get("/robots.txt", (req, res) => {
+    res.type("text/plain");
+    res.send(`User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /dashboard
+Disallow: /admin
+
+Sitemap: https://applyhub.app/sitemap.xml
+`);
+  });
+
+  // SEO: Sitemap.xml
+  app.get("/sitemap.xml", async (req, res) => {
+    try {
+      const universities = await storage.getUniversities();
+      const scholarships = await storage.getScholarships();
+      const baseUrl = "https://applyhub.app";
+      const today = new Date().toISOString().split('T')[0];
+
+      const staticPages = [
+        { url: "/", priority: "1.0", changefreq: "weekly" },
+        { url: "/universities", priority: "0.9", changefreq: "weekly" },
+        { url: "/scholarships", priority: "0.9", changefreq: "weekly" },
+        { url: "/services", priority: "0.8", changefreq: "monthly" },
+        { url: "/pricing", priority: "0.7", changefreq: "monthly" },
+        { url: "/blog", priority: "0.8", changefreq: "weekly" },
+        { url: "/signup", priority: "0.6", changefreq: "monthly" },
+        { url: "/login", priority: "0.5", changefreq: "monthly" },
+      ];
+
+      let xml = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+`;
+
+      // Add static pages
+      for (const page of staticPages) {
+        xml += `  <url>
+    <loc>${baseUrl}${page.url}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>${page.changefreq}</changefreq>
+    <priority>${page.priority}</priority>
+  </url>
+`;
+      }
+
+      // Add university pages
+      for (const university of universities) {
+        xml += `  <url>
+    <loc>${baseUrl}/universities/${university.id}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+      }
+
+      // Add scholarship pages
+      for (const scholarship of scholarships) {
+        xml += `  <url>
+    <loc>${baseUrl}/scholarships/${scholarship.id}</loc>
+    <lastmod>${today}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+`;
+      }
+
+      xml += `</urlset>`;
+
+      res.type("application/xml");
+      res.send(xml);
+    } catch (error) {
+      console.error("Error generating sitemap:", error);
+      res.status(500).send("Error generating sitemap");
+    }
+  });
+
   const httpServer = createServer(app);
   return httpServer;
 }

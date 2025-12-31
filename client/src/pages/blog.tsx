@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO, { generateArticleSchema } from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -105,13 +106,6 @@ export default function Blog() {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  useEffect(() => {
-    document.title = "Blog - ApplyHub Uganda | University Application Insights & Tips";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Read expert articles and guides on university applications, scholarships, and higher education in Uganda. Get tips from education professionals.");
-    }
-  }, []);
 
   useEffect(() => {
     let filtered = blogPosts;
@@ -157,6 +151,12 @@ export default function Blog() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="blog-page">
+      <SEO 
+        title="Blog | University Application Tips & Insights"
+        description="Read expert articles and guides on university applications, scholarships, and higher education in Uganda. Get tips from education professionals."
+        canonical="/blog"
+        keywords="university application tips, scholarship guide Uganda, higher education blog, study tips Uganda"
+      />
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6">

@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { Link, useLocation } from "wouter";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -65,14 +65,6 @@ const pricingTiers = [
 export default function Pricing() {
   const [, setLocation] = useLocation();
 
-  useEffect(() => {
-    document.title = "Pricing - ApplyHub Uganda | University Application Services";
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", "Choose from Free or Pro plans to get expert help with your Ugandan university applications. Start free and upgrade as you grow.");
-    }
-  }, []);
-
   const handleGetStarted = (tier: string) => {
     if (tier === "Free") {
       setLocation("/universities");
@@ -83,6 +75,12 @@ export default function Pricing() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="pricing-page">
+      <SEO 
+        title="Pricing | University Application Services"
+        description="Choose from Free or Pro plans to get expert help with your Ugandan university applications. Professional services starting at UGX 50,000/month."
+        canonical="/pricing"
+        keywords="university application services pricing, ApplyHub pricing, application assistance Uganda"
+      />
       <Navbar />
 
       {/* Hero Section */}

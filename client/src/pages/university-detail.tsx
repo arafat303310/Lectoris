@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO, { generateUniversitySchema, generateBreadcrumbSchema } from "@/components/seo";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -177,8 +178,29 @@ export default function UniversityDetail() {
     );
   }
 
+  const universitySchema = generateUniversitySchema({
+    name: university.name,
+    description: university.description || `${university.name} is a ${university.type} university in ${university.location}, Uganda.`,
+    location: university.location,
+    websiteUrl: university.websiteUrl || undefined,
+    logoUrl: university.logoUrl || undefined
+  });
+
+  const breadcrumbSchema = generateBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Universities", url: "/universities" },
+    { name: university.name, url: `/universities/${university.id}` }
+  ]);
+
   return (
     <div className="min-h-screen bg-background" data-testid="university-detail-page">
+      <SEO 
+        title={`${university.name} - Application Guide`}
+        description={university.description?.substring(0, 160) || `Apply to ${university.name} in ${university.location}. Find courses, tuition fees, and application requirements for this ${university.type} university.`}
+        canonical={`/universities/${university.id}`}
+        keywords={`${university.name}, ${university.location} university, apply ${university.name}, ${university.type} university Uganda`}
+        structuredData={{ "@graph": [universitySchema, breadcrumbSchema] }}
+      />
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6 py-8">

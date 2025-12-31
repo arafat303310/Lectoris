@@ -6,6 +6,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { isUnauthorizedError } from "@/lib/authUtils";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
+import SEO from "@/components/seo";
 import ScholarshipCard from "@/components/scholarship-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -130,13 +131,19 @@ export default function Scholarships() {
 
   return (
     <div className="min-h-screen bg-background" data-testid="scholarships-page">
+      <SEO 
+        title="Scholarships for Ugandan Students | Local & International"
+        description="Find scholarships for Ugandan students. Government scholarships, Mastercard Foundation, DAAD, and 20+ funding opportunities for higher education."
+        canonical="/scholarships"
+        keywords="scholarships Uganda, Mastercard Foundation Scholars, DAAD scholarship, government scholarships Uganda, study abroad scholarships"
+      />
       <Navbar />
       
       <div className="container mx-auto px-4 lg:px-6 py-8">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in-down">
           <h1 className="text-3xl lg:text-4xl font-bold text-foreground mb-4 gradient-text" data-testid="scholarships-title">
-            Scholarship Opportunities
+            Scholarships for Ugandan Students
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto animate-fade-in-up delay-200">
             Discover funding opportunities for Ugandan students, from government scholarships to international programs.

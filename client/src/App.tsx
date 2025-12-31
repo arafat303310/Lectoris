@@ -10,6 +10,7 @@ import Home from "@/pages/home";
 import Universities from "@/pages/universities";
 import UniversityDetail from "@/pages/university-detail";
 import Scholarships from "@/pages/scholarships";
+import ScholarshipDetail from "@/pages/scholarship-detail";
 import Services from "@/pages/services";
 import Pricing from "@/pages/pricing";
 import Blog from "@/pages/blog";
@@ -30,6 +31,7 @@ function Router() {
           <Route path="/universities" component={Universities} />
           <Route path="/universities/:id" component={UniversityDetail} />
           <Route path="/scholarships" component={Scholarships} />
+          <Route path="/scholarships/:id" component={ScholarshipDetail} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/blog" component={Blog} />
@@ -42,6 +44,7 @@ function Router() {
           <Route path="/universities" component={Universities} />
           <Route path="/universities/:id" component={UniversityDetail} />
           <Route path="/scholarships" component={Scholarships} />
+          <Route path="/scholarships/:id" component={ScholarshipDetail} />
           <Route path="/services" component={Services} />
           <Route path="/pricing" component={Pricing} />
           <Route path="/blog" component={Blog} />
