@@ -85,8 +85,13 @@ export default function Landing() {
                     Create Free Account
                   </Button>
                 </Link>
+                <Link href="/login">
+                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-login">
+                    Sign In
+                  </Button>
+                </Link>
                 <Link href="/universities">
-                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-primary hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-explore">
+                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-explore">
                     Explore Universities
                   </Button>
                 </Link>
@@ -258,20 +263,22 @@ export default function Landing() {
               Join thousands of Ugandan students who have successfully navigated their path to higher education with ApplyHub.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
-              <Button
-                className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-sm sm:text-base"
-                onClick={() => (window.location.href = "/api/login")}
-                data-testid="cta-signup-button"
-              >
-                Create Free Account
-              </Button>
-              <Button
-                variant="outline"
-                className="border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/10 transition-colors text-sm sm:text-base"
-                data-testid="cta-consultation-button"
-              >
-                Schedule Consultation
-              </Button>
+              <Link href="/login">
+                <Button
+                  className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-sm sm:text-base w-full sm:w-auto"
+                  data-testid="cta-login-button"
+                >
+                  Sign In
+                </Button>
+              </Link>
+              <Link href="/signup">
+                <Button
+                  className="bg-white/10 text-white border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-colors text-sm sm:text-base w-full sm:w-auto"
+                  data-testid="cta-signup-button"
+                >
+                  Create Free Account
+                </Button>
+              </Link>
             </div>
             
             {/* Trust Indicators */}
