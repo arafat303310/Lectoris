@@ -172,3 +172,24 @@ All 30 universities now have direct application portal links:
 **Google Integration (Placeholders):**
 - Google Analytics: Replace `GA_MEASUREMENT_ID` in index.html with actual ID (e.g., G-XXXXXXXXXX)
 - Google Search Console: Replace `YOUR_VERIFICATION_CODE` in index.html with actual verification code
+
+### Progressive Web App (PWA) Implementation (December 2025)
+**PWA Files:**
+- `client/public/manifest.json` - Web app manifest with name, icons, theme colors
+- `client/public/service-worker.js` - Service worker for offline caching
+- `client/public/icons/icon-192x192.png` - PWA icon (192x192)
+- `client/public/icons/icon-512x512.png` - PWA icon (512x512)
+
+**PWA Features:**
+- Standalone display mode
+- Offline caching of static assets
+- Network-first strategy for API calls with offline fallback
+- Apple mobile web app support
+- Installable on mobile and desktop
+
+**Testing PWA Installability:**
+1. Open app in Chrome (preferably on HTTPS or localhost)
+2. Open DevTools (F12) → Application → Manifest to verify manifest loads correctly
+3. Check Application → Service Workers to confirm SW is registered
+4. Look for "Install" icon in address bar or use Chrome menu → "Install ApplyHub"
+5. Run Lighthouse PWA audit for full compliance check
