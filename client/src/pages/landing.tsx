@@ -273,7 +273,7 @@ export default function Landing() {
               </Link>
               <Link href="/signup">
                 <Button
-                  className="bg-white/10 text-white border-2 border-white px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/20 transition-colors text-sm sm:text-base w-full sm:w-auto"
+                  className="bg-primary/90 text-white border-2 border-primary/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-primary transition-colors text-sm sm:text-base w-full sm:w-auto"
                   data-testid="cta-signup-button"
                 >
                   Create Free Account
