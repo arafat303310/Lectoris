@@ -1,9 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { apiRequest } from "@/lib/queryClient";
-import { MessageCircle, X, Send, Loader2, Bot, User } from "lucide-react";
+import { X, Send, Loader2, Bot, User } from "lucide-react";
 
 interface Message {
   id: string;
@@ -22,7 +21,7 @@ export default function AIAssistant() {
   ]);
   const [input, setInput] = useState("");
   const scrollRef = useRef<HTMLDivElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -32,7 +31,7 @@ export default function AIAssistant() {
 
   useEffect(() => {
     if (isOpen && inputRef.current) {
-      inputRef.current.focus();
+      setTimeout(() => inputRef.current?.focus(), 100);
     }
   }, [isOpen]);
 
@@ -77,7 +76,7 @@ export default function AIAssistant() {
     chatMutation.mutate(userMessage.content);
   };
 
-  const handleKeyPress = (e: React.KeyboardEvent) => {
+  const handleKeyPress = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
@@ -87,28 +86,28 @@ export default function AIAssistant() {
   return (
     <>
       {!isOpen && (
-        <Button
+        <button
           onClick={() => setIsOpen(true)}
-          className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all hover:scale-110"
+          className="fixed bottom-6 right-6 z-[9999] h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 transition-all hover:scale-110 flex items-center justify-center text-primary-foreground font-bold text-lg"
           aria-label="Open AI Assistant"
-          role="button"
           data-testid="ai-assistant-button"
         >
-          <MessageCircle className="h-6 w-6" />
-        </Button>
+          AI
+        </button>
       )}
 
       {isOpen && (
         <div
-          className="fixed bottom-6 right-6 z-[9999] w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300"
+          className="fixed bottom-6 right-6 z-[9999] w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden"
           role="dialog"
           aria-label="AI Assistant Chat"
           data-testid="ai-assistant-panel"
+          style={{ touchAction: 'auto' }}
         >
-          <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
+          <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground flex-shrink-0">
             <div className="flex items-center gap-2">
               <Bot className="h-5 w-5" />
-              <span className="font-semibold">ApplyHub AI</span>
+              <span className="font-semibold">AI Assistant</span>
             </div>
             <Button
               variant="ghost"
@@ -121,7 +120,11 @@ export default function AIAssistant() {
             </Button>
           </div>
 
-          <div ref={scrollRef} className="flex-1 p-4 overflow-y-auto">
+          <div 
+            ref={scrollRef} 
+            className="flex-1 p-4 overflow-y-auto"
+            style={{ minHeight: 0 }}
+          >
             <div className="space-y-4">
               {messages.map((message) => (
                 <div
@@ -165,16 +168,17 @@ export default function AIAssistant() {
             </div>
           </div>
 
-          <div className="p-3 border-t border-border bg-background relative z-10">
+          <div className="p-3 border-t border-border bg-background flex-shrink-0">
             <div className="flex gap-2">
-              <Input
+              <textarea
                 ref={inputRef}
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder="Ask about universities, courses..."
-                className="flex-1 pointer-events-auto"
+                className="flex-1 min-h-[40px] max-h-[80px] px-3 py-2 text-sm border border-input bg-background rounded-md resize-none focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                 disabled={chatMutation.isPending}
+                rows={1}
                 autoComplete="off"
                 data-testid="ai-assistant-input"
               />
@@ -182,6 +186,7 @@ export default function AIAssistant() {
                 onClick={handleSend}
                 disabled={!input.trim() || chatMutation.isPending}
                 size="icon"
+                className="h-10 w-10 flex-shrink-0"
                 data-testid="ai-assistant-send"
               >
                 <Send className="h-4 w-4" />
