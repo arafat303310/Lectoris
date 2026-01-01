@@ -100,7 +100,9 @@ export default function AIAssistant() {
 
       {isOpen && (
         <div
-          className="fixed bottom-6 right-6 z-50 w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300"
+          className="fixed bottom-6 right-6 z-[9999] w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-background border border-border rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in slide-in-from-bottom-5 fade-in duration-300"
+          role="dialog"
+          aria-label="AI Assistant Chat"
           data-testid="ai-assistant-panel"
         >
           <div className="flex items-center justify-between px-4 py-3 bg-primary text-primary-foreground">
@@ -163,7 +165,7 @@ export default function AIAssistant() {
             </div>
           </div>
 
-          <div className="p-3 border-t border-border bg-background">
+          <div className="p-3 border-t border-border bg-background relative z-10">
             <div className="flex gap-2">
               <Input
                 ref={inputRef}
@@ -171,8 +173,9 @@ export default function AIAssistant() {
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyPress}
                 placeholder="Ask about universities, courses..."
-                className="flex-1"
+                className="flex-1 pointer-events-auto"
                 disabled={chatMutation.isPending}
+                autoComplete="off"
                 data-testid="ai-assistant-input"
               />
               <Button
