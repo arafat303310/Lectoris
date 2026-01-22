@@ -86,7 +86,7 @@ export default function Landing() {
                   </Button>
                 </Link>
                 <Link href="/login">
-                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-white hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-login">
+                  <Button variant="outline" className="w-full sm:w-auto border-2 border-white text-primary hover:bg-white/10 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-login">
                     Sign In
                   </Button>
                 </Link>
@@ -268,7 +268,7 @@ export default function Landing() {
               </Link>
               <Link href="/signup">
                 <Button
-                  className="bg-primary/90 text-white border-2 border-primary/20 px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-primary transition-colors text-sm sm:text-base w-full sm:w-auto"
+                  className="bg-white text-primary px-6 sm:px-8 py-3 sm:py-4 rounded-lg font-semibold hover:bg-white/90 transition-colors text-sm sm:text-base w-full sm:w-auto"
                   data-testid="cta-signup-button"
                 >
                   Create Free Account
