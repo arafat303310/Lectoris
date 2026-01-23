@@ -20,7 +20,6 @@ import Signup from "@/pages/signup";
 import Login from "@/pages/login";
 import Checkout from "@/pages/checkout";
 import NotFound from "@/pages/not-found";
-import AIAssistant from "@/components/ai-assistant";
 
 function Router() {
   const { isAuthenticated, isLoading } = useAuth();
@@ -70,7 +69,6 @@ function App() {
         <TooltipProvider>
           <Toaster />
           <Router />
-          <AIAssistant />
         </TooltipProvider>
       </QueryClientProvider>
     </ThemeProvider>
