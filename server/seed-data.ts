@@ -737,66 +737,42 @@ export const ugandaScholarshipsData = [
 export const servicesData = [
   {
     name: "University Application Assistance",
-    description: "Complete support for university applications including document preparation, personal statement writing, and application submission guidance.",
+    description: "Expert help with your university application forms and submission process.",
     category: "application",
-    basePrice: "250000",
-    deliveryDays: 14,
-    isActive: true
-  },
-  {
-    name: "Scholarship Application Service",
-    description: "End-to-end support for scholarship applications including essay writing and document preparation.",
-    category: "application",
-    basePrice: "200000",
-    deliveryDays: 10,
-    isActive: true
-  },
-  {
-    name: "Professional Resume/CV Writing",
-    description: "Expert CV/resume writing service tailored for academic and professional applications.",
-    category: "document",
-    basePrice: "75000",
+    basePrice: "50000",
     deliveryDays: 5,
     isActive: true
   },
   {
-    name: "Statement of Purpose (SOP)",
-    description: "Professional SOP/motivation letter writing for university and scholarship applications.",
-    category: "document",
-    basePrice: "100000",
+    name: "Scholarship Application Support",
+    description: "Guidance on finding and applying for suitable scholarships.",
+    category: "application",
+    basePrice: "50000",
     deliveryDays: 7,
     isActive: true
   },
   {
-    name: "Document Review & Editing",
-    description: "Professional review and editing of application documents, essays, and academic papers.",
+    name: "Professional Resume Writing",
+    description: "Get a standout CV tailored for university and scholarship applications.",
     category: "document",
-    basePrice: "50000",
+    basePrice: "30000",
     deliveryDays: 3,
+    isActive: true
+  },
+  {
+    name: "Scholarship Essay Review",
+    description: "Professional editing and feedback for your scholarship personal statements.",
+    category: "document",
+    basePrice: "40000",
+    deliveryDays: 4,
     isActive: true
   },
   {
     name: "Career Counseling Session",
     description: "One-on-one career guidance session to help you choose the right course and university.",
     category: "consultation",
-    basePrice: "100000",
+    basePrice: "50000",
     deliveryDays: 1,
-    isActive: true
-  },
-  {
-    name: "Interview Preparation",
-    description: "Mock interview sessions and coaching to prepare for university or scholarship interviews.",
-    category: "consultation",
-    basePrice: "80000",
-    deliveryDays: 2,
-    isActive: true
-  },
-  {
-    name: "Appeal Letter Writing",
-    description: "Expert assistance in crafting compelling appeal letters for university admissions or scholarship reconsideration.",
-    category: "document",
-    basePrice: "120000",
-    deliveryDays: 5,
     isActive: true
   }
 ];
@@ -805,14 +781,14 @@ export const subscriptionPlansData = [
   {
     name: "Free",
     tierKey: "free",
-    description: "Basic access to browse universities and scholarships",
+    description: "Full access to universities and scholarships database",
     monthlyPrice: "0",
     annualPrice: "0",
     features: [
-      "Browse universities & scholarships",
-      "Basic search filters",
-      "5 AI chat messages/month",
-      "Ads enabled"
+      "Browse all 30+ universities",
+      "View all active scholarships",
+      "Basic search & filters",
+      "5 AI chat messages/month"
     ],
     serviceDiscount: 0,
     aiChatLimit: 5,
@@ -823,42 +799,22 @@ export const subscriptionPlansData = [
   {
     name: "Student Pro",
     tierKey: "student_pro",
-    description: "Enhanced features for serious applicants",
+    description: "Premium features for serious applicants",
     monthlyPrice: "50000",
     annualPrice: "500000",
     features: [
       "Everything in Free",
       "No advertisements",
+      "Unlimited AI chat messages",
       "Advanced search filters",
       "Application tracking",
-      "50 AI chat messages/month",
-      "10% discount on services",
+      "10% discount on all services",
       "Priority email support"
     ],
     serviceDiscount: 10,
-    aiChatLimit: 50,
+    aiChatLimit: -1,
     documentReviews: 0,
     adsEnabled: false,
     sortOrder: 1
-  },
-  {
-    name: "Premium Applicant",
-    tierKey: "premium",
-    description: "All-inclusive package with human support",
-    monthlyPrice: "150000",
-    annualPrice: "1500000",
-    features: [
-      "Everything in Student Pro",
-      "Unlimited AI chat",
-      "2 free document reviews/month",
-      "20% discount on services",
-      "Priority phone support",
-      "Dedicated success advisor"
-    ],
-    serviceDiscount: 20,
-    aiChatLimit: -1,
-    documentReviews: 2,
-    adsEnabled: false,
-    sortOrder: 2
   }
 ];

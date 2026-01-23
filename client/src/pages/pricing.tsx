@@ -85,8 +85,8 @@ export default function Pricing() {
           </h2>
           
           {plansLoading ? (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-              {[1, 2, 3].map((i) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+              {[1, 2].map((i) => (
                 <Card key={i} className="flex flex-col">
                   <CardHeader className="text-center">
                     <Skeleton className="h-12 w-12 rounded-full mx-auto mb-4" />
@@ -105,7 +105,7 @@ export default function Pricing() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
               {plans?.map((plan, index) => {
                 const Icon = tierIcons[plan.tierKey] || Sparkles;
                 const isPopular = plan.tierKey === "student_pro";
@@ -265,13 +265,12 @@ export default function Pricing() {
           </h2>
           
           <div className="overflow-x-auto">
-            <table className="w-full max-w-4xl mx-auto text-sm" data-testid="comparison-table">
+            <table className="w-full max-w-3xl mx-auto text-sm" data-testid="comparison-table">
               <thead>
                 <tr className="border-b">
                   <th className="text-left py-3 px-4 font-medium text-muted-foreground">Feature</th>
                   <th className="text-center py-3 px-4 font-medium">Free</th>
                   <th className="text-center py-3 px-4 font-medium text-primary">Student Pro</th>
-                  <th className="text-center py-3 px-4 font-medium">Premium</th>
                 </tr>
               </thead>
               <tbody className="divide-y">
@@ -279,42 +278,30 @@ export default function Pricing() {
                   <td className="py-3 px-4">Browse Universities & Scholarships</td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4">AI Chat Messages/Month</td>
                   <td className="text-center py-3 px-4">5</td>
-                  <td className="text-center py-3 px-4">50</td>
-                  <td className="text-center py-3 px-4">Unlimited</td>
+                  <td className="text-center py-3 px-4 font-medium text-accent">Unlimited</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4">Advertisements</td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-muted-foreground mx-auto" /></td>
-                  <td className="text-center py-3 px-4"><X className="h-5 w-5 text-accent mx-auto" /></td>
                   <td className="text-center py-3 px-4"><X className="h-5 w-5 text-accent mx-auto" /></td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4">Advanced Filters & Tracking</td>
                   <td className="text-center py-3 px-4"><X className="h-5 w-5 text-muted-foreground/50 mx-auto" /></td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
-                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4">Service Discount</td>
                   <td className="text-center py-3 px-4">-</td>
                   <td className="text-center py-3 px-4 font-medium text-accent">10%</td>
-                  <td className="text-center py-3 px-4 font-medium text-accent">20%</td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4">Free Document Reviews/Month</td>
-                  <td className="text-center py-3 px-4">0</td>
-                  <td className="text-center py-3 px-4">0</td>
-                  <td className="text-center py-3 px-4 font-medium text-accent">2</td>
-                </tr>
-                <tr>
-                  <td className="py-3 px-4">Priority Support</td>
+                  <td className="py-3 px-4">Priority Email Support</td>
                   <td className="text-center py-3 px-4"><X className="h-5 w-5 text-muted-foreground/50 mx-auto" /></td>
-                  <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                 </tr>
               </tbody>
