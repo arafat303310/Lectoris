@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Check, X, Sparkles, Zap, Crown, FileText, GraduationCap, MessageSquare, Clock } from "lucide-react";
+import { Check, X, Sparkles, Zap, FileText, GraduationCap, MessageSquare, Clock } from "lucide-react";
 import type { SubscriptionPlan, Service } from "@shared/schema";
 
 function formatPrice(price: string | null): string {
@@ -22,7 +22,6 @@ function formatPrice(price: string | null): string {
 const tierIcons: Record<string, typeof Sparkles> = {
   free: Sparkles,
   student_pro: Zap,
-  premium: Crown,
 };
 
 const categoryIcons: Record<string, typeof FileText> = {
@@ -58,7 +57,7 @@ export default function Pricing() {
     <div className="min-h-screen bg-background" data-testid="pricing-page">
       <SEO 
         title="Pricing | University Application Services"
-        description="Choose from Free, Student Pro, or Premium plans. Get expert help with your Ugandan university applications. Pay-per-service options also available."
+        description="Browse universities and scholarships for free. Upgrade to Student Pro for premium features. Pay-per-service options available for application assistance."
         canonical="/pricing"
         keywords="university application services pricing, ApplyHub pricing, application assistance Uganda"
       />
@@ -253,7 +252,7 @@ export default function Pricing() {
           )}
           
           <p className="text-center text-sm text-muted-foreground mt-6">
-            Pro and Premium subscribers get discounts on all services!
+            Student Pro subscribers get 10% off all services!
           </p>
         </div>
       </section>
@@ -338,7 +337,7 @@ export default function Pricing() {
                   Do subscriber discounts apply to all services?
                 </h3>
                 <p className="text-muted-foreground text-xs sm:text-base">
-                  Yes! Student Pro subscribers get 10% off and Premium subscribers get 20% off all pay-per-service purchases.
+                  Yes! Student Pro subscribers get 10% off all pay-per-service purchases.
                 </p>
               </div>
             </div>

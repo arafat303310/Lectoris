@@ -124,17 +124,30 @@ The REST API follows conventional patterns with:
 - `PUT /api/user/profile` - Update user profile
 - `GET /api/services` - List of all services with tier assignment (no individual pricing)
 
-### Subscription Tier Services
-**Standard Plan (UGX 50k/month):**
-- Professional Resume Writing
-- Scholarship Essay Review
-- Document Verification Service
+### Monetization Model (January 2026)
+**Core Philosophy:** Universities and scholarships browsing is FREE for all users. Revenue comes from optional subscription upgrades and pay-per-service purchases.
 
-**Premium Plan (UGX 150k/month):**
-- University Application Assistance
-- Career Counseling Sessions
-- Interview Preparation Coaching
-- Appeal Letter Writing
+**Subscription Plans:**
+- **Free Plan:** Full access to university/scholarship database, basic search, 5 AI chat messages/month
+- **Student Pro (UGX 50,000/month):** Ad-free, unlimited AI chat, advanced filters, application tracking, 10% service discount
+
+**Pay-Per-Service (Max UGX 50,000 each):**
+- University Application Assistance - UGX 50,000
+- Scholarship Application Support - UGX 50,000
+- Career Counseling Session - UGX 50,000
+- Scholarship Essay Review - UGX 40,000
+- Professional Resume Writing - UGX 30,000
+
+**Payment Methods Supported:**
+- MTN Mobile Money
+- Airtel Money
+- Visa/Mastercard
+
+**Database Tables for Monetization:**
+- `subscription_plans` - Plan definitions with features
+- `orders` - User orders for subscriptions/services
+- `payments` - Payment transaction records
+- `discounts` - Promotional discount codes
 
 ### University Application Portal URLs
 All 30 universities now have direct application portal links:
