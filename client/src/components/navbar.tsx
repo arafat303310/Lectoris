@@ -121,7 +121,7 @@ export default function Navbar() {
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-80">
+            <SheetContent side="right" className="w-80" onOpenAutoFocus={(e) => e.preventDefault()}>
               <div className="flex flex-col space-y-4 mt-8">
                 <SearchAutocomplete className="w-full mb-2" placeholder="Search..." />
                 <div className="flex items-center justify-between mb-4">
