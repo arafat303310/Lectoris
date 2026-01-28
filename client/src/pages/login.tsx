@@ -13,7 +13,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Eye, EyeOff, Loader2 } from "lucide-react";
-import applyHubLogo from "@assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png";
+import applyHubLogo from "@assets/Gemini_Generated_Image_rjkt7erjkt7erjkt_1769618801021.png";
 
 const loginSchema = z.object({
   email: z.string().email("Please enter a valid email address"),
@@ -68,7 +68,7 @@ export default function Login() {
         <Card className="w-full max-w-md">
           <CardHeader className="text-center">
             <div className="mx-auto mb-4">
-              <img src={applyHubLogo} alt="ApplyHub" className="h-24 w-auto" />
+              <img src={applyHubLogo} alt="Lectoris" className="h-24 w-auto" />
             </div>
             <CardTitle className="text-2xl font-bold">Welcome Back</CardTitle>
             <CardDescription>
