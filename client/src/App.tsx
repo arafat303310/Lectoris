@@ -19,6 +19,7 @@ import AdminDashboard from "@/pages/admin-dashboard";
 import Signup from "@/pages/signup";
 import Login from "@/pages/login";
 import Checkout from "@/pages/checkout";
+import PrivacyPolicy from "@/pages/privacy-policy";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -37,6 +38,7 @@ function Router() {
           <Route path="/pricing" component={Pricing} />
           <Route path="/blog" component={Blog} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </>
@@ -53,6 +55,7 @@ function Router() {
           <Route path="/dashboard" component={Dashboard} />
           <Route path="/admin" component={AdminDashboard} />
           <Route path="/checkout" component={Checkout} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
         </>
@@ -64,7 +67,7 @@ function Router() {
 
 function App() {
   return (
-    <ThemeProvider defaultTheme="light" storageKey="applyhub-theme">
+    <ThemeProvider defaultTheme="light" storageKey="lectoris-theme">
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <Toaster />

@@ -56,7 +56,7 @@ export default function Footer() {
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-help-link">Help Center</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-contact-link">Contact Us</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-faq-link">FAQs</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-privacy-link">Privacy</a></li>
+              <li><Link href="/privacy-policy" className="text-muted-foreground hover:text-primary transition-colors" data-testid="footer-privacy-link">Privacy Policy</Link></li>
             </ul>
           </div>
           
@@ -86,7 +86,7 @@ export default function Footer() {
         
         <div className="border-t border-border mt-8 sm:mt-12 pt-6 sm:pt-8 text-center">
           <p className="text-xs sm:text-sm text-muted-foreground">
-            © 2024 ApplyHub Uganda. All rights reserved.
+            © 2026 Lectoris. All rights reserved.
           </p>
         </div>
       </div>

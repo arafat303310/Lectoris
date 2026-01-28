@@ -4,80 +4,80 @@
 @tailwind components;
 @tailwind utilities;
 
-/* ApplyHub.app Color Palette - Trust, Intelligence, Opportunity, Clarity */
+/* Lectoris Color Palette - Authority, Excellence, Clarity, Reliability */
 :root {
-  /* Primary: Corporate Blue #0066CC */
-  --background: hsl(240, 10%, 97%);
-  --foreground: hsl(218, 28%, 14%);
+  /* Midnight Navy #0B1B32, Academic Gold #D4AF37, Oxford Silver #E5E7E9, Slate Charcoal #2C3E50 */
+  --background: hsl(210, 10%, 97%);
+  --foreground: hsl(210, 29%, 24%);
   --card: hsl(0, 0%, 100%);
-  --card-foreground: hsl(218, 28%, 14%);
+  --card-foreground: hsl(210, 29%, 24%);
   --popover: hsl(0, 0%, 100%);
-  --popover-foreground: hsl(218, 28%, 14%);
-  --primary: hsl(210, 100%, 40%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(180, 100%, 35%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(240, 10%, 94%);
-  --muted-foreground: hsl(218, 20%, 46%);
-  --accent: hsl(145, 49%, 43%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(210, 29%, 24%);
+  --primary: hsl(215, 68%, 12%);
+  --primary-foreground: hsl(210, 10%, 91%);
+  --secondary: hsl(210, 29%, 24%);
+  --secondary-foreground: hsl(210, 10%, 91%);
+  --muted: hsl(210, 10%, 91%);
+  --muted-foreground: hsl(210, 20%, 46%);
+  --accent: hsl(43, 64%, 52%);
+  --accent-foreground: hsl(215, 68%, 12%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(210, 30%, 90%);
-  --input: hsl(210, 30%, 90%);
-  --ring: hsl(210, 100%, 40%);
+  --border: hsl(210, 20%, 88%);
+  --input: hsl(210, 20%, 88%);
+  --ring: hsl(43, 64%, 52%);
   --sidebar: hsl(0, 0%, 100%);
-  --sidebar-foreground: hsl(218, 28%, 14%);
-  --sidebar-primary: hsl(210, 100%, 40%);
-  --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(240, 10%, 94%);
-  --sidebar-accent-foreground: hsl(218, 28%, 14%);
-  --sidebar-border: hsl(210, 30%, 90%);
-  --sidebar-ring: hsl(210, 100%, 40%);
+  --sidebar-foreground: hsl(210, 29%, 24%);
+  --sidebar-primary: hsl(215, 68%, 12%);
+  --sidebar-primary-foreground: hsl(210, 10%, 91%);
+  --sidebar-accent: hsl(210, 10%, 91%);
+  --sidebar-accent-foreground: hsl(210, 29%, 24%);
+  --sidebar-border: hsl(210, 20%, 88%);
+  --sidebar-ring: hsl(43, 64%, 52%);
   --font-sans: "Inter", sans-serif;
   --font-serif: Georgia, serif;
   --font-mono: Menlo, monospace;
   --radius: 0.75rem;
-  --shadow-2xs: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05);
-  --shadow-xs: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05);
-  --shadow-sm: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05), 0px 1px 2px -1px hsl(210, 100%, 40%, 0.1);
-  --shadow: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05), 0px 1px 2px -1px hsl(210, 100%, 40%, 0.1);
-  --shadow-md: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05), 0px 2px 4px -1px hsl(210, 100%, 40%, 0.1);
-  --shadow-lg: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05), 0px 4px 6px -1px hsl(210, 100%, 40%, 0.1);
-  --shadow-xl: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05), 0px 8px 10px -1px hsl(210, 100%, 40%, 0.1);
-  --shadow-2xl: 0px 2px 0px 0px hsl(210, 100%, 40%, 0.05);
+  --shadow-2xs: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05);
+  --shadow-xs: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05);
+  --shadow-sm: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05), 0px 1px 2px -1px hsl(215, 68%, 12%, 0.1);
+  --shadow: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05), 0px 1px 2px -1px hsl(215, 68%, 12%, 0.1);
+  --shadow-md: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05), 0px 2px 4px -1px hsl(215, 68%, 12%, 0.1);
+  --shadow-lg: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05), 0px 4px 6px -1px hsl(215, 68%, 12%, 0.1);
+  --shadow-xl: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05), 0px 8px 10px -1px hsl(215, 68%, 12%, 0.1);
+  --shadow-2xl: 0px 2px 0px 0px hsl(215, 68%, 12%, 0.05);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 }
 
 .dark {
-  --background: hsl(218, 28%, 8%);
-  --foreground: hsl(210, 40%, 98%);
-  --card: hsl(218, 28%, 12%);
-  --card-foreground: hsl(210, 40%, 98%);
-  --popover: hsl(218, 28%, 12%);
-  --popover-foreground: hsl(210, 40%, 98%);
-  --primary: hsl(210, 100%, 50%);
-  --primary-foreground: hsl(0, 0%, 100%);
-  --secondary: hsl(180, 100%, 40%);
-  --secondary-foreground: hsl(0, 0%, 100%);
-  --muted: hsl(218, 28%, 18%);
-  --muted-foreground: hsl(218, 20%, 60%);
-  --accent: hsl(145, 49%, 50%);
-  --accent-foreground: hsl(0, 0%, 100%);
+  --background: hsl(215, 68%, 8%);
+  --foreground: hsl(210, 10%, 91%);
+  --card: hsl(215, 68%, 12%);
+  --card-foreground: hsl(210, 10%, 91%);
+  --popover: hsl(215, 68%, 12%);
+  --popover-foreground: hsl(210, 10%, 91%);
+  --primary: hsl(43, 64%, 52%);
+  --primary-foreground: hsl(215, 68%, 12%);
+  --secondary: hsl(210, 29%, 35%);
+  --secondary-foreground: hsl(210, 10%, 91%);
+  --muted: hsl(215, 40%, 18%);
+  --muted-foreground: hsl(210, 15%, 60%);
+  --accent: hsl(43, 64%, 52%);
+  --accent-foreground: hsl(215, 68%, 12%);
   --destructive: hsl(0, 84%, 60%);
   --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(218, 28%, 22%);
-  --input: hsl(218, 28%, 22%);
-  --ring: hsl(210, 100%, 50%);
-  --sidebar: hsl(218, 28%, 10%);
-  --sidebar-foreground: hsl(210, 40%, 98%);
-  --sidebar-primary: hsl(210, 100%, 50%);
-  --sidebar-primary-foreground: hsl(0, 0%, 100%);
-  --sidebar-accent: hsl(218, 28%, 18%);
-  --sidebar-accent-foreground: hsl(210, 40%, 98%);
-  --sidebar-border: hsl(218, 28%, 22%);
-  --sidebar-ring: hsl(210, 100%, 50%);
+  --border: hsl(215, 40%, 22%);
+  --input: hsl(215, 40%, 22%);
+  --ring: hsl(43, 64%, 52%);
+  --sidebar: hsl(215, 68%, 10%);
+  --sidebar-foreground: hsl(210, 10%, 91%);
+  --sidebar-primary: hsl(43, 64%, 52%);
+  --sidebar-primary-foreground: hsl(215, 68%, 12%);
+  --sidebar-accent: hsl(215, 40%, 18%);
+  --sidebar-accent-foreground: hsl(210, 10%, 91%);
+  --sidebar-border: hsl(215, 40%, 22%);
+  --sidebar-ring: hsl(43, 64%, 52%);
 }
 
 @layer base {
@@ -91,7 +91,7 @@
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, hsl(210, 100%, 40%) 0%, hsl(180, 100%, 35%) 100%);
+  background: linear-gradient(135deg, hsl(215, 68%, 12%) 0%, hsl(210, 29%, 24%) 100%);
 }
 
 /* Enhanced Animation Styles */

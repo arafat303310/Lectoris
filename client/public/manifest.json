@@ -1,11 +1,11 @@
 {
-  "name": "ApplyHub",
-  "short_name": "ApplyHub",
+  "name": "Lectoris",
+  "short_name": "Lectoris",
   "description": "Uganda's leading platform for university applications and scholarship discovery",
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#1e3a8a",
-  "background_color": "#ffffff",
+  "theme_color": "#0B1B32",
+  "background_color": "#0B1B32",
   "orientation": "portrait-primary",
   "scope": "/",
   "icons": [
