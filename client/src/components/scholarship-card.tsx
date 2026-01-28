@@ -107,7 +107,7 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
             </Button>
           )}
           {scholarship.applicationUrl && (
-            <Button asChild size="sm" className="text-xs h-8 btn-animate hover:scale-105 transition-transform duration-300" data-testid={`apply-scholarship-${scholarship.id}`}>
+            <Button asChild size="sm" className="text-xs h-8 bg-[#D4AF37] hover:bg-[#C9A432] text-[#0B1B32] btn-animate hover:scale-105 transition-transform duration-300" data-testid={`apply-scholarship-${scholarship.id}`}>
               <a href={scholarship.applicationUrl} target="_blank" rel="noopener noreferrer">
                 Apply <ExternalLink className="ml-1 h-3 w-3" />
               </a>

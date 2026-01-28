@@ -265,7 +265,7 @@ export default function UniversityDetail() {
                   )}
                   
                   {university.websiteUrl && (
-                    <Button asChild data-testid="visit-website-button">
+                    <Button asChild className="bg-[#D4AF37] hover:bg-[#C9A432] text-[#0B1B32]" data-testid="visit-website-button">
                       <a href={university.websiteUrl} target="_blank" rel="noopener noreferrer">
                         Visit Website <ExternalLink className="ml-2 h-4 w-4" />
                       </a>

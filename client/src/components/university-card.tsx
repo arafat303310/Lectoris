@@ -127,7 +127,7 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
               className="flex-1"
               data-testid={`apply-button-${university.id}`}
             >
-              <Button size="sm" className="w-full text-sm bg-green-600 hover:bg-green-700 btn-animate hover:scale-105 transition-transform duration-300">
+              <Button size="sm" className="w-full text-sm bg-[#D4AF37] hover:bg-[#C9A432] text-[#0B1B32] btn-animate hover:scale-105 transition-transform duration-300">
                 <ExternalLink className="w-3 h-3 mr-1" />
                 Apply
               </Button>

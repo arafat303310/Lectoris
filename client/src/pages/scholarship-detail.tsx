@@ -241,7 +241,7 @@ export default function ScholarshipDetail() {
                   )}
                   
                   {scholarship.applicationUrl && !isDeadlinePassed && (
-                    <Button asChild data-testid="apply-now-button">
+                    <Button asChild className="bg-[#D4AF37] hover:bg-[#C9A432] text-[#0B1B32]" data-testid="apply-now-button">
                       <a href={scholarship.applicationUrl} target="_blank" rel="noopener noreferrer">
                         Apply Now <ExternalLink className="ml-2 h-4 w-4" />
                       </a>
