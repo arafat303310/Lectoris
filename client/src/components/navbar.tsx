@@ -29,7 +29,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-2 hover:scale-105 transition-transform duration-300" data-testid="logo-link">
             <img 
               src={applyHubLogo} 
-              alt="ApplyHub Uganda" 
+              alt="Lectoris" 
               className="h-14 w-auto"
               data-testid="logo-image"
             />

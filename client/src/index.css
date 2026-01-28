@@ -91,7 +91,11 @@
 }
 
 .hero-gradient {
-  background: linear-gradient(135deg, hsl(215, 68%, 12%) 0%, hsl(210, 29%, 24%) 100%);
+  background: linear-gradient(135deg, hsl(215, 68%, 12%) 0%, hsl(210, 29%, 24%) 50%, hsl(215, 68%, 18%) 100%);
+  background-size: 200% 200%;
+  animation: gradient-shift 10s ease infinite;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Enhanced Animation Styles */
@@ -248,7 +252,7 @@
 
 .service-hover:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 25px 50px -12px rgba(0, 102, 204, 0.25);
+  box-shadow: 0 25px 50px -12px rgba(11, 27, 50, 0.25);
 }
 
 .card-hover {
@@ -257,7 +261,7 @@
 
 .card-hover:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px -15px rgba(0, 102, 204, 0.2);
+  box-shadow: 0 20px 40px -15px rgba(11, 27, 50, 0.2);
 }
 
 /* Button hover enhancement */
@@ -284,7 +288,7 @@
 
 /* Gradient text effect */
 .gradient-text {
-  background: linear-gradient(135deg, hsl(210, 100%, 40%) 0%, hsl(180, 100%, 35%) 100%);
+  background: linear-gradient(135deg, hsl(215, 68%, 12%) 0%, hsl(43, 64%, 52%) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -292,7 +296,7 @@
 
 /* Animated gradient background */
 .gradient-animate {
-  background: linear-gradient(-45deg, hsl(210, 100%, 40%), hsl(180, 100%, 35%), hsl(145, 49%, 43%), hsl(210, 100%, 50%));
+  background: linear-gradient(-45deg, hsl(215, 68%, 12%), hsl(210, 29%, 24%), hsl(43, 64%, 52%), hsl(215, 68%, 18%));
   background-size: 400% 400%;
   animation: gradient-shift 15s ease infinite;
 }
@@ -311,11 +315,11 @@
 
 /* Enhanced shadows */
 .shadow-glow {
-  box-shadow: 0 0 40px rgba(0, 102, 204, 0.15);
+  box-shadow: 0 0 40px rgba(11, 27, 50, 0.15);
 }
 
 .shadow-glow-accent {
-  box-shadow: 0 0 40px rgba(0, 179, 179, 0.15);
+  box-shadow: 0 0 40px rgba(212, 175, 55, 0.15);
 }
 
 /* Smooth scroll */
@@ -326,7 +330,7 @@ html {
 /* Enhanced focus states */
 .focus-ring:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.3);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.3);
 }
 
 /* Loading shimmer effect */
@@ -346,15 +350,6 @@ html {
 .reveal.active {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Hero section enhancements */
-.hero-gradient {
-  background: linear-gradient(135deg, hsl(210, 100%, 40%) 0%, hsl(180, 100%, 35%) 50%, hsl(210, 100%, 45%) 100%);
-  background-size: 200% 200%;
-  animation: gradient-shift 10s ease infinite;
-  position: relative;
-  overflow: hidden;
 }
 
 .hero-gradient::before {

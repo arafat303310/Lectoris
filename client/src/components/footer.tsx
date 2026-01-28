@@ -13,7 +13,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center hover:scale-105 transition-transform duration-300 inline-block">
               <img 
                 src={applyHubLogo} 
-                alt="ApplyHub Uganda" 
+                alt="Lectoris" 
                 className="h-12 sm:h-14 w-auto"
                 data-testid="footer-logo"
               />
@@ -21,6 +21,7 @@ export default function Footer() {
             <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed">
               Your trusted partner for higher education in Uganda. Connecting students with universities since 2024.
             </p>
+            <p className="text-lg font-bold text-primary">Lectoris</p>
             <div className="flex space-x-3 sm:space-x-4">
               <a href="#" className="text-muted-foreground hover:text-primary transition-all duration-300 hover:scale-125" data-testid="facebook-link">
                 <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
@@ -74,7 +75,7 @@ export default function Footer() {
               </div>
               <div className="flex items-center space-x-2">
                 <Mail className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
-                <span>info@applyhub.ug</span>
+                <span>info@lectoris.app</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Clock className="h-3 w-3 sm:h-4 sm:w-4 shrink-0" />

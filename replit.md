@@ -1,8 +1,8 @@
-# ApplyHub Uganda
+# Lectoris
 
 ## Overview
 
-ApplyHub Uganda is a comprehensive higher education platform designed to connect Ugandan students with universities, scholarships, and educational services. The application serves as a centralized hub where students can discover and apply to universities, find scholarship opportunities, and access educational services like application assistance and resume writing.
+Lectoris (formerly ApplyHub Uganda) is a comprehensive higher education platform designed to connect Ugandan students with universities, scholarships, and educational services. The application serves as a centralized hub where students can discover and apply to universities, find scholarship opportunities, and access educational services like application assistance and resume writing.
 
 The platform features a modern web application with user authentication, comprehensive university and scholarship databases, and a service marketplace. It's built with a focus on the Ugandan education landscape, featuring local universities and region-specific opportunities.
 
@@ -46,10 +46,17 @@ The application integrates **Replit's OIDC authentication** system with:
 - **User profile management** with automatic user creation/updates
 - **Role-based access control** with admin functionality
 
+### Brand Identity (Lectoris - January 2026)
+The app uses a refined academic color palette:
+- **Midnight Navy (#0B1B32)** - Backgrounds, Headers (Authority)
+- **Academic Gold (#D4AF37)** - Icons, Accents, Buttons (Excellence)
+- **Oxford Silver (#E5E7E9)** - Main Text, Icons (Clarity)
+- **Slate Charcoal (#2C3E50)** - Secondary Text, Cards (Reliability)
+
 ### Theme System
 The application supports Light, Dark, and System themes:
 - **ThemeProvider** component manages theme state and persistence
-- **Theme stored in localStorage** under key "applyhub-theme"
+- **Theme stored in localStorage** under key "lectoris-theme"
 - **CSS variables** defined in index.css for both :root (light) and .dark classes
 - **ThemeToggle** component in navbar for theme switching
 
@@ -163,7 +170,11 @@ All 30 universities now have direct application portal links:
 
 ### Branding Assets
 - Logo file: `attached_assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png`
-- Brand colors: Navy blue (#1e3a8a) and Green (#22c55e)
+- Brand colors (Lectoris palette):
+  - Midnight Navy (#0B1B32) - Backgrounds, Headers
+  - Academic Gold (#D4AF37) - Icons, Accents, Buttons
+  - Oxford Silver (#E5E7E9) - Main Text, Icons
+  - Slate Charcoal (#2C3E50) - Secondary Text, Cards
 
 ### Contact Information
 - Phone: +256 708 922 009
