@@ -169,7 +169,7 @@ All 30 universities now have direct application portal links:
 - Note: Data resets on server restart (PostgreSQL credentials sync issue requires platform support)
 
 ### Branding Assets
-- Logo file: `attached_assets/Gemini_Generated_Image_ia7s87ia7s87ia7s~2_1764741648513.png`
+- Logo file: `attached_assets/Gemini_Generated_Image_rjkt7erjkt7erjkt_1769618801021.png`
 - Brand colors (Lectoris palette):
   - Midnight Navy (#0B1B32) - Backgrounds, Headers
   - Academic Gold (#D4AF37) - Icons, Accents, Buttons
