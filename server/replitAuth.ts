@@ -3,10 +3,13 @@ import { Strategy, type VerifyFunction } from "openid-client/passport";
 
 import passport from "passport";
 import session from "express-session";
+import connectPg from "connect-pg-simple";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
-import createMemoryStore from "memorystore";
 import { storage } from "./storage";
+import { pool } from "./db";
+
+const PostgresStore = connectPg(session);
 
 if (!process.env.REPLIT_DOMAINS) {
   throw new Error("Environment variable REPLIT_DOMAINS not provided");
@@ -24,12 +27,13 @@ const getOidcConfig = memoize(
 
 export function getSession() {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
-  const MemoryStore = createMemoryStore(session);
-  const sessionStore = new MemoryStore({
-    checkPeriod: 86400000, // prune expired entries every 24h
+  const sessionStore = new PostgresStore({
+    pool,
+    tableName: "sessions",
+    createTableIfMissing: false,
   });
   return session({
-    secret: process.env.SESSION_SECRET || "applyhub-uganda-secret-key",
+    secret: process.env.SESSION_SECRET || "lectoris-uganda-secret-key",
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
