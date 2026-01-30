@@ -136,14 +136,14 @@ The REST API follows conventional patterns with:
 
 **Subscription Plans:**
 - **Free Plan:** Full access to university/scholarship database, basic search, 5 AI chat messages/month
-- **Student Pro (UGX 50,000/month):** Ad-free, unlimited AI chat, advanced filters, application tracking, 10% service discount
+- **Student Pro (UGX 50,000/month):** Ad-free, advanced filters, application tracking, 10% service discount (Note: AI features excluded)
 
 **Pay-Per-Service (Max UGX 50,000 each):**
+- Professional Resume Writing - UGX 15,000
+- Scholarship Essay Review - UGX 25,000
+- Career Counseling Session - UGX 35,000
 - University Application Assistance - UGX 50,000
 - Scholarship Application Support - UGX 50,000
-- Career Counseling Session - UGX 50,000
-- Scholarship Essay Review - UGX 40,000
-- Professional Resume Writing - UGX 30,000
 
 **Payment Methods Supported:**
 - MTN Mobile Money

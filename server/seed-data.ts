@@ -755,7 +755,7 @@ export const servicesData = [
     name: "Professional Resume Writing",
     description: "Get a standout CV tailored for university and scholarship applications.",
     category: "document",
-    basePrice: "30000",
+    basePrice: "15000",
     deliveryDays: 3,
     isActive: true
   },
@@ -763,7 +763,7 @@ export const servicesData = [
     name: "Scholarship Essay Review",
     description: "Professional editing and feedback for your scholarship personal statements.",
     category: "document",
-    basePrice: "40000",
+    basePrice: "25000",
     deliveryDays: 4,
     isActive: true
   },
@@ -771,7 +771,7 @@ export const servicesData = [
     name: "Career Counseling Session",
     description: "One-on-one career guidance session to help you choose the right course and university.",
     category: "consultation",
-    basePrice: "50000",
+    basePrice: "35000",
     deliveryDays: 1,
     isActive: true
   }
@@ -805,14 +805,13 @@ export const subscriptionPlansData = [
     features: [
       "Everything in Free",
       "No advertisements",
-      "Unlimited AI chat messages",
       "Advanced search filters",
       "Application tracking",
       "10% discount on all services",
       "Priority email support"
     ],
     serviceDiscount: 10,
-    aiChatLimit: -1,
+    aiChatLimit: 0,
     documentReviews: 0,
     adsEnabled: false,
     sortOrder: 1

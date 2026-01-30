@@ -281,7 +281,7 @@ export default function Pricing() {
                 <tr>
                   <td className="py-3 px-4">AI Chat Messages/Month</td>
                   <td className="text-center py-3 px-4">5</td>
-                  <td className="text-center py-3 px-4 font-medium text-accent">Unlimited</td>
+                  <td className="text-center py-3 px-4 font-medium text-accent">None</td>
                 </tr>
                 <tr>
                   <td className="py-3 px-4">Advertisements</td>
