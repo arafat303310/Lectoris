@@ -69,24 +69,14 @@ export default function UniversityCard({ university, onSave, isSaved }: Universi
   };
 
   return (
-    <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 service-hover card-hover group" data-testid={`university-card-${university.id}`}>
+    <Card className="overflow-hidden hover:shadow-xl transition-all duration-500 service-hover card-hover group border-none bg-card/50 backdrop-blur-sm" data-testid={`university-card-${university.id}`}>
       {/* University logo with brand colors */}
       <div 
         className="flex flex-col items-center justify-center p-4 sm:p-6 relative"
         style={{ 
-          background: `linear-gradient(135deg, ${getBrandColors().primary}20 0%, ${getBrandColors().secondary}20 100%)`
+          background: `linear-gradient(135deg, ${getBrandColors().primary}30 0%, ${getBrandColors().secondary}30 100%)`
         }}
       >
-        {/* Ranking Badge */}
-        {university.ranking && (
-          <div 
-            className="absolute top-2 left-2 sm:top-3 sm:left-3 flex items-center gap-1 bg-gradient-to-r from-amber-500 to-yellow-500 text-white px-2 py-1 sm:px-3 sm:py-1.5 rounded-full shadow-lg badge-bounce"
-            data-testid={`university-ranking-${university.id}`}
-          >
-            <Trophy className="w-3 h-3 sm:w-4 sm:h-4" />
-            <span className="text-xs sm:text-sm font-bold">#{university.ranking}</span>
-          </div>
-        )}
         
         {/* Logo */}
         {university.logoUrl && !imageError ? (

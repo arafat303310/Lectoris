@@ -51,33 +51,31 @@
 }
 
 .dark {
-  --background: hsl(215, 68%, 8%);
-  --foreground: hsl(210, 10%, 91%);
-  --card: hsl(215, 68%, 12%);
-  --card-foreground: hsl(210, 10%, 91%);
-  --popover: hsl(215, 68%, 12%);
-  --popover-foreground: hsl(210, 10%, 91%);
-  --primary: hsl(43, 64%, 52%);
-  --primary-foreground: hsl(215, 68%, 12%);
-  --secondary: hsl(210, 29%, 35%);
-  --secondary-foreground: hsl(210, 10%, 91%);
-  --muted: hsl(215, 40%, 18%);
-  --muted-foreground: hsl(210, 15%, 60%);
-  --accent: hsl(43, 64%, 52%);
-  --accent-foreground: hsl(215, 68%, 12%);
-  --destructive: hsl(0, 84%, 60%);
-  --destructive-foreground: hsl(0, 0%, 100%);
-  --border: hsl(215, 40%, 22%);
-  --input: hsl(215, 40%, 22%);
-  --ring: hsl(43, 64%, 52%);
-  --sidebar: hsl(215, 68%, 10%);
-  --sidebar-foreground: hsl(210, 10%, 91%);
-  --sidebar-primary: hsl(43, 64%, 52%);
-  --sidebar-primary-foreground: hsl(215, 68%, 12%);
-  --sidebar-accent: hsl(215, 40%, 18%);
-  --sidebar-accent-foreground: hsl(210, 10%, 91%);
-  --sidebar-border: hsl(215, 40%, 22%);
-  --sidebar-ring: hsl(43, 64%, 52%);
+  --background: hsl(215, 68%, 6%);
+  --foreground: hsl(210, 10%, 95%);
+  --card: hsl(215, 68%, 10%);
+  --card-foreground: hsl(210, 10%, 95%);
+  --popover: hsl(215, 68%, 10%);
+  --popover-foreground: hsl(210, 10%, 95%);
+  --primary: hsl(43, 80%, 60%);
+  --primary-foreground: hsl(215, 68%, 10%);
+  --secondary: hsl(210, 29%, 40%);
+  --secondary-foreground: hsl(210, 10%, 95%);
+  --muted: hsl(215, 40%, 15%);
+  --muted-foreground: hsl(210, 15%, 70%);
+  --accent: hsl(43, 80%, 60%);
+  --accent-foreground: hsl(215, 68%, 10%);
+  --border: hsl(215, 40%, 20%);
+  --input: hsl(215, 40%, 20%);
+  --ring: hsl(43, 80%, 60%);
+  --sidebar: hsl(215, 68%, 8%);
+  --sidebar-foreground: hsl(210, 10%, 95%);
+  --sidebar-primary: hsl(43, 80%, 60%);
+  --sidebar-primary-foreground: hsl(215, 68%, 10%);
+  --sidebar-accent: hsl(215, 40%, 15%);
+  --sidebar-accent-foreground: hsl(210, 10%, 95%);
+  --sidebar-border: hsl(215, 40%, 20%);
+  --sidebar-ring: hsl(43, 80%, 60%);
 }
 
 @layer base {
