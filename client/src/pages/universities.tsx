@@ -133,7 +133,7 @@ export default function Universities() {
     <div className="min-h-screen bg-background" data-testid="universities-page">
       <SEO 
         title="Universities in Uganda | Public & Private Institutions"
-        description="Explore 46+ public and private universities in Uganda. Find Makerere, Kyambogo, UCU, and more with application guides, courses, and tuition information."
+        description="Explore 30 public and private universities in Uganda. Find Makerere, Kyambogo, UCU, and more with application guides, courses, and tuition information."
         canonical="/universities"
         keywords="universities in Uganda, Makerere University, Kyambogo University, UCU, private universities Uganda, public universities Uganda"
       />
@@ -146,7 +146,7 @@ export default function Universities() {
             Universities in Uganda
           </h1>
           <p className="text-sm sm:text-lg text-muted-foreground max-w-2xl mx-auto px-2 animate-fade-in-up delay-200">
-            Explore 46+ universities across Uganda. Find the perfect institution for your academic journey.
+            Explore 30 universities across Uganda. Find the perfect institution for your academic journey.
           </p>
         </div>
 

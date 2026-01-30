@@ -133,7 +133,7 @@ export default function Home() {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-sm font-medium text-muted-foreground mb-1">Universities Explored</p>
-                      <p className="text-3xl font-bold text-foreground">0</p>
+                      <p className="text-3xl font-bold text-foreground">30</p>
                       <p className="text-xs text-muted-foreground mt-2">Start exploring to track your journey</p>
                     </div>
                     <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-400" />
