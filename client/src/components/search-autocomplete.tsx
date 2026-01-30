@@ -34,12 +34,12 @@ export default function SearchAutocomplete({
   const { data: suggestions = [], isLoading } = useQuery<Suggestion[]>({
     queryKey: ["/api/search/autocomplete", query],
     queryFn: async () => {
-      if (query.length < 2) return [];
+      if (query.length < 1) return [];
       const response = await fetch(`/api/search/autocomplete?q=${encodeURIComponent(query)}`);
       if (!response.ok) return [];
       return response.json();
     },
-    enabled: query.length >= 2,
+    enabled: query.length >= 1,
   });
 
   useEffect(() => {
@@ -84,9 +84,9 @@ export default function SearchAutocomplete({
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
-            setIsOpen(e.target.value.length >= 2);
+            setIsOpen(e.target.value.length >= 1);
           }}
-          onFocus={() => query.length >= 2 && setIsOpen(true)}
+          onFocus={() => query.length >= 1 && setIsOpen(true)}
           onKeyDown={handleKeyDown}
           placeholder={placeholder}
           className="pl-9 pr-4"
@@ -114,7 +114,12 @@ export default function SearchAutocomplete({
                 )}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="font-medium text-sm truncate text-foreground">{suggestion.name}</p>
+                <p className="font-medium text-sm truncate text-foreground">
+                  {suggestion.name.split(new RegExp(`(${query})`, 'gi')).map((part, i) => 
+                    part.toLowerCase() === query.toLowerCase() ? 
+                      <span key={i} className="text-primary font-bold">{part}</span> : part
+                  )}
+                </p>
                 <p className="text-xs text-muted-foreground truncate">
                   {suggestion.location || suggestion.provider}
                 </p>
@@ -127,7 +132,7 @@ export default function SearchAutocomplete({
         </Card>
       )}
 
-      {isOpen && query.length >= 2 && !isLoading && suggestions.length === 0 && (
+      {isOpen && query.length >= 1 && !isLoading && suggestions.length === 0 && (
         <Card className="absolute z-50 w-full mt-1 py-4 px-3 shadow-lg text-center">
           <p className="text-sm text-muted-foreground">No results found for "{query}"</p>
         </Card>

@@ -412,7 +412,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/search/autocomplete", async (req, res) => {
     try {
       const { q } = req.query;
-      if (!q || typeof q !== 'string' || q.length < 2) {
+      if (!q || typeof q !== 'string' || q.length < 1) {
         return res.json([]);
       }
       
@@ -421,7 +421,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const suggestions = [
         ...universities.slice(0, 5).map(u => ({ type: 'university', id: u.id, name: u.name, location: u.location })),
-        ...scholarships.slice(0, 3).map(s => ({ type: 'scholarship', id: s.id, name: s.title, provider: s.provider })),
+        ...scholarships.slice(0, 5).map(s => ({ type: 'scholarship', id: s.id, name: s.title, provider: s.provider })),
       ];
       
       res.json(suggestions);

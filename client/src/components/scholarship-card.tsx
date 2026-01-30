@@ -85,7 +85,7 @@ export default function ScholarshipCard({ scholarship, onSave, isSaved }: Schola
           <div className="flex items-center text-xs sm:text-sm text-muted-foreground">
             <Calendar className="h-3 w-3 sm:h-4 sm:w-4 mr-1.5 sm:mr-2 shrink-0" />
             <span className={isDeadlineSoon() ? "text-destructive font-medium" : ""} data-testid={`scholarship-deadline-${scholarship.id}`}>
-              {format(new Date(scholarship.deadline), "MMM d, yyyy")}
+              Deadline: {format(new Date(scholarship.deadline), "MMM d, yyyy")}
             </span>
           </div>
           <div className="flex items-center text-xs sm:text-sm text-muted-foreground">

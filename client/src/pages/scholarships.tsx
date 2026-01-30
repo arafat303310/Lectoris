@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
@@ -13,8 +13,9 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Search, Filter } from "lucide-react";
+import { Search, Filter, Loader2, GraduationCap, Award } from "lucide-react";
 import { Scholarship } from "@shared/schema";
+import { Badge } from "@/components/ui/badge";
 
 export default function Scholarships() {
   const { toast } = useToast();
@@ -22,6 +23,7 @@ export default function Scholarships() {
   const queryClient = useQueryClient();
   
   const [searchQuery, setSearchQuery] = useState("");
+  const [showSuggestions, setShowSuggestions] = useState(false);
   const [appliedFilters, setAppliedFilters] = useState({
     search: "",
   });
@@ -31,94 +33,33 @@ export default function Scholarships() {
     retry: false,
   });
 
+  const { data: suggestions = [], isLoading: isLoadingSuggestions } = useQuery<any[]>({
+    queryKey: ["/api/search/autocomplete", searchQuery],
+    queryFn: async () => {
+      if (searchQuery.length < 1) return [];
+      const response = await fetch(`/api/search/autocomplete?q=${encodeURIComponent(searchQuery)}`);
+      if (!response.ok) return [];
+      return response.json();
+    },
+    enabled: searchQuery.length >= 1,
+  });
+
   const { data: savedScholarships = [] } = useQuery<Scholarship[]>({
     queryKey: ["/api/saved-scholarships"],
     enabled: isAuthenticated,
     retry: false,
   });
 
-  const saveScholarshipMutation = useMutation({
-    mutationFn: async (scholarshipId: string) => {
-      return await apiRequest("POST", "/api/saved-scholarships", { scholarshipId });
-    },
-    onSuccess: () => {
-      toast({
-        title: "Scholarship Saved",
-        description: "Scholarship has been added to your saved list.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/api/saved-scholarships"] });
-    },
-    onError: (error) => {
-      if (isUnauthorizedError(error)) {
-        toast({
-          title: "Unauthorized",
-          description: "You are logged out. Logging in again...",
-          variant: "destructive",
-        });
-        setTimeout(() => {
-          window.location.href = "/api/login";
-        }, 500);
-        return;
-      }
-      toast({
-        title: "Error",
-        description: error.message || "Failed to save scholarship",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const unsaveScholarshipMutation = useMutation({
-    mutationFn: async (scholarshipId: string) => {
-      return await apiRequest("DELETE", `/api/saved-scholarships/${scholarshipId}`);
-    },
-    onSuccess: () => {
-      toast({
-        title: "Scholarship Removed",
-        description: "Scholarship has been removed from your saved list.",
-      });
-      queryClient.invalidateQueries({ queryKey: ["/api/saved-scholarships"] });
-    },
-    onError: (error) => {
-      if (isUnauthorizedError(error)) {
-        toast({
-          title: "Unauthorized",
-          description: "You are logged out. Logging in again...",
-          variant: "destructive",
-        });
-        setTimeout(() => {
-          window.location.href = "/api/login";
-        }, 500);
-        return;
-      }
-      toast({
-        title: "Error",
-        description: error.message || "Failed to remove scholarship",
-        variant: "destructive",
-      });
-    },
-  });
-
-  const handleSaveScholarship = (scholarshipId: string) => {
-    const isSaved = savedScholarships.some(s => s.id === scholarshipId);
-    if (isSaved) {
-      unsaveScholarshipMutation.mutate(scholarshipId);
-    } else {
-      saveScholarshipMutation.mutate(scholarshipId);
-    }
+  const handleApplyFilters = (query?: string) => {
+    setAppliedFilters({
+      search: (query ?? searchQuery).trim(),
+    });
+    setShowSuggestions(false);
   };
 
-  const handleApplyFilters = () => {
-    setAppliedFilters({
-      search: searchQuery.trim(),
-    });
-  };
-
-  const handleClearFilters = () => {
-    setSearchQuery("");
-    setAppliedFilters({
-      search: "",
-    });
+  const handleSuggestionClick = (suggestion: any) => {
+    setSearchQuery(suggestion.name);
+    handleApplyFilters(suggestion.name);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -127,7 +68,26 @@ export default function Scholarships() {
     }
   };
 
-  const isFiltered = appliedFilters.search;
+  async function handleSaveScholarship(scholarshipId: string) {
+    const isSaved = savedScholarships.some(s => s.id === scholarshipId);
+    try {
+      if (isSaved) {
+        await apiRequest("DELETE", `/api/saved-scholarships/${scholarshipId}`);
+        toast({ title: "Scholarship Removed", description: "Scholarship has been removed from your saved list." });
+      } else {
+        await apiRequest("POST", "/api/saved-scholarships", { scholarshipId });
+        toast({ title: "Scholarship Saved", description: "Scholarship has been added to your saved list." });
+      }
+      queryClient.invalidateQueries({ queryKey: ["/api/saved-scholarships"] });
+    } catch (error: any) {
+      if (isUnauthorizedError(error)) {
+        toast({ title: "Unauthorized", description: "You are logged out. Logging in again...", variant: "destructive" });
+        setTimeout(() => { window.location.href = "/api/login"; }, 500);
+        return;
+      }
+      toast({ title: "Error", description: error.message || "Action failed", variant: "destructive" });
+    }
+  }
 
   return (
     <div className="min-h-screen bg-background" data-testid="scholarships-page">
@@ -151,7 +111,7 @@ export default function Scholarships() {
         </div>
 
         {/* Filters */}
-        <Card className="mb-8 animate-scale-in delay-300" data-testid="filters-card">
+        <Card className="mb-8 animate-scale-in delay-300 overflow-visible" data-testid="filters-card">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Filter className="h-5 w-5" />
@@ -159,25 +119,66 @@ export default function Scholarships() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="flex gap-4 mb-4">
+            <div className="flex gap-4 mb-4 relative">
               <div className="relative flex-1">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
                 <Input
                   placeholder="Search scholarships..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setShowSuggestions(e.target.value.length >= 1);
+                  }}
+                  onFocus={() => searchQuery.length >= 1 && setShowSuggestions(true)}
+                  onBlur={() => setTimeout(() => setShowSuggestions(false), 200)}
                   onKeyPress={handleKeyPress}
                   className="pl-10"
                   data-testid="search-scholarships-input"
                 />
+                {isLoadingSuggestions && (
+                  <Loader2 className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 animate-spin text-muted-foreground" />
+                )}
+
+                {/* Autocomplete suggestions */}
+                {showSuggestions && suggestions.length > 0 && (
+                  <Card className="absolute z-50 w-full mt-1 py-2 shadow-lg max-h-[300px] overflow-y-auto left-0 top-full">
+                    {suggestions.map((suggestion, index) => (
+                      <button
+                        key={`${suggestion.type}-${suggestion.id}`}
+                        onClick={() => handleSuggestionClick(suggestion)}
+                        className="w-full px-3 py-2 text-left hover:bg-muted flex items-center gap-3 transition-colors"
+                      >
+                        <div className="flex-shrink-0">
+                          {suggestion.type === "university" ? (
+                            <GraduationCap className="h-4 w-4 text-primary" />
+                          ) : (
+                            <Award className="h-4 w-4 text-amber-500" />
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="font-medium text-sm truncate">
+                            {suggestion.name.split(new RegExp(`(${searchQuery})`, 'gi')).map((part: string, i: number) => 
+                              part.toLowerCase() === searchQuery.toLowerCase() ? 
+                                <span key={i} className="text-primary font-bold">{part}</span> : part
+                            )}
+                          </p>
+                        </div>
+                        <Badge variant="outline" className="text-[10px] uppercase">{suggestion.type}</Badge>
+                      </button>
+                    ))}
+                  </Card>
+                )}
               </div>
               
               <div className="flex gap-2">
-                <Button onClick={handleApplyFilters} data-testid="apply-filters-button">
+                <Button onClick={() => handleApplyFilters()} data-testid="apply-filters-button">
                   Search
                 </Button>
-                {isFiltered && (
-                  <Button variant="outline" onClick={handleClearFilters} data-testid="clear-filters-button">
+                {appliedFilters.search && (
+                  <Button variant="outline" onClick={() => {
+                    setSearchQuery("");
+                    setAppliedFilters({ search: "" });
+                  }} data-testid="clear-filters-button">
                     Clear
                   </Button>
                 )}
@@ -213,7 +214,10 @@ export default function Scholarships() {
               <p className="text-muted-foreground mb-4">
                 Try adjusting your search criteria or filters to find more results.
               </p>
-              <Button onClick={handleClearFilters} data-testid="clear-filters-no-results">
+              <Button onClick={() => {
+                setSearchQuery("");
+                setAppliedFilters({ search: "" });
+              }} data-testid="clear-filters-no-results">
                 Clear Filters
               </Button>
             </CardContent>
@@ -231,7 +235,7 @@ export default function Scholarships() {
                 <div key={scholarship.id} className="animate-fade-in-up" style={{ animationDelay: `${(index % 6) * 100}ms` }}>
                   <ScholarshipCard
                     scholarship={scholarship}
-                    onSave={isAuthenticated ? handleSaveScholarship : undefined}
+                    onSave={isAuthenticated ? (id) => handleSaveScholarship(id) : undefined}
                     isSaved={savedScholarships.some(s => s.id === scholarship.id)}
                   />
                 </div>
