@@ -785,10 +785,9 @@ export const subscriptionPlansData = [
     monthlyPrice: "0",
     annualPrice: "0",
     features: [
-      "Browse all 30+ universities",
+      "Browse all 30 universities",
       "View all active scholarships",
-      "Basic search & filters",
-      "5 AI chat messages/month"
+      "Basic search & filters"
     ],
     serviceDiscount: 0,
     aiChatLimit: 5,

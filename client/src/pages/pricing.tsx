@@ -279,11 +279,6 @@ export default function Pricing() {
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-accent mx-auto" /></td>
                 </tr>
                 <tr>
-                  <td className="py-3 px-4">AI Chat Messages/Month</td>
-                  <td className="text-center py-3 px-4">5</td>
-                  <td className="text-center py-3 px-4 font-medium text-accent">None</td>
-                </tr>
-                <tr>
                   <td className="py-3 px-4">Advertisements</td>
                   <td className="text-center py-3 px-4"><Check className="h-5 w-5 text-muted-foreground mx-auto" /></td>
                   <td className="text-center py-3 px-4"><X className="h-5 w-5 text-accent mx-auto" /></td>
