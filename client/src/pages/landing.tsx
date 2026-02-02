@@ -78,7 +78,7 @@ export default function Landing() {
             {/* Get Started Window */}
             <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 max-w-2xl mx-auto mb-8 sm:mb-12 border border-white/20 animate-fade-in-up delay-300" data-testid="get-started-window">
               <h3 className="text-lg sm:text-xl font-semibold text-white mb-4">Ready to get started?</h3>
-              <p className="text-white/80 mb-6 text-sm sm:text-base">Join thousands of students exploring their educational future with ApplyHub.</p>
+              <p className="text-white/80 mb-6 text-sm sm:text-base">Join thousands of students exploring their educational future with Lectoris.</p>
               <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
                 <Link href="/signup">
                   <Button className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 font-semibold px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base" data-testid="get-started-signup">
@@ -251,7 +251,7 @@ export default function Landing() {
               Ready to Start Your Journey?
             </h2>
             <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 leading-relaxed px-2" data-testid="cta-description">
-              Join thousands of Ugandan students who have successfully navigated their path to higher education with ApplyHub.
+              Join thousands of Ugandan students who have successfully navigated their path to higher education with Lectoris.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4">
               <Link href="/login">
