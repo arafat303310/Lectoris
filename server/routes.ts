@@ -86,7 +86,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   // Password-based login
   const loginSchema = z.object({
-    email: z.string().email("Invalid email address"),
+    identifier: z.string().min(1, "Username or email is required"),
     password: z.string().min(1, "Password is required"),
   });
 
@@ -94,10 +94,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const validatedData = loginSchema.parse(req.body);
       
-      // Find user by email
-      const user = await storage.getUserByEmail(validatedData.email);
+      // Find user by email or username
+      let user = await storage.getUserByEmail(validatedData.identifier);
+      if (!user) {
+        user = await storage.getUserByUsername(validatedData.identifier);
+      }
+
       if (!user || !user.password) {
-        return res.status(401).json({ message: "Invalid email or password" });
+        return res.status(401).json({ message: "Invalid username/email or password" });
       }
 
       // Verify password

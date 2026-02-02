@@ -16,7 +16,7 @@ import { Eye, EyeOff, Loader2 } from "lucide-react";
 import applyHubLogo from "@assets/Gemini_Generated_Image_rjkt7erjkt7erjkt_1769618801021.png";
 
 const loginSchema = z.object({
-  email: z.string().email("Please enter a valid email address"),
+  identifier: z.string().min(1, "Username or email is required"),
   password: z.string().min(1, "Password is required"),
 });
 
@@ -30,7 +30,7 @@ export default function Login() {
   const form = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
-      email: "",
+      identifier: "",
       password: "",
     },
   });
@@ -50,7 +50,7 @@ export default function Login() {
     onError: (error: any) => {
       toast({
         title: "Login Failed",
-        description: error.message || "Invalid email or password. Please try again.",
+        description: error.message || "Invalid username/email or password. Please try again.",
         variant: "destructive",
       });
     },
@@ -81,16 +81,15 @@ export default function Login() {
               <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                 <FormField
                   control={form.control}
-                  name="email"
+                  name="identifier"
                   render={({ field }) => (
                     <FormItem>
-                      <FormLabel>Email Address</FormLabel>
+                      <FormLabel>Username or Email Address</FormLabel>
                       <FormControl>
                         <Input 
-                          type="email" 
-                          placeholder="student@example.com" 
+                          placeholder="student@example.com or username" 
                           {...field}
-                          data-testid="input-email"
+                          data-testid="input-identifier"
                         />
                       </FormControl>
                       <FormMessage />
