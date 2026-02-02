@@ -18,43 +18,63 @@ import bcrypt from "bcryptjs";
 export async function seed() {
   console.log("Seeding database...");
 
-  // Seed Subscription Plans
-  for (const plan of subscriptionPlansData) {
-    await db.insert(subscriptionPlans).values({
-      ...plan,
-      monthlyPrice: plan.monthlyPrice.toString(),
-      annualPrice: plan.annualPrice?.toString(),
-    }).onConflictDoNothing();
+  // Seed Subscription Plans (only if empty)
+  const existingPlans = await db.select().from(subscriptionPlans);
+  if (existingPlans.length === 0) {
+    for (const plan of subscriptionPlansData) {
+      await db.insert(subscriptionPlans).values({
+        ...plan,
+        monthlyPrice: plan.monthlyPrice.toString(),
+        annualPrice: plan.annualPrice?.toString(),
+      });
+    }
+    console.log("Seeded subscription plans");
+  } else {
+    console.log(`Subscription plans already exist (${existingPlans.length})`);
   }
-  console.log("Seeded subscription plans");
 
-  // Seed Universities
-  for (const uni of ugandaUniversitiesData) {
-    await db.insert(universities).values({
-      ...uni,
-      tuitionMin: uni.tuitionMin?.toString(),
-      tuitionMax: uni.tuitionMax?.toString(),
-    }).onConflictDoNothing();
+  // Seed Universities (only if empty)
+  const existingUniversities = await db.select().from(universities);
+  if (existingUniversities.length === 0) {
+    for (const uni of ugandaUniversitiesData) {
+      await db.insert(universities).values({
+        ...uni,
+        tuitionMin: uni.tuitionMin?.toString(),
+        tuitionMax: uni.tuitionMax?.toString(),
+      });
+    }
+    console.log("Seeded universities");
+  } else {
+    console.log(`Universities already exist (${existingUniversities.length})`);
   }
-  console.log("Seeded universities");
 
-  // Seed Scholarships
-  for (const sch of ugandaScholarshipsData) {
-    await db.insert(scholarships).values({
-      ...sch,
-      amount: sch.amount?.toString(),
-    }).onConflictDoNothing();
+  // Seed Scholarships (only if empty)
+  const existingScholarships = await db.select().from(scholarships);
+  if (existingScholarships.length === 0) {
+    for (const sch of ugandaScholarshipsData) {
+      await db.insert(scholarships).values({
+        ...sch,
+        amount: sch.amount?.toString(),
+      });
+    }
+    console.log("Seeded scholarships");
+  } else {
+    console.log(`Scholarships already exist (${existingScholarships.length})`);
   }
-  console.log("Seeded scholarships");
 
-  // Seed Services
-  for (const svc of servicesData) {
-    await db.insert(services).values({
-      ...svc,
-      basePrice: svc.basePrice.toString(),
-    }).onConflictDoNothing();
+  // Seed Services (only if empty)
+  const existingServices = await db.select().from(services);
+  if (existingServices.length === 0) {
+    for (const svc of servicesData) {
+      await db.insert(services).values({
+        ...svc,
+        basePrice: svc.basePrice.toString(),
+      });
+    }
+    console.log("Seeded services");
+  } else {
+    console.log(`Services already exist (${existingServices.length})`);
   }
-  console.log("Seeded services");
 
   // Seed Admin User if not exists
   const adminUsername = "admin";
