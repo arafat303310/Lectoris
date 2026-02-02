@@ -166,7 +166,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/universities", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -185,7 +186,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.put("/api/universities/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -204,7 +206,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.delete("/api/universities/:id", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -248,7 +251,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/scholarships", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -265,6 +269,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  app.put("/api/scholarships/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+
+      const validatedData = insertScholarshipSchema.partial().parse(req.body);
+      const scholarship = await storage.updateScholarship(req.params.id, validatedData);
+      res.json(scholarship);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error updating scholarship:", error);
+      res.status(500).json({ message: "Failed to update scholarship" });
+    }
+  });
+
+  app.delete("/api/scholarships/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+
+      await storage.deleteScholarship(req.params.id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting scholarship:", error);
+      res.status(500).json({ message: "Failed to delete scholarship" });
+    }
+  });
+
   // Service routes
   app.get("/api/services", async (req, res) => {
     try {
@@ -278,7 +318,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
 
   app.post("/api/services", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -292,6 +333,42 @@ export async function registerRoutes(app: Express): Promise<Server> {
       }
       console.error("Error creating service:", error);
       res.status(500).json({ message: "Failed to create service" });
+    }
+  });
+
+  app.put("/api/services/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+
+      const validatedData = insertServiceSchema.partial().parse(req.body);
+      const service = await storage.updateService(req.params.id, validatedData);
+      res.json(service);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid data", errors: error.errors });
+      }
+      console.error("Error updating service:", error);
+      res.status(500).json({ message: "Failed to update service" });
+    }
+  });
+
+  app.delete("/api/services/:id", isAuthenticated, async (req: any, res) => {
+    try {
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
+      if (!user?.isAdmin) {
+        return res.status(403).json({ message: "Admin access required" });
+      }
+
+      await storage.deleteService(req.params.id);
+      res.status(204).send();
+    } catch (error) {
+      console.error("Error deleting service:", error);
+      res.status(500).json({ message: "Failed to delete service" });
     }
   });
 
@@ -482,7 +559,8 @@ Guidelines:
   // Admin routes for user management
   app.get("/api/admin/users", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }
@@ -496,7 +574,8 @@ Guidelines:
 
   app.get("/api/admin/stats", isAuthenticated, async (req: any, res) => {
     try {
-      const user = await storage.getUser(req.user.claims.sub);
+      const userId = req.user.isLocalAuth ? req.user.userId : req.user.claims?.sub;
+      const user = await storage.getUser(userId);
       if (!user?.isAdmin) {
         return res.status(403).json({ message: "Admin access required" });
       }

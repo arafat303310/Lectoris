@@ -15,7 +15,10 @@ import Services from "@/pages/services";
 import Pricing from "@/pages/pricing";
 import Blog from "@/pages/blog";
 import Dashboard from "@/pages/dashboard";
-import AdminDashboard from "@/pages/admin-dashboard";
+import AdminOverview from "@/pages/admin/overview";
+import AdminUniversities from "@/pages/admin/universities";
+import AdminScholarships from "@/pages/admin/scholarships";
+import AdminServices from "@/pages/admin/services";
 import Signup from "@/pages/signup";
 import Login from "@/pages/login";
 import Checkout from "@/pages/checkout";
@@ -53,7 +56,10 @@ function Router() {
           <Route path="/pricing" component={Pricing} />
           <Route path="/blog" component={Blog} />
           <Route path="/dashboard" component={Dashboard} />
-          <Route path="/admin" component={AdminDashboard} />
+          <Route path="/admin" component={AdminOverview} />
+          <Route path="/admin/universities" component={AdminUniversities} />
+          <Route path="/admin/scholarships" component={AdminScholarships} />
+          <Route path="/admin/services" component={AdminServices} />
           <Route path="/checkout" component={Checkout} />
           <Route path="/privacy-policy" component={PrivacyPolicy} />
           <Route path="/signup" component={Signup} />
