@@ -1,3 +1,15 @@
+import bcrypt from "bcryptjs";
+
+export const adminUserData = {
+  username: "admin",
+  email: "admin@lectoris.ug",
+  password: bcrypt.hashSync("Admin123!", 10),
+  firstName: "System",
+  lastName: "Administrator",
+  isAdmin: true,
+  subscriptionTier: "premium"
+};
+
 export const ugandaUniversitiesData = [
   {
     name: "Makerere University",

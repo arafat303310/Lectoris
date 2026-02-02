@@ -1,4 +1,5 @@
 import { db } from "./db";
+import { eq } from "drizzle-orm";
 import { 
   universities, 
   scholarships, 
@@ -56,16 +57,16 @@ export async function seed() {
   console.log("Seeded services");
 
   // Seed Admin User if not exists
-  const adminEmail = "admin@lectoris.ug";
+  const adminUsername = "admin";
   const existingAdmin = await db.query.users.findFirst({
-    where: (users, { eq }) => eq(users.email, adminEmail)
+    where: (users, { eq }) => eq(users.username, adminUsername)
   });
 
   if (!existingAdmin) {
-    const hashedPassword = await bcrypt.hash("AdminLectoris2026!", 10);
+    const hashedPassword = await bcrypt.hash("Admin123!", 10);
     await db.insert(users).values({
-      email: adminEmail,
-      username: "admin",
+      email: "admin@lectoris.ug",
+      username: adminUsername,
       password: hashedPassword,
       firstName: "System",
       lastName: "Admin",
@@ -73,6 +74,17 @@ export async function seed() {
       subscriptionTier: "premium",
     });
     console.log("Seeded admin user");
+  } else {
+    // Ensure existing admin user has the correct password and is admin
+    const hashedPassword = await bcrypt.hash("Admin123!", 10);
+    await db.update(users)
+      .set({ 
+        password: hashedPassword, 
+        isAdmin: true,
+        updatedAt: new Date()
+      })
+      .where(eq(users.id, existingAdmin.id));
+    console.log("Updated admin user password and privileges");
   }
 
   console.log("Seeding completed successfully");
